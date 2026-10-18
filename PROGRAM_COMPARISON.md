@@ -203,3 +203,9 @@
 5. در پایان، برنامه را با دقت و وضوح قالب رتبه‌لند نمایش دهد.
 
 قواعد کامل در [`MAZ_PLANNING_PLAYBOOK.md`](MAZ_PLANNING_PLAYBOOK.md) و دستور ورود ایجنت در [`AGENTS.md`](AGENTS.md) قرار دارد.
+
+نمونهٔ اجرایی همین معماری برای آزمون ۱ آبان ۱۴۰۵ در
+[`outputs/hybrid-maz-rankland-1aban-1405.pdf`](outputs/hybrid-maz-rankland-1aban-1405.pdf)
+و دادهٔ قابل‌ویرایش آن در
+[`examples/1aban-1405-hybrid.json`](examples/1aban-1405-hybrid.json)
+موجود است.

@@ -4,7 +4,9 @@
 
 1. [`MAZ_PLANNING_PLAYBOOK.md`](MAZ_PLANNING_PLAYBOOK.md) — فرمول و الگوریتم اجرایی؛
 2. [`PROGRAM_COMPARISON.md`](PROGRAM_COMPARISON.md) — تفاوت فرمول قدیمی رتبه‌لند با روش ماز؛
-3. [`examples/REQUEST_TEMPLATE.yaml`](examples/REQUEST_TEMPLATE.yaml) — قرارداد ورودی پیشنهادی.
+3. [`examples/REQUEST_TEMPLATE.yaml`](examples/REQUEST_TEMPLATE.yaml) — قرارداد ورودی پیشنهادی؛
+4. [`examples/1aban-1405-hybrid.json`](examples/1aban-1405-hybrid.json) — نمونهٔ دادهٔ کامل؛
+5. [`outputs/hybrid-maz-rankland-1aban-1405.pdf`](outputs/hybrid-maz-rankland-1aban-1405.pdf) — نمونهٔ خروجی ترکیبی.
 
 ## مأموریت
 

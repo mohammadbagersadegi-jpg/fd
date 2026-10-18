@@ -31,6 +31,30 @@
 | [`MAZ_PLANNING_PLAYBOOK.md`](MAZ_PLANNING_PLAYBOOK.md) | فرمول، الگوریتم، وضعیت‌های تحصیلی، مدل داده، شبه‌کد و QA |
 | [`PROGRAM_COMPARISON.md`](PROGRAM_COMPARISON.md) | شرح برنامهٔ رتبه‌لند و ماز و تفاوت‌های دقیق آن‌ها |
 | [`examples/REQUEST_TEMPLATE.yaml`](examples/REQUEST_TEMPLATE.yaml) | قالب استاندارد ورودی برای درخواست تازه |
+| [`examples/1aban-1405-hybrid.json`](examples/1aban-1405-hybrid.json) | دادهٔ نمونهٔ ترکیبی برای آزمون ۱ آبان ۱۴۰۵ |
+| [`outputs/hybrid-maz-rankland-1aban-1405.pdf`](outputs/hybrid-maz-rankland-1aban-1405.pdf) | خروجی پنج‌صفحه‌ای نمونه و پیوست مقایسه |
+| [`scripts/generate_1aban_hybrid.py`](scripts/generate_1aban_hybrid.py) | مولد بازتولیدپذیر PDF از دادهٔ JSON |
+
+## نمونهٔ اجرایی ۱ آبان ۱۴۰۵
+
+نمونهٔ PDF موجود در `outputs/` با این معماری ساخته شده است:
+
+- بودجه و جدید/مروری: روش ماز؛
+- ظرفیت: ۵۸ زنگ فرض‌شده، ۵۲ زنگ قطعی و ۶ زنگ انعطاف؛
+- تست زیست: دو روز پس از مطالعه؛
+- تعداد تست: ثبت واقعی در زنگ ۷۵دقیقه‌ای، نه عدد ثابت؛
+- ظاهر: فرم طلایی و خانه‌بندی شبیه خروجی رتبه‌لند؛
+- صفحهٔ پنجم: مقایسهٔ مستقیم با نسخهٔ ۹۴ساعته و ۹۹۰تستی قبلی.
+
+این نمونه شخصی‌سازی‌شده نیست و برای مقایسهٔ معماری ساخته شده است. زمین‌شناسی نیز برای همسانی دامنه با خروجی اصلی چهاردرس حذف شده است.
+
+### بازتولید PDF
+
+```bash
+python -m venv .venv
+.venv/bin/pip install -r requirements-pdf.txt
+.venv/bin/python scripts/generate_1aban_hybrid.py
+```
 
 ## ورودی‌های ضروری
 
