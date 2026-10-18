@@ -16,7 +16,8 @@
    - [`RANKLAND_PLANNING_PLAYBOOK.md`](RANKLAND_PLANNING_PLAYBOOK.md) برای فرمول اصلی اصلاح‌شدهٔ رتبه‌لند؛
    - [`MAZ_PLANNING_PLAYBOOK.md`](MAZ_PLANNING_PLAYBOOK.md) برای روش ماز.
 3. برای شناخت تفاوت دو روش، [`PROGRAM_COMPARISON.md`](PROGRAM_COMPARISON.md) را ببین.
-4. در مسیر ماز/ترکیبی، ورودی را با [`examples/REQUEST_TEMPLATE.yaml`](examples/REQUEST_TEMPLATE.yaml) دریافت کن.
+4. برای قواعد مستندِ زنگ ۷۵دقیقه‌ای، برنامهٔ حجمی ـ زمانی، مرحله‌بندی تست و دو روز پیش از آزمون، [`VOLUMETRIC_PLANNING_FORMULA.md`](VOLUMETRIC_PLANNING_FORMULA.md) را بخوان.
+5. در مسیر ماز/ترکیبی، ورودی را با [`examples/REQUEST_TEMPLATE.yaml`](examples/REQUEST_TEMPLATE.yaml) دریافت کن.
 
 ### برای کاربر
 
@@ -43,6 +44,9 @@
 | [`RANKLAND_PLANNING_PLAYBOOK.md`](RANKLAND_PLANNING_PLAYBOOK.md) | فرمول مستقل اصلاح‌شدهٔ رتبه‌لند، تبصره‌ها، امکان‌سنجی و QA |
 | [`MAZ_PLANNING_PLAYBOOK.md`](MAZ_PLANNING_PLAYBOOK.md) | الگوریتم مستقل ماز، وضعیت‌های تحصیلی، مدل داده، شبه‌کد و QA |
 | [`PROGRAM_COMPARISON.md`](PROGRAM_COMPARISON.md) | شرح برنامهٔ رتبه‌لند و ماز و تفاوت‌های دقیق آن‌ها |
+| [`VOLUMETRIC_PLANNING_FORMULA.md`](VOLUMETRIC_PLANNING_FORMULA.md) | فرمول مستند استخراج‌شده از ۴۱۰ صفحهٔ کتاب: زمان، حجم، تست، مرور، پیش‌آزمون و تطبیق با ماز |
+| [`scripts/ocr_scanned_pdf.py`](scripts/ocr_scanned_pdf.py) | افزودن لایهٔ OCR فارسی نامرئی به PDF اسکن‌شده، بدون تغییر ظاهر صفحات |
+| [`requirements-ocr.txt`](requirements-ocr.txt) | وابستگی‌های بازتولید OCR |
 | [`examples/REQUEST_TEMPLATE.yaml`](examples/REQUEST_TEMPLATE.yaml) | قالب استاندارد ورودی برای درخواست تازه |
 | [`examples/1aban-1405-hybrid.json`](examples/1aban-1405-hybrid.json) | دادهٔ نمونهٔ ترکیبی برای آزمون ۱ آبان ۱۴۰۵ |
 | [`outputs/hybrid-maz-rankland-1aban-1405.pdf`](outputs/hybrid-maz-rankland-1aban-1405.pdf) | خروجی پنج‌صفحه‌ای نمونه و پیوست مقایسه |
