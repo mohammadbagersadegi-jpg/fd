@@ -1,0 +1,8 @@
+# Local source material and analysis artifacts
+/google_drive/
+/scratch/
+
+# Python/tool caches
+__pycache__/
+*.py[cod]
+.venv/
