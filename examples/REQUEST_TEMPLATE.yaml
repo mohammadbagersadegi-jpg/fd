@@ -1,0 +1,42 @@
+# این فایل را کپی و برای هر درخواست تکمیل کنید.
+request:
+  start_date_jalali: null       # نمونه: "1405-07-18"
+  end_date_jalali: null         # نمونه: "1405-08-01"
+  target_exam_date_jalali: null
+  previous_exam_date_jalali: null
+
+student:
+  track: experimental           # experimental | mathematics | humanities | art | language
+  status: null                  # grade10 | grade11 | grade12 | graduate
+  school_days: []               # sat, sun, mon, tue, wed, thu, fri
+  school_hours: null            # نمونه: "07:30-14:00"
+  commute_minutes_per_day: 0
+  fixed_classes: []
+  sleep_window: null            # نمونه: "23:30-06:30"
+  completed_blocks_last_7_days: null
+  preferred_block_minutes: null
+  limitations: []
+
+exam:
+  annual_plan_file: null
+  study_plan_file: null
+  route: null                   # نام دقیق مسیر در فایل ماز
+  included_subjects: []         # خالی = همهٔ دروس بودجه
+
+mastery:
+  studied_scopes: []
+  level_by_subject: {}          # weak | average | strong
+  previous_exam_errors: []
+
+school_exams:
+  enabled: false
+  items: []
+
+output:
+  format: markdown              # markdown | docx | pdf
+  use_rotbeland_visual_template: false
+  include_assumptions: true
+  include_capacity_report: true
+  include_qa_report: true
+
+# ایجنت باید نام و صفحهٔ منبع، فرض‌ها و هر کسری ظرفیت را در خروجی ثبت کند.
