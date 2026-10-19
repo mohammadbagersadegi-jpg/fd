@@ -157,6 +157,20 @@ GRAMMAR UNRESOLVED**.
 
 ## 4. Record-count and framing checks
 
+**Byte accounting (all eight rounds).** `walk_stream` labels every byte before
+the tail; the totals close exactly, so no byte is silently dropped:
+
+| Round | Buffer | Covered by segments | Tail | Segments sum | Closed |
+| ---: | ---: | ---: | ---: | ---: | :---: |
+| 1 | 448 | 424 | 24 | 424 | yes |
+| 2 | 640 | 598 | 42 | 598 | yes |
+| 3 | 576 | 506 | 70 | 506 | yes |
+| 4 | 576 | 522 | 54 | 522 | yes |
+| 5 | 800 | 754 | 46 | 754 | yes |
+| 6 | 736 | 662 | 74 | 662 | yes |
+| 7 | 480 | 460 | 20 | 460 | yes |
+| 8 | 896 | 738 | 158 | 738 | yes |
+
 | Claim | Check | Class |
 | --- | --- | --- |
 | Every round's blocks tile `[0, tail)` with no gap | `walk_stream` + `segments_cover` (tests) | VERIFIED_DIRECT |

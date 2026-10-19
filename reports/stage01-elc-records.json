@@ -1198,6 +1198,8 @@
       "byte_accounting": {
         "covered": 424,
         "tail": 24,
+        "total": 448,
+        "accounted": true,
         "segments": 94,
         "by_kind": {
           "batch_count": 12,
@@ -1208,6 +1210,16 @@
           "deferred_length": 4,
           "deferred_record": 10,
           "deferred_end": 4
+        },
+        "bytes_by_kind": {
+          "batch_count": 24,
+          "batch_record": 228,
+          "timed_delay": 22,
+          "timed_record": 66,
+          "timed_end": 8,
+          "deferred_length": 8,
+          "deferred_record": 60,
+          "deferred_end": 8
         }
       }
     },
@@ -2972,6 +2984,8 @@
       "byte_accounting": {
         "covered": 598,
         "tail": 42,
+        "total": 640,
+        "accounted": true,
         "segments": 121,
         "by_kind": {
           "batch_count": 12,
@@ -2982,6 +2996,16 @@
           "deferred_length": 4,
           "deferred_record": 12,
           "deferred_end": 4
+        },
+        "bytes_by_kind": {
+          "batch_count": 24,
+          "batch_record": 414,
+          "timed_delay": 16,
+          "timed_record": 48,
+          "timed_end": 8,
+          "deferred_length": 8,
+          "deferred_record": 72,
+          "deferred_end": 8
         }
       }
     },
@@ -4442,6 +4466,8 @@
       "byte_accounting": {
         "covered": 506,
         "tail": 70,
+        "total": 576,
+        "accounted": true,
         "segments": 107,
         "by_kind": {
           "batch_count": 12,
@@ -4452,6 +4478,16 @@
           "deferred_length": 4,
           "deferred_record": 12,
           "deferred_end": 4
+        },
+        "bytes_by_kind": {
+          "batch_count": 24,
+          "batch_record": 306,
+          "timed_delay": 20,
+          "timed_record": 60,
+          "timed_end": 8,
+          "deferred_length": 8,
+          "deferred_record": 72,
+          "deferred_end": 8
         }
       }
     },
@@ -5950,6 +5986,8 @@
       "byte_accounting": {
         "covered": 522,
         "tail": 54,
+        "total": 576,
+        "accounted": true,
         "segments": 111,
         "by_kind": {
           "batch_count": 12,
@@ -5960,6 +5998,16 @@
           "deferred_length": 4,
           "deferred_record": 10,
           "deferred_end": 4
+        },
+        "bytes_by_kind": {
+          "batch_count": 24,
+          "batch_record": 318,
+          "timed_delay": 24,
+          "timed_record": 72,
+          "timed_end": 8,
+          "deferred_length": 8,
+          "deferred_record": 60,
+          "deferred_end": 8
         }
       }
     },
@@ -8073,6 +8121,8 @@
       "byte_accounting": {
         "covered": 754,
         "tail": 46,
+        "total": 800,
+        "accounted": true,
         "segments": 165,
         "by_kind": {
           "batch_count": 18,
@@ -8083,6 +8133,16 @@
           "deferred_length": 6,
           "deferred_record": 14,
           "deferred_end": 6
+        },
+        "bytes_by_kind": {
+          "batch_count": 36,
+          "batch_record": 414,
+          "timed_delay": 46,
+          "timed_record": 138,
+          "timed_end": 12,
+          "deferred_length": 12,
+          "deferred_record": 84,
+          "deferred_end": 12
         }
       }
     },
@@ -9949,6 +10009,8 @@
       "byte_accounting": {
         "covered": 662,
         "tail": 74,
+        "total": 736,
+        "accounted": true,
         "segments": 145,
         "by_kind": {
           "batch_count": 18,
@@ -9959,6 +10021,16 @@
           "deferred_length": 6,
           "deferred_record": 18,
           "deferred_end": 6
+        },
+        "bytes_by_kind": {
+          "batch_count": 36,
+          "batch_record": 354,
+          "timed_delay": 32,
+          "timed_record": 96,
+          "timed_end": 12,
+          "deferred_length": 12,
+          "deferred_record": 108,
+          "deferred_end": 12
         }
       }
     },
@@ -11166,6 +11238,8 @@
       "byte_accounting": {
         "covered": 460,
         "tail": 20,
+        "total": 480,
+        "accounted": true,
         "segments": 112,
         "by_kind": {
           "batch_count": 15,
@@ -11176,6 +11250,16 @@
           "deferred_length": 5,
           "deferred_record": 36,
           "deferred_end": 5
+        },
+        "bytes_by_kind": {
+          "batch_count": 30,
+          "batch_record": 0,
+          "timed_delay": 46,
+          "timed_record": 138,
+          "timed_end": 10,
+          "deferred_length": 10,
+          "deferred_record": 216,
+          "deferred_end": 10
         }
       }
     },
@@ -13308,6 +13392,8 @@
       "byte_accounting": {
         "covered": 738,
         "tail": 158,
+        "total": 896,
+        "accounted": true,
         "segments": 155,
         "by_kind": {
           "batch_count": 18,
@@ -13318,6 +13404,16 @@
           "deferred_length": 6,
           "deferred_record": 25,
           "deferred_end": 6
+        },
+        "bytes_by_kind": {
+          "batch_count": 36,
+          "batch_record": 420,
+          "timed_delay": 24,
+          "timed_record": 72,
+          "timed_end": 12,
+          "deferred_length": 12,
+          "deferred_record": 150,
+          "deferred_end": 12
         }
       }
     }

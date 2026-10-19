@@ -587,9 +587,16 @@ def main() -> int:
             "byte_accounting": {
                 "covered": tail,
                 "tail": len(data) - tail,
+                "total": len(data),
+                "accounted": tail + (len(data) - tail) == len(data),
                 "segments": len(segments),
                 "by_kind": {
                     kind: sum(1 for s in segments if s["kind"] == kind)
+                    for kind in ("batch_count", "batch_record", "timed_delay", "timed_record",
+                                 "timed_end", "deferred_length", "deferred_record", "deferred_end")
+                },
+                "bytes_by_kind": {
+                    kind: sum(s["end"] - s["start"] for s in segments if s["kind"] == kind)
                     for kind in ("batch_count", "batch_record", "timed_delay", "timed_record",
                                  "timed_end", "deferred_length", "deferred_record", "deferred_end")
                 },
