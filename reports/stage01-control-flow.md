@@ -137,11 +137,19 @@ batch columns.
 
 | Spawned block | Caller | Scene at call | Palette lookup (Scene+1) | Gate opened afterwards |
 | ---: | --- | ---: | ---: | --- |
-| 1 | `Load_Enemy_Into_RAM` | 0 | entry 0 (cursor + geometry + palette) | none (flag 2 blocks it) |
-| 2 | `EnemySpawn_Scene` | 0 | entry 1 = `00 01 02 00 00 03` | Scene 1 → `$04C0` |
-| 3 | `EnemySpawn_Scene` | 1 | entry 2 = `00 01 02 00 00 03` | Scene 2 → `$07C0` |
-| 4 | `EnemySpawn_Scene` | 2 | entry 3 = `00 01 04 00 10 00` | Scene 3 → `$0AC0` |
+| 1 | `Load_Enemy_Into_RAM` | 0 | entry 0 (cursor + geometry + palette) | none (flag 2 blocks `$FFFA0D`) |
+| 2 | `EnemySpawn_Scene` | 0 | entry 1 = `00 01 02 00 00 03` | Scene 1 → `$07C0` |
+| 3 | `EnemySpawn_Scene` | 1 | entry 2 = `00 01 02 00 00 03` | Scene 2 → `$0AC0` |
+| 4 | `EnemySpawn_Scene` | 2 | entry 3 = `00 01 04 00 10 00` | Scene 3 → `$0DC0` |
 | — | `EnemySpawn_Scene` | 3 | entry 4 = all zero (consumed) | guard → `loc_646` → state 7 (boss) |
+
+The gate written at each transition is `word_195D8[Scene]` **after** the
+increment (L45644-45654), so Scene 1 selects `$07C0`, not `$04C0`.
+`word_195D8[0] = $04C0` is therefore never selected on this path; it must be
+installed by the level-start camera setup, which was not traced here
+(**UNKNOWN**, not a contradiction). The third-party note "third wave gate
+`$0AC0`" lines up with Scene 2 — the transition into the third
+`EnemySpawn_Scene` wave (block 3).
 
 Evidence split:
 
