@@ -1,0 +1,469 @@
+{
+  "schema": "stage01-evidence-ledger/1",
+  "target": "Streets of Rage (JUE) (REV 00)",
+  "classes": [
+    "VERIFIED_DIRECT",
+    "VERIFIED_CROSS_SOURCE",
+    "VERIFIED_AGAINST_SECONDARY_RUNTIME",
+    "STRONG_INFERENCE",
+    "HYPOTHESIS",
+    "UNKNOWN",
+    "BLOCKED"
+  ],
+  "claims": [
+    {
+      "id": "E001",
+      "claim": "The analysed listing is Streets of Rage (JUE) REV 00 and its data labels are ROM offsets",
+      "cls": "VERIFIED_DIRECT",
+      "evidence": [
+        {
+          "file": "Assemblies/Streets of Rage (JUE) (REV 00) [!].asm",
+          "line": 48089,
+          "address": "0x1C1C4",
+          "detail": "off_1C1C4 data table addressed by ROM offset"
+        }
+      ],
+      "notes": "Addresses from the Dandaman955 Bare Knuckle J disassembly must never be cross-referenced (different ROM)."
+    },
+    {
+      "id": "E002",
+      "claim": "All eight ELC streams decode with Nemesis to the sizes documented by the source repository",
+      "cls": "VERIFIED_DIRECT",
+      "evidence": [
+        {
+          "file": "tools/research/nemesis.py",
+          "line": null,
+          "address": null,
+          "detail": "Nemesis decoder; 8/8 sizes match"
+        },
+        {
+          "file": "reports/reference-all-rounds-census.json",
+          "line": null,
+          "address": null,
+          "detail": "sizes 448/640/576/576/800/736/480/896"
+        }
+      ],
+      "notes": "The size is taken from the Nemesis header, so a wrong size would show as a decode error."
+    },
+    {
+      "id": "E003",
+      "claim": "A wave block is 3 batch columns, a $0099-terminated timed list, and a length-prefixed deferred section",
+      "cls": "VERIFIED_DIRECT",
+      "evidence": [
+        {
+          "file": "Assemblies/Streets of Rage (JUE) (REV 00) [!].asm",
+          "line": 1082,
+          "address": "0x882",
+          "detail": "move.w (a2)+,d0; movea.l a2,$FFFFFC2C; adda.w d0,a2"
+        },
+        {
+          "file": "Assemblies/Streets of Rage (JUE) (REV 00) [!].asm",
+          "line": 1574,
+          "address": "0x626",
+          "detail": "Init_Enemy reads a count word then count+1 six-byte records"
+        },
+        {
+          "file": "Assemblies/Streets of Rage (JUE) (REV 00) [!].asm",
+          "line": 953,
+          "address": "0x3B9",
+          "detail": "cmpi.w #$99,d0 terminates the timed list"
+        }
+      ],
+      "notes": "Block tiling is asserted by test_walk_matches_parse (no gap, no overlap)."
+    },
+    {
+      "id": "E004",
+      "claim": "The one-player enemy census of all eight rounds reproduces the published table exactly",
+      "cls": "VERIFIED_CROSS_SOURCE",
+      "evidence": [
+        {
+          "file": "reports/reference-all-rounds-census.json",
+          "line": null,
+          "address": null,
+          "detail": "59/89/73/75/106/93/59/107 records"
+        },
+        {
+          "file": "tools/research/test_stage01.py",
+          "line": null,
+          "address": null,
+          "detail": "test_one_player_census_all_rounds"
+        }
+      ],
+      "notes": "Independent confirmation of both the parser and the third-party table; non-enemy types are excluded from the comparison."
+    },
+    {
+      "id": "E005",
+      "claim": "$FFFFFB14 is a state word: sub_436 jumps through off_44C using the low byte, so state = 2*index",
+      "cls": "VERIFIED_DIRECT",
+      "evidence": [
+        {
+          "file": "Assemblies/Streets of Rage (JUE) (REV 00) [!].asm",
+          "line": 600,
+          "address": "0x3A8",
+          "detail": "move.b ($FFFFFB15).w,d0; move.w off_44C(pc,d0.w),d0; jmp off_44C(pc,d0.w)"
+        },
+        {
+          "file": "Assemblies/Streets of Rage (JUE) (REV 00) [!].asm",
+          "line": 610,
+          "address": "0x44C",
+          "detail": "12-word jump table"
+        }
+      ],
+      "notes": "Explains why every writer uses even values, and why bset #n on the word sets flag bits in the high byte."
+    },
+    {
+      "id": "E006",
+      "claim": "State $E is index 7 = loc_59C, the boss-arrival palette/art path",
+      "cls": "VERIFIED_DIRECT",
+      "evidence": [
+        {
+          "file": "Assemblies/Streets of Rage (JUE) (REV 00) [!].asm",
+          "line": 806,
+          "address": "0x642",
+          "detail": "move.w #$E,($FFFFFB14).w after the Scene>=3 guard"
+        },
+        {
+          "file": "Assemblies/Streets of Rage (JUE) (REV 00) [!].asm",
+          "line": 745,
+          "address": "0x59C",
+          "detail": "loc_59C: boss palette via sub_576, art id, 32-frame wait, state $12"
+        }
+      ],
+      "notes": "Supersedes the earlier hypothesis that $E was a boss-specific flag."
+    },
+    {
+      "id": "E007",
+      "claim": "Round 1 block 1 spawns at level start; blocks 2, 3, 4 are the EnemySpawn_Scene waves at Scene 0, 1, 2",
+      "cls": "STRONG_INFERENCE",
+      "evidence": [
+        {
+          "file": "Assemblies/Streets of Rage (JUE) (REV 00) [!].asm",
+          "line": 790,
+          "address": "0x60A",
+          "detail": "palette slot = Scene+1 (L790-793)"
+        },
+        {
+          "file": "Assemblies/Streets of Rage (JUE) (REV 00) [!].asm",
+          "line": 825,
+          "address": "0x679",
+          "detail": "cmpi.w #3,(Scene).w; bcc.s loc_646"
+        },
+        {
+          "file": "Assemblies/Streets of Rage (JUE) (REV 00) [!].asm",
+          "line": 1819,
+          "address": "0xE92",
+          "detail": "level start sets the ELC cursor and spawns one block"
+        },
+        {
+          "file": "tools/research/stage01_tables.py",
+          "line": null,
+          "address": "0x1C1D4",
+          "detail": "descriptor table has exactly 5 slots for rounds 1-4 and 7 for rounds 5-7"
+        }
+      ],
+      "missing": [
+        "A runtime trace of Scene per wave would settle whether the increment is visible to the spawn frame."
+      ],
+      "notes": "Block 4 carries the only round-1 Nora records and the only descriptor that selects palette set 9."
+    },
+    {
+      "id": "E008",
+      "claim": "Batch spawn X = (base & 0xFF00) | byte4, and the base advances $0100 per column because add.b hits the high byte",
+      "cls": "VERIFIED_DIRECT",
+      "evidence": [
+        {
+          "file": "Assemblies/Streets of Rage (JUE) (REV 00) [!].asm",
+          "line": 1830,
+          "address": "0xEA6",
+          "detail": "add.b d2,($FFFFFB12).w with d2 = $FFFB20 = 1"
+        },
+        {
+          "file": "Assemblies/Streets of Rage (JUE) (REV 00) [!].asm",
+          "line": 1574,
+          "address": "0x626",
+          "detail": "move.w ($FFFFFB12).w,d0; move.b (a2)+,d0; move.w d0,XPos(a1)"
+        },
+        {
+          "file": "Assemblies/Streets of Rage (JUE) (REV 00) [!].asm",
+          "line": 48087,
+          "address": "0x1C1BC",
+          "detail": "geometry 0 = stride 1, base $0300"
+        }
+      ],
+      "notes": "The contrary model (base resets per block) would place blocks 2-4 exactly $300/$600/$900 px too far left and fails the two runtime checks in E009."
+    },
+    {
+      "id": "E009",
+      "claim": "Spawn X reproduces the two third-party runtime booth positions 2016 and 2920 exactly",
+      "cls": "VERIFIED_AGAINST_SECONDARY_RUNTIME",
+      "evidence": [
+        {
+          "file": "tools/research/test_stage01.py",
+          "line": null,
+          "address": null,
+          "detail": "test_round1_booth_predictions"
+        },
+        {
+          "file": "third-party autoplay notes",
+          "line": null,
+          "address": null,
+          "detail": "type-$11 booths at world x 2016 and 2920"
+        }
+      ],
+      "notes": "The runtime values were not produced in this environment; they are a held-out check on the static model."
+    },
+    {
+      "id": "E010",
+      "claim": "Timed records are delay-word + record; accepted delays load $FFFFFB16 and spawn at cam_x+$148 or cam_x-8",
+      "cls": "VERIFIED_DIRECT",
+      "evidence": [
+        {
+          "file": "Assemblies/Streets of Rage (JUE) (REV 00) [!].asm",
+          "line": 951,
+          "address": "0x3B7",
+          "detail": "move.w (a2)+,d0; move.l a2,(Cur_ELC_Adr)"
+        },
+        {
+          "file": "Assemblies/Streets of Rage (JUE) (REV 00) [!].asm",
+          "line": 973,
+          "address": "0x3CD",
+          "detail": "andi.w #$7FFF,d0; move.w d0,$FFFFFB16"
+        },
+        {
+          "file": "Assemblies/Streets of Rage (JUE) (REV 00) [!].asm",
+          "line": 1526,
+          "address": "0x5F6",
+          "detail": "sub_C60: cam_x+$148 / cam_x-8 branch on byte 5"
+        }
+      ],
+      "notes": "Rejected records still consume their 6 bytes (lea 6(a2),a2 at L968), so rejection never desynchronises the list."
+    },
+    {
+      "id": "E011",
+      "claim": "The deferred section is length-prefixed and its length includes the terminal $99 00; the cursor is advanced past it before the records are processed",
+      "cls": "VERIFIED_DIRECT",
+      "evidence": [
+        {
+          "file": "Assemblies/Streets of Rage (JUE) (REV 00) [!].asm",
+          "line": 1083,
+          "address": "0x883",
+          "detail": "move.w (a2)+,d0; move.l a2,$FFFFFC2C; adda.w d0,a2; move.l a2,(Cur_ELC_Adr)"
+        },
+        {
+          "file": "Assemblies/Streets of Rage (JUE) (REV 00) [!].asm",
+          "line": 1088,
+          "address": "0x888",
+          "detail": "cmpi.b #$99,(a3)"
+        }
+      ],
+      "notes": "Round 1's last section is length 2, i.e. empty."
+    },
+    {
+      "id": "E012",
+      "claim": "For timed/deferred records byte 5 (not byte 4) chooses the spawn edge; byte 4 goes to object +$15",
+      "cls": "VERIFIED_DIRECT",
+      "evidence": [
+        {
+          "file": "Assemblies/Streets of Rage (JUE) (REV 00) [!].asm",
+          "line": 1511,
+          "address": "0x5E8",
+          "detail": "sub_C60: tst.b (a2)+ then cam_x+$148 / cam_x-8 on byte 5"
+        },
+        {
+          "file": "Assemblies/Streets of Rage (JUE) (REV 00) [!].asm",
+          "line": 1530,
+          "address": "0x5FA",
+          "detail": "move.b (a2)+,($15,a1)"
+        }
+      ],
+      "notes": "Corrects the earlier byte-4 hypothesis; recorded here rather than silently replaced."
+    },
+    {
+      "id": "E013",
+      "claim": "Each round's tail starts with the timed-record grammar, and round 2's tail is fully accounted for end to end",
+      "cls": "VERIFIED_DIRECT",
+      "evidence": [
+        {
+          "file": "reports/stage01-boss-tail-analysis.md",
+          "line": null,
+          "address": null,
+          "detail": "tail table and per-round breakdown"
+        },
+        {
+          "file": "Assemblies/Streets of Rage (JUE) (REV 00) [!].asm",
+          "line": 952,
+          "address": "0x3B8",
+          "detail": "loc_784 reads the tail with the same code path as timed records"
+        }
+      ],
+      "notes": "Round 1's tail = 2 pairs + $99 + empty section + 2 unresolved bytes."
+    },
+    {
+      "id": "E014",
+      "claim": "In rounds 1-6 the first tail pair is delay 16 with a type unique to that round and matching the round's boss art entry",
+      "cls": "STRONG_INFERENCE",
+      "evidence": [
+        {
+          "file": "Assemblies/Streets of Rage (JUE) (REV 00) [!].asm",
+          "line": 48223,
+          "address": "0x1C378",
+          "detail": "per-round boss art/palette table"
+        },
+        {
+          "file": "reports/stage01-boss-tail-analysis.md",
+          "line": null,
+          "address": null,
+          "detail": "types 56/55/30/57/58/55"
+        }
+      ],
+      "missing": [
+        "No runtime capture identifies the boss object's type byte."
+      ],
+      "notes": "No sprite or animation claim is made."
+    },
+    {
+      "id": "E015",
+      "claim": "Round 1's trailing 6a 00 is not read on the analysed 1P path",
+      "cls": "VERIFIED_DIRECT",
+      "evidence": [
+        {
+          "file": "Assemblies/Streets of Rage (JUE) (REV 00) [!].asm",
+          "line": 1087,
+          "address": "0x887",
+          "detail": "cursor skips the final section and is never read again before the guard"
+        },
+        {
+          "file": "Assemblies/Streets of Rage (JUE) (REV 00) [!].asm",
+          "line": 825,
+          "address": "0x679",
+          "detail": "guard returns before Init_Enemy"
+        }
+      ],
+      "notes": "Negative result: no consumer exists among the eight Cur_ELC_Adr references."
+    },
+    {
+      "id": "E016",
+      "claim": "Rounds 7 and 8 tails do not follow the round-1..6 grammar",
+      "cls": "UNKNOWN",
+      "evidence": [
+        {
+          "file": "reports/stage01-boss-tail-analysis.md",
+          "line": null,
+          "address": null,
+          "detail": "R7 starts with 6 bytes of $FF; R8 diverges after the first pair"
+        }
+      ],
+      "missing": [
+        "A consumer trace for round 7/8 or a runtime capture at the boss phase."
+      ],
+      "notes": "Bytes are preserved and reported; they are not force-fitted into records."
+    },
+    {
+      "id": "E017",
+      "claim": "Per-round descriptor tables have 5 slots for rounds 1-4 and 7 for rounds 5-8",
+      "cls": "VERIFIED_DIRECT",
+      "evidence": [
+        {
+          "file": "reports/stage01-palette-descriptors.json",
+          "line": null,
+          "address": null,
+          "detail": "slots 5/5/5/5/7/7/7/7; bytes 46/46/46/46/62/62/50/62"
+        },
+        {
+          "file": "Assemblies/Streets of Rage (JUE) (REV 00) [!].asm",
+          "line": 48089,
+          "address": "0x1C1C4",
+          "detail": "eight root offsets"
+        }
+      ],
+      "notes": "Slot count equals the scene guard + 2, an independent check on block counts."
+    },
+    {
+      "id": "E018",
+      "claim": "Round 1's fourth slot selects palette set 9 (+8 from nibble 1) and only block 4 contains type $26",
+      "cls": "STRONG_INFERENCE",
+      "evidence": [
+        {
+          "file": "Assemblies/Streets of Rage (JUE) (REV 00) [!].asm",
+          "line": 48112,
+          "address": "0x1C1F6",
+          "detail": "dc.b $10,0 -> enemy palette index 9"
+        },
+        {
+          "file": "tools/research/elc.py",
+          "line": null,
+          "address": null,
+          "detail": "round-1 type census: $26 appears only in block 4"
+        }
+      ],
+      "notes": "Supports the block-to-slot alignment in E007; not a colour claim."
+    },
+    {
+      "id": "E019",
+      "claim": "Round 8 selects geometry index 4 although word_1C1BC lists only two entries",
+      "cls": "UNKNOWN",
+      "evidence": [
+        {
+          "file": "Assemblies/Streets of Rage (JUE) (REV 00) [!].asm",
+          "line": 48215,
+          "address": "0x1C348",
+          "detail": "dc.w 4"
+        },
+        {
+          "file": "Assemblies/Streets of Rage (JUE) (REV 00) [!].asm",
+          "line": 48087,
+          "address": "0x1C1BC",
+          "detail": "only (1,$300) and ($FFFF,$1300) are listed"
+        }
+      ],
+      "missing": [
+        "The listing's extent for word_1C1BC, or a runtime read of $FFFB20/$FFFB12 for round 8."
+      ],
+      "notes": "Not smoothed over; round 8 X values are therefore not claimed."
+    },
+    {
+      "id": "E020",
+      "claim": "No runtime, ROM or palette-value claim is made",
+      "cls": "BLOCKED",
+      "evidence": [
+        {
+          "file": "reports/00_blockers.md",
+          "line": null,
+          "address": null,
+          "detail": "no ROM, no emulator, no host with SDL3"
+        }
+      ],
+      "notes": "All dynamic evidence in this dossier is second-hand from third-party notes and is labelled as such."
+    }
+  ],
+  "changed_hypotheses": [
+    {
+      "id": "H1",
+      "earlier": "The edge selector is record byte 4.",
+      "now": "Byte 5 selects the edge; byte 4 is copied to object +$15.",
+      "reason": "sub_C60 reads (a2)+ for +$15 before testing the next byte for the edge.",
+      "evidence": "E012"
+    },
+    {
+      "id": "H2",
+      "earlier": "The spawn base restarts at $0300 for every block.",
+      "now": "The base advances $0100 per column and $0300 per block across the whole round.",
+      "reason": "add.b to the word address modifies the high byte; twelve Init_Enemy calls in round 1.",
+      "evidence": "E008, E009"
+    },
+    {
+      "id": "H3",
+      "earlier": "$FFFFFB14 = $E is a boss flag.",
+      "now": "It is state byte $E = jump-table index 7 = loc_59C.",
+      "reason": "sub_436 indexes off_44C with the low byte, and the table is word-sized.",
+      "evidence": "E005, E006"
+    },
+    {
+      "id": "H4",
+      "earlier": "EnemySpawn_Scene refuses Scene>=3 while round 1 has four blocks, so block 4 is unexplained.",
+      "now": "Scene 0,1,2 spawn blocks 2,3,4; Scene 3 takes the guard into the boss state.",
+      "reason": "Level start already consumed block 1; the guard counts transitions, not blocks.",
+      "evidence": "E007, E018"
+    }
+  ]
+}

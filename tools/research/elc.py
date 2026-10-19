@@ -177,3 +177,187 @@ def census(records: list[Record]) -> dict:
         block[rec.kind] += 1
         block["types"][rec.type_id] = block["types"].get(rec.type_id, 0) + 1
     return out
+
+
+def walk_stream(data: bytes, max_blocks: int | None = None) -> tuple[list[dict], int]:
+    """Walk the stream byte by byte and return accounting segments.
+
+    Every segment is one of:
+        batch_count, batch_record, timed_delay, timed_record, timed_end,
+        deferred_length, deferred_record, deferred_end
+
+    The returned ``tail`` offset is the first byte that the wave grammar does
+    not explain.  Callers must report those bytes, never drop them.  This
+    function is the testable form of :func:`parse_stream`; the two must agree
+    on block boundaries.
+    """
+    segments: list[dict] = []
+    pos = 0
+    block = 0
+
+    def u16(p: int) -> int:
+        return (data[p] << 8) | data[p + 1]
+
+    def add(kind: str, start: int, end: int, **detail) -> None:
+        segments.append({"kind": kind, "start": start, "end": end, **detail})
+
+    while pos + 1 < len(data):
+        if max_blocks is not None and block >= max_blocks:
+            break
+        block += 1
+        start_block = pos
+
+        for column in range(3):
+            if pos + 1 >= len(data):
+                raise ValueError(f"block {block}: truncated batch header at {pos:#x}")
+            count = u16(pos)
+            add("batch_count", pos, pos + 2, block=block, column=column,
+                value=count, records=0 if count & 0x8000 else count + 1)
+            pos += 2
+            if count & 0x8000:
+                continue
+            for index in range(count + 1):
+                if pos + 6 > len(data):
+                    raise ValueError(f"block {block}: truncated batch record at {pos:#x}")
+                add("batch_record", pos, pos + 6, block=block, column=column, index=index)
+                pos += 6
+
+        while True:
+            if pos + 2 > len(data):
+                raise ValueError(f"block {block}: timed list ran past the stream")
+            delay = u16(pos)
+            if delay == 0x0099:
+                add("timed_end", pos, pos + 2, block=block, value=delay)
+                pos += 2
+                break
+            add("timed_delay", pos, pos + 2, block=block, value=delay)
+            pos += 2
+            if pos + 6 > len(data):
+                raise ValueError(f"block {block}: truncated timed record at {pos:#x}")
+            add("timed_record", pos, pos + 6, block=block, delay=delay)
+            pos += 6
+
+        if pos + 2 > len(data):
+            raise ValueError(f"block {block}: missing deferred length")
+        length = u16(pos)
+        add("deferred_length", pos, pos + 2, block=block, value=length)
+        pos += 2
+        end = pos + length
+        if end > len(data):
+            raise ValueError(f"block {block}: deferred section {length:#x} past the stream")
+        cursor = pos
+        while cursor < end and data[cursor] != 0x99:
+            if cursor + 6 > end:
+                raise ValueError(f"block {block}: truncated deferred record at {cursor:#x}")
+            add("deferred_record", cursor, cursor + 6, block=block)
+            cursor += 6
+        if cursor + 2 == end:
+            add("deferred_end", cursor, end, block=block, value=data[cursor:cursor + 2].hex())
+        elif cursor == end:
+            add("deferred_end", cursor, end, block=block, value="")
+        else:
+            raise ValueError(
+                f"block {block}: deferred length {length:#x} does not end on $99 at {cursor:#x}"
+            )
+        pos = end
+        if pos == start_block:
+            break
+        if pos >= len(data):
+            break
+    return segments, pos
+
+
+def segments_cover(segments: list[dict], start: int, end: int) -> bool:
+    """True when the segments tile [start, end) with no gap or overlap."""
+    cursor = start
+    for seg in segments:
+        if seg["start"] < start or seg["end"] > end:
+            return False
+        if seg["start"] != cursor:
+            return False
+        cursor = seg["end"]
+    return cursor == end
+
+
+def parse_tail(data: bytes, offset: int) -> dict:
+    """Decode the post-block tail with the grammar the code actually uses.
+
+    timed list : (word delay, 6-byte record)* then $0099
+    section    : word length, `length` bytes (records terminated by $99 00)
+
+    Anything after the last well-formed section is returned as ``leftover`` and
+    must be reported, never silently dropped.  A section whose length runs past
+    the end of the stream is reported as ``truncated`` instead of being forced.
+    """
+    def u16(p: int) -> int:
+        return (data[p] << 8) | data[p + 1]
+
+    pos = offset
+    pairs = []
+    while pos + 2 <= len(data):
+        delay = u16(pos)
+        pos += 2
+        if delay == 0x0099:
+            break
+        if pos + 6 > len(data):
+            return {
+                "pairs": pairs,
+                "terminator_offset": None,
+                "sections": [],
+                "leftover_offset": pos - 2,
+                "leftover": data[pos - 2:].hex(" "),
+                "status": "truncated timed record",
+            }
+        record = data[pos:pos + 6]
+        pairs.append({
+            "delay": delay & 0x7FFF,
+            "delay_raw": delay,
+            "record": record.hex(" "),
+            "type": record[0],
+            "type_id": record[0] & 0x7F,
+            "two_player_only": bool(record[0] & 0x80),
+            "byte4": record[4],
+            "byte5": record[5],
+            "side": "right_edge" if record[5] == 0 else "left_edge",
+            "offset": pos,
+        })
+        pos += 6
+    terminator_offset = pos - 2 if pairs or (pos - 2) >= offset else None
+
+    sections = []
+    while pos + 2 <= len(data):
+        length = u16(pos)
+        if length == 0:
+            break
+        start = pos + 2
+        end = start + length
+        if end > len(data):
+            sections.append({
+                "length": length,
+                "start": start,
+                "end": None,
+                "status": "truncated: length runs past the buffer",
+                "remaining": len(data) - start,
+            })
+            # leave pos on the length word: the bytes are reported as leftover
+            break
+        payload = data[start:end]
+        sections.append({
+            "length": length,
+            "start": start,
+            "end": end,
+            "payload_hex": payload.hex(" "),
+            "terminator": payload[-2:].hex(" ") if len(payload) >= 2 else "",
+            "records": max(0, (len(payload) - 2) // 6),
+            "status": "ok" if payload[-2:] == b"\x99\x00" else "no $99 00 terminator",
+        })
+        pos = end
+
+    return {
+        "pairs": pairs,
+        "terminator_offset": terminator_offset,
+        "sections": sections,
+        "leftover_offset": pos,
+        "leftover": data[pos:].hex(" "),
+        "leftover_bytes": len(data) - pos,
+    }

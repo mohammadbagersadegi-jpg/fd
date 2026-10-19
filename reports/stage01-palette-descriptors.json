@@ -1,0 +1,1166 @@
+{
+  "schema": "stage01-palette-descriptors/1",
+  "target": "Streets of Rage (JUE) (REV 00)",
+  "listing": {
+    "file": "Streets of Rage (JUE) (REV 00) [!].asm",
+    "sha256": "b21835df76ba33bc11c0d922bada8947d19106c8f112b61d8715abab4704ac16"
+  },
+  "rounds": [
+    {
+      "round": 1,
+      "root": 115156,
+      "root_hex": "0x1C1D4",
+      "slots": 5,
+      "bytes": 46,
+      "entries": [
+        {
+          "slot": 0,
+          "offset": 115166,
+          "offset_hex": "0x1C1DE",
+          "cursor": "0x00FF6800",
+          "geometry_index": 0,
+          "bytes": "00 01 02 00 00 03",
+          "role": "level start: ELC cursor + geometry + palettes",
+          "descriptor": {
+            "pal_correct": [
+              0,
+              1,
+              2,
+              0
+            ],
+            "selector_byte": 0,
+            "boss_table": false,
+            "enemy_palette_index": null,
+            "last_byte_low_nibble": 3
+          }
+        },
+        {
+          "slot": 1,
+          "offset": 115178,
+          "offset_hex": "0x1C1EA",
+          "bytes": "00 01 02 00 00 03",
+          "role": "scene transition palette descriptor",
+          "descriptor": {
+            "pal_correct": [
+              0,
+              1,
+              2,
+              0
+            ],
+            "selector_byte": 0,
+            "boss_table": false,
+            "enemy_palette_index": null,
+            "last_byte_low_nibble": 3
+          }
+        },
+        {
+          "slot": 2,
+          "offset": 115184,
+          "offset_hex": "0x1C1F0",
+          "bytes": "00 01 03 00 00 06",
+          "role": "scene transition palette descriptor",
+          "descriptor": {
+            "pal_correct": [
+              0,
+              1,
+              3,
+              0
+            ],
+            "selector_byte": 0,
+            "boss_table": false,
+            "enemy_palette_index": null,
+            "last_byte_low_nibble": 6
+          }
+        },
+        {
+          "slot": 3,
+          "offset": 115190,
+          "offset_hex": "0x1C1F6",
+          "bytes": "00 01 04 00 10 00",
+          "role": "scene transition palette descriptor",
+          "descriptor": {
+            "pal_correct": [
+              0,
+              1,
+              4,
+              0
+            ],
+            "selector_byte": 16,
+            "boss_table": false,
+            "enemy_palette_index": 9,
+            "last_byte_low_nibble": 0
+          }
+        },
+        {
+          "slot": 4,
+          "offset": 115196,
+          "offset_hex": "0x1C1FC",
+          "bytes": "00 00 00 00 00 00",
+          "role": "scene transition palette descriptor",
+          "descriptor": {
+            "pal_correct": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "selector_byte": 0,
+            "boss_table": false,
+            "enemy_palette_index": null,
+            "last_byte_low_nibble": 0
+          }
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "root": 115202,
+      "root_hex": "0x1C202",
+      "slots": 5,
+      "bytes": 46,
+      "entries": [
+        {
+          "slot": 0,
+          "offset": 115212,
+          "offset_hex": "0x1C20C",
+          "cursor": "0x00FF6800",
+          "geometry_index": 0,
+          "bytes": "00 01 02 00 00 03",
+          "role": "level start: ELC cursor + geometry + palettes",
+          "descriptor": {
+            "pal_correct": [
+              0,
+              1,
+              2,
+              0
+            ],
+            "selector_byte": 0,
+            "boss_table": false,
+            "enemy_palette_index": null,
+            "last_byte_low_nibble": 3
+          }
+        },
+        {
+          "slot": 1,
+          "offset": 115224,
+          "offset_hex": "0x1C218",
+          "bytes": "01 04 00 00 10 00",
+          "role": "scene transition palette descriptor",
+          "descriptor": {
+            "pal_correct": [
+              1,
+              4,
+              0,
+              0
+            ],
+            "selector_byte": 16,
+            "boss_table": false,
+            "enemy_palette_index": 9,
+            "last_byte_low_nibble": 0
+          }
+        },
+        {
+          "slot": 2,
+          "offset": 115230,
+          "offset_hex": "0x1C21E",
+          "bytes": "01 03 00 00 00 06",
+          "role": "scene transition palette descriptor",
+          "descriptor": {
+            "pal_correct": [
+              1,
+              3,
+              0,
+              0
+            ],
+            "selector_byte": 0,
+            "boss_table": false,
+            "enemy_palette_index": null,
+            "last_byte_low_nibble": 6
+          }
+        },
+        {
+          "slot": 3,
+          "offset": 115236,
+          "offset_hex": "0x1C224",
+          "bytes": "01 03 05 00 10 06",
+          "role": "scene transition palette descriptor",
+          "descriptor": {
+            "pal_correct": [
+              1,
+              3,
+              5,
+              0
+            ],
+            "selector_byte": 16,
+            "boss_table": false,
+            "enemy_palette_index": 9,
+            "last_byte_low_nibble": 6
+          }
+        },
+        {
+          "slot": 4,
+          "offset": 115242,
+          "offset_hex": "0x1C22A",
+          "bytes": "01 00 00 00 00 00",
+          "role": "scene transition palette descriptor",
+          "descriptor": {
+            "pal_correct": [
+              1,
+              0,
+              0,
+              0
+            ],
+            "selector_byte": 0,
+            "boss_table": false,
+            "enemy_palette_index": null,
+            "last_byte_low_nibble": 0
+          }
+        }
+      ]
+    },
+    {
+      "round": 3,
+      "root": 115248,
+      "root_hex": "0x1C230",
+      "slots": 5,
+      "bytes": 46,
+      "entries": [
+        {
+          "slot": 0,
+          "offset": 115258,
+          "offset_hex": "0x1C23A",
+          "cursor": "0x00FF6800",
+          "geometry_index": 0,
+          "bytes": "01 03 00 00 01 06",
+          "role": "level start: ELC cursor + geometry + palettes",
+          "descriptor": {
+            "pal_correct": [
+              1,
+              3,
+              0,
+              0
+            ],
+            "selector_byte": 1,
+            "boss_table": false,
+            "enemy_palette_index": null,
+            "last_byte_low_nibble": 6
+          }
+        },
+        {
+          "slot": 1,
+          "offset": 115270,
+          "offset_hex": "0x1C246",
+          "bytes": "01 04 05 00 11 00",
+          "role": "scene transition palette descriptor",
+          "descriptor": {
+            "pal_correct": [
+              1,
+              4,
+              5,
+              0
+            ],
+            "selector_byte": 17,
+            "boss_table": false,
+            "enemy_palette_index": 9,
+            "last_byte_low_nibble": 0
+          }
+        },
+        {
+          "slot": 2,
+          "offset": 115276,
+          "offset_hex": "0x1C24C",
+          "bytes": "02 03 04 00 13 06",
+          "role": "scene transition palette descriptor",
+          "descriptor": {
+            "pal_correct": [
+              2,
+              3,
+              4,
+              0
+            ],
+            "selector_byte": 19,
+            "boss_table": false,
+            "enemy_palette_index": 9,
+            "last_byte_low_nibble": 6
+          }
+        },
+        {
+          "slot": 3,
+          "offset": 115282,
+          "offset_hex": "0x1C252",
+          "bytes": "01 04 05 00 11 00",
+          "role": "scene transition palette descriptor",
+          "descriptor": {
+            "pal_correct": [
+              1,
+              4,
+              5,
+              0
+            ],
+            "selector_byte": 17,
+            "boss_table": false,
+            "enemy_palette_index": 9,
+            "last_byte_low_nibble": 0
+          }
+        },
+        {
+          "slot": 4,
+          "offset": 115288,
+          "offset_hex": "0x1C258",
+          "bytes": "01 00 00 00 00 00",
+          "role": "scene transition palette descriptor",
+          "descriptor": {
+            "pal_correct": [
+              1,
+              0,
+              0,
+              0
+            ],
+            "selector_byte": 0,
+            "boss_table": false,
+            "enemy_palette_index": null,
+            "last_byte_low_nibble": 0
+          }
+        }
+      ]
+    },
+    {
+      "round": 4,
+      "root": 115294,
+      "root_hex": "0x1C25E",
+      "slots": 5,
+      "bytes": 46,
+      "entries": [
+        {
+          "slot": 0,
+          "offset": 115304,
+          "offset_hex": "0x1C268",
+          "cursor": "0x00FF6800",
+          "geometry_index": 0,
+          "bytes": "01 02 04 00 21 04",
+          "role": "level start: ELC cursor + geometry + palettes",
+          "descriptor": {
+            "pal_correct": [
+              1,
+              2,
+              4,
+              0
+            ],
+            "selector_byte": 33,
+            "boss_table": false,
+            "enemy_palette_index": 10,
+            "last_byte_low_nibble": 4
+          }
+        },
+        {
+          "slot": 1,
+          "offset": 115316,
+          "offset_hex": "0x1C274",
+          "bytes": "01 02 00 00 01 04",
+          "role": "scene transition palette descriptor",
+          "descriptor": {
+            "pal_correct": [
+              1,
+              2,
+              0,
+              0
+            ],
+            "selector_byte": 1,
+            "boss_table": false,
+            "enemy_palette_index": null,
+            "last_byte_low_nibble": 4
+          }
+        },
+        {
+          "slot": 2,
+          "offset": 115322,
+          "offset_hex": "0x1C27A",
+          "bytes": "03 02 04 00 27 03",
+          "role": "scene transition palette descriptor",
+          "descriptor": {
+            "pal_correct": [
+              3,
+              2,
+              4,
+              0
+            ],
+            "selector_byte": 39,
+            "boss_table": false,
+            "enemy_palette_index": 10,
+            "last_byte_low_nibble": 3
+          }
+        },
+        {
+          "slot": 3,
+          "offset": 115328,
+          "offset_hex": "0x1C280",
+          "bytes": "01 02 00 00 01 04",
+          "role": "scene transition palette descriptor",
+          "descriptor": {
+            "pal_correct": [
+              1,
+              2,
+              0,
+              0
+            ],
+            "selector_byte": 1,
+            "boss_table": false,
+            "enemy_palette_index": null,
+            "last_byte_low_nibble": 4
+          }
+        },
+        {
+          "slot": 4,
+          "offset": 115334,
+          "offset_hex": "0x1C286",
+          "bytes": "01 00 00 00 00 01",
+          "role": "scene transition palette descriptor",
+          "descriptor": {
+            "pal_correct": [
+              1,
+              0,
+              0,
+              0
+            ],
+            "selector_byte": 0,
+            "boss_table": false,
+            "enemy_palette_index": null,
+            "last_byte_low_nibble": 1
+          }
+        }
+      ]
+    },
+    {
+      "round": 5,
+      "root": 115340,
+      "root_hex": "0x1C28C",
+      "slots": 7,
+      "bytes": 62,
+      "entries": [
+        {
+          "slot": 0,
+          "offset": 115354,
+          "offset_hex": "0x1C29A",
+          "cursor": "0x00FF6800",
+          "geometry_index": 0,
+          "bytes": "01 02 00 00 00 01",
+          "role": "level start: ELC cursor + geometry + palettes",
+          "descriptor": {
+            "pal_correct": [
+              1,
+              2,
+              0,
+              0
+            ],
+            "selector_byte": 0,
+            "boss_table": false,
+            "enemy_palette_index": null,
+            "last_byte_low_nibble": 1
+          }
+        },
+        {
+          "slot": 1,
+          "offset": 115366,
+          "offset_hex": "0x1C2A6",
+          "bytes": "01 03 00 00 01 07",
+          "role": "scene transition palette descriptor",
+          "descriptor": {
+            "pal_correct": [
+              1,
+              3,
+              0,
+              0
+            ],
+            "selector_byte": 1,
+            "boss_table": false,
+            "enemy_palette_index": null,
+            "last_byte_low_nibble": 7
+          }
+        },
+        {
+          "slot": 2,
+          "offset": 115372,
+          "offset_hex": "0x1C2AC",
+          "bytes": "02 04 00 00 23 00",
+          "role": "scene transition palette descriptor",
+          "descriptor": {
+            "pal_correct": [
+              2,
+              4,
+              0,
+              0
+            ],
+            "selector_byte": 35,
+            "boss_table": false,
+            "enemy_palette_index": 10,
+            "last_byte_low_nibble": 0
+          }
+        },
+        {
+          "slot": 3,
+          "offset": 115378,
+          "offset_hex": "0x1C2B2",
+          "bytes": "01 03 00 00 01 06",
+          "role": "scene transition palette descriptor",
+          "descriptor": {
+            "pal_correct": [
+              1,
+              3,
+              0,
+              0
+            ],
+            "selector_byte": 1,
+            "boss_table": false,
+            "enemy_palette_index": null,
+            "last_byte_low_nibble": 6
+          }
+        },
+        {
+          "slot": 4,
+          "offset": 115384,
+          "offset_hex": "0x1C2B8",
+          "bytes": "03 05 00 00 26 00",
+          "role": "scene transition palette descriptor",
+          "descriptor": {
+            "pal_correct": [
+              3,
+              5,
+              0,
+              0
+            ],
+            "selector_byte": 38,
+            "boss_table": false,
+            "enemy_palette_index": 10,
+            "last_byte_low_nibble": 0
+          }
+        },
+        {
+          "slot": 5,
+          "offset": 115390,
+          "offset_hex": "0x1C2BE",
+          "bytes": "01 02 00 00 01 04",
+          "role": "scene transition palette descriptor",
+          "descriptor": {
+            "pal_correct": [
+              1,
+              2,
+              0,
+              0
+            ],
+            "selector_byte": 1,
+            "boss_table": false,
+            "enemy_palette_index": null,
+            "last_byte_low_nibble": 4
+          }
+        },
+        {
+          "slot": 6,
+          "offset": 115396,
+          "offset_hex": "0x1C2C4",
+          "bytes": "00 00 00 00 00 00",
+          "role": "scene transition palette descriptor",
+          "descriptor": {
+            "pal_correct": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "selector_byte": 0,
+            "boss_table": false,
+            "enemy_palette_index": null,
+            "last_byte_low_nibble": 0
+          }
+        }
+      ]
+    },
+    {
+      "round": 6,
+      "root": 115402,
+      "root_hex": "0x1C2CA",
+      "slots": 7,
+      "bytes": 62,
+      "entries": [
+        {
+          "slot": 0,
+          "offset": 115416,
+          "offset_hex": "0x1C2D8",
+          "cursor": "0x00FF6800",
+          "geometry_index": 0,
+          "bytes": "01 02 00 00 02 04",
+          "role": "level start: ELC cursor + geometry + palettes",
+          "descriptor": {
+            "pal_correct": [
+              1,
+              2,
+              0,
+              0
+            ],
+            "selector_byte": 2,
+            "boss_table": false,
+            "enemy_palette_index": null,
+            "last_byte_low_nibble": 4
+          }
+        },
+        {
+          "slot": 1,
+          "offset": 115428,
+          "offset_hex": "0x1C2E4",
+          "bytes": "01 02 00 00 02 04",
+          "role": "scene transition palette descriptor",
+          "descriptor": {
+            "pal_correct": [
+              1,
+              2,
+              0,
+              0
+            ],
+            "selector_byte": 2,
+            "boss_table": false,
+            "enemy_palette_index": null,
+            "last_byte_low_nibble": 4
+          }
+        },
+        {
+          "slot": 2,
+          "offset": 115434,
+          "offset_hex": "0x1C2EA",
+          "bytes": "01 03 00 00 02 07",
+          "role": "scene transition palette descriptor",
+          "descriptor": {
+            "pal_correct": [
+              1,
+              3,
+              0,
+              0
+            ],
+            "selector_byte": 2,
+            "boss_table": false,
+            "enemy_palette_index": null,
+            "last_byte_low_nibble": 7
+          }
+        },
+        {
+          "slot": 3,
+          "offset": 115440,
+          "offset_hex": "0x1C2F0",
+          "bytes": "01 02 04 00 22 04",
+          "role": "scene transition palette descriptor",
+          "descriptor": {
+            "pal_correct": [
+              1,
+              2,
+              4,
+              0
+            ],
+            "selector_byte": 34,
+            "boss_table": false,
+            "enemy_palette_index": 10,
+            "last_byte_low_nibble": 4
+          }
+        },
+        {
+          "slot": 4,
+          "offset": 115446,
+          "offset_hex": "0x1C2F6",
+          "bytes": "03 04 05 00 27 02",
+          "role": "scene transition palette descriptor",
+          "descriptor": {
+            "pal_correct": [
+              3,
+              4,
+              5,
+              0
+            ],
+            "selector_byte": 39,
+            "boss_table": false,
+            "enemy_palette_index": 10,
+            "last_byte_low_nibble": 2
+          }
+        },
+        {
+          "slot": 5,
+          "offset": 115452,
+          "offset_hex": "0x1C2FC",
+          "bytes": "02 03 05 00 24 07",
+          "role": "scene transition palette descriptor",
+          "descriptor": {
+            "pal_correct": [
+              2,
+              3,
+              5,
+              0
+            ],
+            "selector_byte": 36,
+            "boss_table": false,
+            "enemy_palette_index": 10,
+            "last_byte_low_nibble": 7
+          }
+        },
+        {
+          "slot": 6,
+          "offset": 115458,
+          "offset_hex": "0x1C302",
+          "bytes": "01 00 00 00 00 00",
+          "role": "scene transition palette descriptor",
+          "descriptor": {
+            "pal_correct": [
+              1,
+              0,
+              0,
+              0
+            ],
+            "selector_byte": 0,
+            "boss_table": false,
+            "enemy_palette_index": null,
+            "last_byte_low_nibble": 0
+          }
+        }
+      ]
+    },
+    {
+      "round": 7,
+      "root": 115464,
+      "root_hex": "0x1C308",
+      "slots": 7,
+      "bytes": 50,
+      "entries": [
+        {
+          "slot": 0,
+          "offset": 115478,
+          "offset_hex": "0x1C316",
+          "cursor": "0x00FF6800",
+          "geometry_index": 0,
+          "bytes": "01 03 00 00 01 06",
+          "role": "level start: ELC cursor + geometry + palettes",
+          "descriptor": {
+            "pal_correct": [
+              1,
+              3,
+              0,
+              0
+            ],
+            "selector_byte": 1,
+            "boss_table": false,
+            "enemy_palette_index": null,
+            "last_byte_low_nibble": 6
+          }
+        },
+        {
+          "slot": 1,
+          "offset": 115478,
+          "offset_hex": "0x1C316",
+          "bytes": "00 ff 68 00 00 00",
+          "role": "scene transition palette descriptor",
+          "descriptor": {
+            "pal_correct": [
+              0,
+              255,
+              104,
+              0
+            ],
+            "selector_byte": 0,
+            "boss_table": false,
+            "enemy_palette_index": null,
+            "last_byte_low_nibble": 0
+          }
+        },
+        {
+          "slot": 2,
+          "offset": 115490,
+          "offset_hex": "0x1C322",
+          "bytes": "01 03 00 00 01 06",
+          "role": "scene transition palette descriptor",
+          "descriptor": {
+            "pal_correct": [
+              1,
+              3,
+              0,
+              0
+            ],
+            "selector_byte": 1,
+            "boss_table": false,
+            "enemy_palette_index": null,
+            "last_byte_low_nibble": 6
+          }
+        },
+        {
+          "slot": 3,
+          "offset": 115496,
+          "offset_hex": "0x1C328",
+          "bytes": "03 02 00 00 07 03",
+          "role": "scene transition palette descriptor",
+          "descriptor": {
+            "pal_correct": [
+              3,
+              2,
+              0,
+              0
+            ],
+            "selector_byte": 7,
+            "boss_table": false,
+            "enemy_palette_index": null,
+            "last_byte_low_nibble": 3
+          }
+        },
+        {
+          "slot": 4,
+          "offset": 115502,
+          "offset_hex": "0x1C32E",
+          "bytes": "03 02 04 00 27 04",
+          "role": "scene transition palette descriptor",
+          "descriptor": {
+            "pal_correct": [
+              3,
+              2,
+              4,
+              0
+            ],
+            "selector_byte": 39,
+            "boss_table": false,
+            "enemy_palette_index": 10,
+            "last_byte_low_nibble": 4
+          }
+        },
+        {
+          "slot": 5,
+          "offset": 115508,
+          "offset_hex": "0x1C334",
+          "bytes": "03 02 04 00 17 03",
+          "role": "scene transition palette descriptor",
+          "descriptor": {
+            "pal_correct": [
+              3,
+              2,
+              4,
+              0
+            ],
+            "selector_byte": 23,
+            "boss_table": false,
+            "enemy_palette_index": 9,
+            "last_byte_low_nibble": 3
+          }
+        },
+        {
+          "slot": 6,
+          "offset": 115508,
+          "offset_hex": "0x1C334",
+          "bytes": "03 02 04 00 17 03",
+          "role": "scene transition palette descriptor",
+          "descriptor": {
+            "pal_correct": [
+              3,
+              2,
+              4,
+              0
+            ],
+            "selector_byte": 23,
+            "boss_table": false,
+            "enemy_palette_index": 9,
+            "last_byte_low_nibble": 3
+          }
+        }
+      ]
+    },
+    {
+      "round": 8,
+      "root": 115514,
+      "root_hex": "0x1C33A",
+      "slots": 7,
+      "bytes": 62,
+      "entries": [
+        {
+          "slot": 0,
+          "offset": 115528,
+          "offset_hex": "0x1C348",
+          "cursor": "0x00FF6800",
+          "geometry_index": 4,
+          "bytes": "01 02 04 00 10 03",
+          "role": "level start: ELC cursor + geometry + palettes",
+          "descriptor": {
+            "pal_correct": [
+              1,
+              2,
+              4,
+              0
+            ],
+            "selector_byte": 16,
+            "boss_table": false,
+            "enemy_palette_index": 9,
+            "last_byte_low_nibble": 3
+          }
+        },
+        {
+          "slot": 1,
+          "offset": 115540,
+          "offset_hex": "0x1C354",
+          "bytes": "01 02 05 00 11 04",
+          "role": "scene transition palette descriptor",
+          "descriptor": {
+            "pal_correct": [
+              1,
+              2,
+              5,
+              0
+            ],
+            "selector_byte": 17,
+            "boss_table": false,
+            "enemy_palette_index": 9,
+            "last_byte_low_nibble": 4
+          }
+        },
+        {
+          "slot": 2,
+          "offset": 115546,
+          "offset_hex": "0x1C35A",
+          "bytes": "01 02 05 00 22 04",
+          "role": "scene transition palette descriptor",
+          "descriptor": {
+            "pal_correct": [
+              1,
+              2,
+              5,
+              0
+            ],
+            "selector_byte": 34,
+            "boss_table": false,
+            "enemy_palette_index": 10,
+            "last_byte_low_nibble": 4
+          }
+        },
+        {
+          "slot": 3,
+          "offset": 115552,
+          "offset_hex": "0x1C360",
+          "bytes": "02 05 00 00 24 05",
+          "role": "scene transition palette descriptor",
+          "descriptor": {
+            "pal_correct": [
+              2,
+              5,
+              0,
+              0
+            ],
+            "selector_byte": 36,
+            "boss_table": false,
+            "enemy_palette_index": 10,
+            "last_byte_low_nibble": 5
+          }
+        },
+        {
+          "slot": 4,
+          "offset": 115558,
+          "offset_hex": "0x1C366",
+          "bytes": "03 04 00 00 27 08",
+          "role": "scene transition palette descriptor",
+          "descriptor": {
+            "pal_correct": [
+              3,
+              4,
+              0,
+              0
+            ],
+            "selector_byte": 39,
+            "boss_table": false,
+            "enemy_palette_index": 10,
+            "last_byte_low_nibble": 8
+          }
+        },
+        {
+          "slot": 5,
+          "offset": 115564,
+          "offset_hex": "0x1C36C",
+          "bytes": "03 04 05 00 38 05",
+          "role": "scene transition palette descriptor",
+          "descriptor": {
+            "pal_correct": [
+              3,
+              4,
+              5,
+              0
+            ],
+            "selector_byte": 56,
+            "boss_table": false,
+            "enemy_palette_index": 11,
+            "last_byte_low_nibble": 5
+          }
+        },
+        {
+          "slot": 6,
+          "offset": 115570,
+          "offset_hex": "0x1C372",
+          "bytes": "00 01 00 05 00 02",
+          "role": "scene transition palette descriptor",
+          "descriptor": {
+            "pal_correct": [
+              0,
+              1,
+              0,
+              5
+            ],
+            "selector_byte": 0,
+            "boss_table": false,
+            "enemy_palette_index": null,
+            "last_byte_low_nibble": 2
+          }
+        }
+      ]
+    }
+  ],
+  "boss_palette_table": {
+    "label": "Pal_Alt_Boss",
+    "address": "0x1C3A8",
+    "entry_size": 6,
+    "entries": [
+      {
+        "index": 0,
+        "descriptor_word": "0x551B",
+        "palette_list": "0x1C3CC",
+        "target_label": "off_1C3CC",
+        "palettes": [
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "index": 1,
+        "descriptor_word": "0x561C",
+        "palette_list": "0x1C3D8",
+        "target_label": "off_1C3D8",
+        "palettes": [
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "index": 2,
+        "descriptor_word": "0x571D",
+        "palette_list": "0x1C3E0",
+        "target_label": "off_1C3E0",
+        "palettes": [
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "index": 3,
+        "descriptor_word": "0x581E",
+        "palette_list": "0x1C3EC",
+        "target_label": "off_1C3EC",
+        "palettes": [
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "index": 4,
+        "descriptor_word": "0x3008",
+        "palette_list": "0x1C3F4",
+        "target_label": "off_1C3F4",
+        "palettes": [
+          null,
+          null,
+          null
+        ]
+      },
+      {
+        "index": 5,
+        "descriptor_word": "0x3505",
+        "palette_list": "0x0000",
+        "target_label": null,
+        "palettes": [
+          null,
+          null,
+          null
+        ]
+      }
+    ]
+  },
+  "enemy_palette_table": {
+    "label": "Pal_Alt_Enemy",
+    "address": "0x1FACC",
+    "entry_size": 2,
+    "entry_count": 12,
+    "entries": [
+      {
+        "index": 0,
+        "status": "UNKNOWN",
+        "note": "relative word not extracted; see listing Pal_Alt_Enemy (line 49071)"
+      },
+      {
+        "index": 1,
+        "status": "UNKNOWN",
+        "note": "relative word not extracted; see listing Pal_Alt_Enemy (line 49071)"
+      },
+      {
+        "index": 2,
+        "status": "UNKNOWN",
+        "note": "relative word not extracted; see listing Pal_Alt_Enemy (line 49071)"
+      },
+      {
+        "index": 3,
+        "status": "UNKNOWN",
+        "note": "relative word not extracted; see listing Pal_Alt_Enemy (line 49071)"
+      },
+      {
+        "index": 4,
+        "status": "UNKNOWN",
+        "note": "relative word not extracted; see listing Pal_Alt_Enemy (line 49071)"
+      },
+      {
+        "index": 5,
+        "status": "UNKNOWN",
+        "note": "relative word not extracted; see listing Pal_Alt_Enemy (line 49071)"
+      },
+      {
+        "index": 6,
+        "status": "UNKNOWN",
+        "note": "relative word not extracted; see listing Pal_Alt_Enemy (line 49071)"
+      },
+      {
+        "index": 7,
+        "status": "UNKNOWN",
+        "note": "relative word not extracted; see listing Pal_Alt_Enemy (line 49071)"
+      },
+      {
+        "index": 8,
+        "status": "UNKNOWN",
+        "note": "relative word not extracted; see listing Pal_Alt_Enemy (line 49071)"
+      },
+      {
+        "index": 9,
+        "status": "UNKNOWN",
+        "note": "relative word not extracted; see listing Pal_Alt_Enemy (line 49071)"
+      },
+      {
+        "index": 10,
+        "status": "UNKNOWN",
+        "note": "relative word not extracted; see listing Pal_Alt_Enemy (line 49071)"
+      },
+      {
+        "index": 11,
+        "status": "UNKNOWN",
+        "note": "relative word not extracted; see listing Pal_Alt_Enemy (line 49071)"
+      }
+    ],
+    "status": "LOCATED_AND_SIZED / CONTENTS_UNRESOLVED",
+    "note": "twelve relative words, each target holding two frame-alternate palette pointers; the payload pointers were not extracted"
+  },
+  "selection_logic": {
+    "routine": "Update_Enemy_Pal (listing 1865)",
+    "inputs": "6-byte descriptor consumed by sub_576 / EnemySpawn_Scene / Load_Enemy_Into_RAM",
+    "pal_correct": "bytes 0-3 -> $FFFFFA60..$FFFFFA63",
+    "selector": "byte 4: bit 7 selects Pal_Alt_Boss, high nibble (+8) -> Pal_ID_Enemy, low nibble selects the alternate",
+    "last_byte": "byte 5 low nibble -> $FFFFFA6A",
+    "boss_entry_size": "6 bytes per entry = word target descriptor + long palette-list pointer",
+    "enemy_entry_size": "12 relative words; each target holds two frame-alternate palette pointers"
+  },
+  "notes": [
+    "No RGB values are emitted; palette data is analysed as indices only.",
+    "The geometry word indexes word_1C1BC: 0 -> stride 1, base $0300; 1 -> stride -1, base $1300."
+  ]
+}

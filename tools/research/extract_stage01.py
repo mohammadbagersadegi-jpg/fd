@@ -32,7 +32,7 @@ HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent.parent
 sys.path.insert(0, str(HERE))
 
-from elc import parse_stream  # noqa: E402
+from elc import parse_stream, walk_stream  # noqa: E402
 from listing import extract_dc_b, read_listing  # noqa: E402
 from nemesis import decompress  # noqa: E402
 
@@ -106,6 +106,7 @@ NON_GRUNT_TYPES = {
 }
 
 ROUND1_CAMERA_GATES = [0x04C0, 0x07C0, 0x0AC0, 0x0DC0, 0x10C0, 0x13C0]
+ROUND1_BOOTHS = [2016, 2192, 2472, 2920, 2960, 3000, 3672]
 
 
 def find_listing(arg: str | None) -> Path:
@@ -528,9 +529,135 @@ def main() -> int:
         }, indent=2) + "\n", encoding="utf-8"
     )
 
+    # ---- stage01 dossier ---------------------------------------------------
+    round1_blocks = len(blocks)
+    rounds_json: dict[str, dict] = {}
+    for round_no, (_, _, block_count) in STREAMS.items():
+        data = decoded[round_no]
+        records, blocks, tail = parse_stream(data, max_blocks=block_count)
+        segments, walk_tail = walk_stream(data, max_blocks=block_count)
+        if walk_tail != tail:
+            raise SystemExit(f"round {round_no}: walk/parse tail mismatch")
+        rounds_json[str(round_no)] = {
+            "stream_sha256": hashlib.sha256(data).hexdigest(),
+            "decoded_bytes": len(data),
+            "wave_blocks": len(blocks),
+            "block_layout": [
+                {
+                    "block": b["block"],
+                    "start": b["start"],
+                    "end": b["end"],
+                    "end_hex": f"0x{b['end']:03X}",
+                    "batch_counts": b["batch_counts"],
+                    "timed": b["timed"],
+                    "deferred": b["deferred"],
+                }
+                for b in blocks
+            ],
+            "records": [
+                {
+                    "kind": r.kind,
+                    "block": r.block,
+                    "column": r.column,
+                    "column_index": r.column_index,
+                    "offset": r.offset,
+                    "offset_hex": f"0x{r.offset:03X}",
+                    "type": r.type,
+                    "type_id": r.type_id,
+                    "two_player_only": r.two_player_only,
+                    "param40": r.param40,
+                    "param41": r.param41,
+                    "param49": r.param49,
+                    "byte4": r.x_low,
+                    "byte5": r.depth_raw,
+                    "x_world": r.x_world,
+                    "delay": r.delay,
+                    "side": r.side,
+                }
+                for r in records
+            ],
+            "tail": {
+                "offset": tail,
+                "offset_hex": f"0x{tail:03X}",
+                "bytes": len(data) - tail,
+                "hex": data[tail:].hex(" "),
+                "status": "UNRESOLVED - not consumed on the analysed 1P path" if round_no != 2
+                          else "STRUCTURED - timed list + deferred section end exactly at buffer end",
+            },
+            "byte_accounting": {
+                "covered": tail,
+                "tail": len(data) - tail,
+                "segments": len(segments),
+                "by_kind": {
+                    kind: sum(1 for s in segments if s["kind"] == kind)
+                    for kind in ("batch_count", "batch_record", "timed_delay", "timed_record",
+                                 "timed_end", "deferred_length", "deferred_record", "deferred_end")
+                },
+            },
+        }
+
+    dispatch_model = {
+        "state_register": "$FFFFFB15 (low byte of StatusBitfield_1 at $FFFFFB14)",
+        "state_encoding": "state_byte = 2 * jump_table_index",
+        "dispatcher": "sub_436 (listing 595) -> off_44C (listing 610)",
+        "jump_table": [
+            {"index": 0, "state_byte": 0, "target": "EnemySpawn_Scene", "role": "spawn next wave block"},
+            {"index": 1, "state_byte": 2, "target": "loc_6A6", "role": "camera-lock check, then state 2"},
+            {"index": 2, "state_byte": 4, "target": "loc_784", "role": "timed list runner"},
+            {"index": 3, "state_byte": 6, "target": "EnemySpawn_Chk_Pal", "role": "deferred list header + palette scan"},
+            {"index": 4, "state_byte": 8, "target": "loc_936", "role": "deferred palette selection"},
+            {"index": 5, "state_byte": 10, "target": "loc_B76", "role": "deferred spawn + list compaction"},
+            {"index": 6, "state_byte": 12, "target": "loc_C28", "role": "wait for palette match / wave end"},
+            {"index": 7, "state_byte": 14, "target": "loc_59C", "role": "boss arrival (palette + art)"},
+            {"index": 8, "state_byte": 16, "target": "loc_748", "role": "timed wait before next wave"},
+            {"index": 9, "state_byte": 18, "target": "Write_Art", "role": "art upload"},
+            {"index": 10, "state_byte": 20, "target": "loc_4CA", "role": "player-death / continue path"},
+            {"index": 11, "state_byte": 22, "target": "loc_464", "role": "boss-defeat / Mr. X offer path"},
+        ],
+        "frame_order": [
+            "GameMode_InGame -> Update_PlayerObj (listing 19937)",
+            "Update_PlayerObj -> Update_Screen_Pos (listing 20003)",
+            "Update_Screen_Pos -> sub_18C22 -> sub_19570 (Scene++ and new camera gate)",
+            "GameMode_InGame -> jmp (sub_436) -> ELC state machine",
+        ],
+        "round1_block_dispatch": [
+            {"block": 1, "spawned_by": "Load_Enemy_Into_RAM (listing 1779), Scene=0",
+             "palette_descriptor": "entry 0 (cursor + geometry + palette)", "confidence": "VERIFIED_DIRECT"},
+            {"block": 2, "spawned_by": "EnemySpawn_Scene at Scene=0", "palette_descriptor": "entry 1",
+             "confidence": "VERIFIED_DIRECT (code path) / STRONG_INFERENCE (runtime scene value)"},
+            {"block": 3, "spawned_by": "EnemySpawn_Scene at Scene=1", "palette_descriptor": "entry 2",
+             "confidence": "VERIFIED_DIRECT (code path) / STRONG_INFERENCE (runtime scene value)"},
+            {"block": 4, "spawned_by": "EnemySpawn_Scene at Scene=2", "palette_descriptor": "entry 3",
+             "confidence": "VERIFIED_DIRECT (code path) / STRONG_INFERENCE (runtime scene value)"},
+            {"block": "none", "spawned_by": "EnemySpawn_Scene at Scene=3 hits the guard and jumps to loc_646 (state 7, boss arrival)",
+             "palette_descriptor": "entry 4 (all zero) is consumed before the guard",
+             "confidence": "VERIFIED_DIRECT"},
+        ],
+    }
+
+    dossier = {
+        "schema": "stage01-elc-records/1",
+        "target": "Streets of Rage (JUE) (REV 00)",
+        "listing": {
+            "file": listing.name,
+            "sha256": sha256(listing),
+            "lines": len(lines),
+        },
+        "rounds": rounds_json,
+        "dispatch_model": dispatch_model,
+        "round1": {
+            "records": len(parse_stream(decoded[1], max_blocks=4)[0]),
+            "one_player_booths": ROUND1_BOOTHS,
+            "tail_hex": decoded[1][parse_stream(decoded[1], max_blocks=4)[2]:].hex(" "),
+        },
+    }
+    (out_dir / "stage01-elc-records.json").write_text(
+        json.dumps(dossier, indent=2) + "\n", encoding="utf-8"
+    )
+
     print(f"listing : {listing.name} ({len(lines)} lines)")
     print(f"streams : {len(stream_meta)} decoded, all sizes match")
-    print(f"round 1 : {len(recs)} records in {len(blocks)} blocks "
+    print(f"round 1 : {len(recs)} records in {round1_blocks} blocks "
           f"(batch {object_map['totals']['batch']}, timed {object_map['totals']['timed']}, "
           f"deferred {object_map['totals']['deferred']})")
     print(f"1P types: {object_map['totals']['by_type_one_player']}")
@@ -538,7 +665,8 @@ def main() -> int:
     print(f"tail    : {len(tail_bytes)} bytes at {object_map['tail']['offset']}")
     print("census  : " + ("ALL 8 ROUNDS MATCH" if all_match else "MISMATCH"))
     print("wrote   : object-map.json, timeline.csv, camera-track.csv, "
-          "visual-inventory.json, evidence-ledger.json, all-rounds-census.json")
+          "visual-inventory.json, evidence-ledger.json, all-rounds-census.json, "
+          "stage01-elc-records.json")
     return 0 if all_match else 1
 
 

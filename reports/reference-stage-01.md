@@ -397,3 +397,89 @@ boss entry mapped; wave-to-block mapping for block 4 and the tail unresolved.
    *indices* the round uses (still not RGB values).
 4. If a lawful private dump becomes available: dump the block map/metatile
    streams at `$5F5B8` and measure the visual facts this dossier leaves BLOCKED.
+
+---
+
+## 12. Revision 2 — scene dispatch, tail grammar, palette tables
+
+This revision adds the results of the continuation pass. Nothing in §§1–11 was
+removed; four statements were superseded and are listed in §12.5.
+
+### 12.1 The state machine behind every wave
+
+`sub_436` (L595) dispatches on the **low byte** of `$FFFFFB14` through the
+12-word table `off_44C` (L610). Because the first lookup is a byte offset into
+a word table, `state = 2 × index`. The mapping is in
+`reports/stage01-control-flow.md` §1 and in `reports/stage01-elc-records.json`
+(`dispatch_model`). Key entries: index 0 = `EnemySpawn_Scene`,
+2 = `loc_784` (timed), 3/4/5 = deferred pipeline, 7 (`$E`) = `loc_59C`
+(boss palette + art), 9 (`$12`) = `Write_Art`.
+
+### 12.2 Block → scene mapping
+
+Level start (`Init_LevelStart`, L30087) sets `Scene = 0` and
+`Load_Enemy_Into_RAM` spawns block 1 with the level-start slot. Every later
+wave is spawned by `EnemySpawn_Scene`, which reads palette slot `Scene + 1`
+(L790-793) and is guarded by `Scene >= 3` for rounds 1–4 (L825). The resulting
+mapping, which agrees with the number of descriptor slots (5 for rounds 1–4,
+7 for rounds 5–8) and with the decoded block counts:
+
+| Wave | Spawned by | Scene at spawn | Palette slot |
+| ---: | --- | ---: | ---: |
+| block 1 | `Load_Enemy_Into_RAM` | 0 | slot 0 (cursor + geometry + palette) |
+| block 2 | `EnemySpawn_Scene` | 0 | slot 1 |
+| block 3 | `EnemySpawn_Scene` | 1 | slot 2 |
+| block 4 | `EnemySpawn_Scene` | 2 | slot 3 |
+| boss | `loc_59C` via state 7 | 3 (guard) | slot 4 (consumed before the guard) |
+
+The alignment is supported independently by content: round 1 slot 3 is the
+only slot that selects enemy palette set 9, and block 4 is the only block that
+contains type `$26` (Nora). Class **STRONG_INFERENCE**; the missing evidence is
+a runtime trace of `Scene` on the frame each block is spawned.
+
+### 12.3 Spawn X — corrected and checked against runtime
+
+`add.b d2,($FFFFFB12).w` writes the byte at the word's address, i.e. the
+**high** byte. With `$FFFB20 = 1` the three columns of a wave use bases 256 px
+apart and the base continues across waves: block 1 `$0300/$0400/$0500`,
+block 2 `$0600/$0700/$0800`, block 3 `$0900/$0A00/$0B00`, block 4
+`$0C00/$0D00/$0E00`.
+
+Held-out check against the third-party runtime notes (RuiNelson autoplay):
+booths at world x **2016** (`$7E0` = block 2, byte4 `$E0`) and **2920**
+(`$B68` = block 3, byte4 `$68`), both depth 32 — reproduced exactly. The
+earlier per-block-restart model would place them at `$4E0` and `$568` and
+fails. Class: model **VERIFIED_DIRECT**, agreement
+**VERIFIED_AGAINST_SECONDARY_RUNTIME**.
+
+### 12.4 Tail and palette tables
+
+* Tail grammar across rounds, exact sizes, and the two terminators: see
+  `reports/stage01-boss-tail-analysis.md`. Round 2's tail consumes the buffer
+  exactly; round 1's leaves `6a 00` explicitly unresolved.
+* Palette/scene descriptor tables, slot counts and selector arithmetic (no
+  RGB): see `reports/stage01-palette-descriptors.md` and
+  `reports/stage01-palette-descriptors.json`.
+
+### 12.5 Superseded statements (recorded, not silently replaced)
+
+| Earlier statement in this dossier | Now | Evidence |
+| --- | --- | --- |
+| "`$FFFFFB14 = $E` is a boss-specific flag" | state byte `$E` = index 7 = `loc_59C` | §12.1 |
+| "the tail framing after the first pairs is unresolved" | resolved for rounds 1–6 up to a length-prefixed section; only the bytes after it are unresolved | boss-tail report §2 |
+| "the two booth positions are a prediction" | now confirmed by the corrected base model | §12.3 |
+| "`EnemySpawn_Scene` refuses `Scene >= 3` yet round 1 has four blocks" | blocks 2–4 are spawned at Scene 0/1/2; the guard is reached on the fifth transition | §12.2 |
+
+### 12.6 New unknowns
+
+* Round 7 and round 8 tail grammar (both reported byte-for-byte).
+* Round 8 geometry index 4, outside the two-entry `word_1C1BC` table.
+* Which instruction consumes `$FFFFFA72` bit 6 outside `loc_464`/`loc_5D4`.
+* Runtime confirmation of `Scene` per wave (needs an emulator/ROM).
+
+### 12.7 Reproduction
+
+```bash
+python3 tools/research/stage01_tables.py --listing "$SOR_LISTING"
+python3 tools/research/test_stage01.py      # 22 tests
+```
