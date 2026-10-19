@@ -1,0 +1,726 @@
+{
+  "method": "Nemesis decode + ELC parse (tools/research), compared with the published per-round census",
+  "all_rounds_match": true,
+  "rounds": {
+    "1": {
+      "records": 59,
+      "one_player_records": 42,
+      "two_player_only_records": 17,
+      "blocks": 4,
+      "block_layout": [
+        {
+          "block": 1,
+          "batch_counts": [
+            1,
+            3,
+            2
+          ],
+          "timed": 2,
+          "deferred": 2
+        },
+        {
+          "block": 2,
+          "batch_counts": [
+            3,
+            3,
+            4
+          ],
+          "timed": 3,
+          "deferred": 3
+        },
+        {
+          "block": 3,
+          "batch_counts": [
+            3,
+            5,
+            4
+          ],
+          "timed": 3,
+          "deferred": 3
+        },
+        {
+          "block": 4,
+          "batch_counts": [
+            3,
+            3,
+            4
+          ],
+          "timed": 3,
+          "deferred": 2
+        }
+      ],
+      "grunt_census": {
+        "0x20": 2,
+        "0x21": 6,
+        "0x22": 17,
+        "0x23": 1,
+        "0x24": 3,
+        "0x25": 2,
+        "0x26": 4,
+        "0x27": 0
+      },
+      "grunt_census_match": true,
+      "grunt_diffs": {},
+      "non_grunt_records": {
+        "0x11": {
+          "count": 7,
+          "guess": "phone booth (breakable)"
+        }
+      },
+      "tail": {
+        "raw": "00 10 56 00 04 00 10 00 00 10 d6 01 05 00 10 01 00 99 00 02 99 00 6a 00",
+        "bytes": 24,
+        "first_delay": 16,
+        "first_record": "56 00 04 00 10 00",
+        "first_type": "0x56"
+      }
+    },
+    "2": {
+      "records": 89,
+      "one_player_records": 72,
+      "two_player_only_records": 17,
+      "blocks": 4,
+      "block_layout": [
+        {
+          "block": 1,
+          "batch_counts": [
+            2,
+            8,
+            5
+          ],
+          "timed": 2,
+          "deferred": 3
+        },
+        {
+          "block": 2,
+          "batch_counts": [
+            3,
+            11,
+            8
+          ],
+          "timed": 2,
+          "deferred": 2
+        },
+        {
+          "block": 3,
+          "batch_counts": [
+            3,
+            8,
+            5
+          ],
+          "timed": 2,
+          "deferred": 4
+        },
+        {
+          "block": 4,
+          "batch_counts": [
+            4,
+            6,
+            6
+          ],
+          "timed": 2,
+          "deferred": 3
+        }
+      ],
+      "grunt_census": {
+        "0x20": 4,
+        "0x21": 11,
+        "0x22": 16,
+        "0x23": 1,
+        "0x24": 6,
+        "0x25": 4,
+        "0x26": 3,
+        "0x27": 3
+      },
+      "grunt_census_match": true,
+      "grunt_diffs": {},
+      "non_grunt_records": {
+        "0x13": {
+          "count": 6,
+          "guess": "prop (unidentified)"
+        },
+        "0x14": {
+          "count": 2,
+          "guess": "prop (unidentified)"
+        },
+        "0x19": {
+          "count": 10,
+          "guess": "prop family (breakable)"
+        },
+        "0x4D": {
+          "count": 6,
+          "guess": "prop (unidentified)"
+        }
+      },
+      "tail": {
+        "raw": "00 10 55 00 08 00 10 00 00 10 d5 01 09 00 10 01 00 20 22 00 39 00 40 00 00 99 00 0e 22 00 39 00 40 00 20 01 3d 00 61 01 99 00",
+        "bytes": 42,
+        "first_delay": 16,
+        "first_record": "55 00 08 00 10 00",
+        "first_type": "0x55"
+      }
+    },
+    "3": {
+      "records": 73,
+      "one_player_records": 63,
+      "two_player_only_records": 10,
+      "blocks": 4,
+      "block_layout": [
+        {
+          "block": 1,
+          "batch_counts": [
+            5,
+            3,
+            5
+          ],
+          "timed": 2,
+          "deferred": 3
+        },
+        {
+          "block": 2,
+          "batch_counts": [
+            2,
+            4,
+            5
+          ],
+          "timed": 3,
+          "deferred": 4
+        },
+        {
+          "block": 3,
+          "batch_counts": [
+            9,
+            4,
+            5
+          ],
+          "timed": 3,
+          "deferred": 3
+        },
+        {
+          "block": 4,
+          "batch_counts": [
+            2,
+            3,
+            4
+          ],
+          "timed": 2,
+          "deferred": 2
+        }
+      ],
+      "grunt_census": {
+        "0x20": 4,
+        "0x21": 5,
+        "0x22": 8,
+        "0x23": 2,
+        "0x24": 5,
+        "0x25": 3,
+        "0x26": 8,
+        "0x27": 0,
+        "0x2A": 1
+      },
+      "grunt_census_match": true,
+      "grunt_diffs": {},
+      "non_grunt_records": {
+        "0x16": {
+          "count": 4,
+          "guess": "prop (unidentified)"
+        },
+        "0x17": {
+          "count": 3,
+          "guess": "prop (unidentified)"
+        },
+        "0x18": {
+          "count": 4,
+          "guess": "prop (unidentified)"
+        },
+        "0x4E": {
+          "count": 16,
+          "guess": "prop (unidentified)"
+        }
+      },
+      "tail": {
+        "raw": "00 10 30 00 00 00 10 00 00 10 b0 00 01 00 10 01 00 20 22 00 59 00 60 01 00 99 00 14 21 00 59 00 60 01 20 01 3c 00 21 00 22 00 fc 00 20 01 99 00 00 20 22 00 59 00 60 01 00 99 00 14 21 00 59 00 60 01 20 01 3c 00",
+        "bytes": 70,
+        "first_delay": 16,
+        "first_record": "30 00 00 00 10 00",
+        "first_type": "0x30"
+      }
+    },
+    "4": {
+      "records": 75,
+      "one_player_records": 59,
+      "two_player_only_records": 16,
+      "blocks": 4,
+      "block_layout": [
+        {
+          "block": 1,
+          "batch_counts": [
+            2,
+            4,
+            3
+          ],
+          "timed": 3,
+          "deferred": 2
+        },
+        {
+          "block": 2,
+          "batch_counts": [
+            5,
+            4,
+            5
+          ],
+          "timed": 3,
+          "deferred": 3
+        },
+        {
+          "block": 3,
+          "batch_counts": [
+            8,
+            5,
+            4
+          ],
+          "timed": 3,
+          "deferred": 2
+        },
+        {
+          "block": 4,
+          "batch_counts": [
+            3,
+            6,
+            4
+          ],
+          "timed": 3,
+          "deferred": 3
+        }
+      ],
+      "grunt_census": {
+        "0x20": 8,
+        "0x21": 7,
+        "0x22": 8,
+        "0x23": 2,
+        "0x24": 16,
+        "0x25": 3,
+        "0x26": 5,
+        "0x27": 1
+      },
+      "grunt_census_match": true,
+      "grunt_diffs": {},
+      "non_grunt_records": {
+        "0x1B": {
+          "count": 4,
+          "guess": "prop (unidentified)"
+        },
+        "0x1C": {
+          "count": 2,
+          "guess": "prop (unidentified)"
+        },
+        "0x1D": {
+          "count": 3,
+          "guess": "prop (unidentified)"
+        }
+      },
+      "tail": {
+        "raw": "00 10 57 00 02 00 10 00 00 10 d7 01 03 00 10 01 00 50 22 00 fa 01 40 01 00 99 00 14 21 00 4e 01 30 01 22 00 5c 01 48 00 20 01 7d 01 61 00 99 00 00 50 22 00 fa 01",
+        "bytes": 54,
+        "first_delay": 16,
+        "first_record": "57 00 02 00 10 00",
+        "first_type": "0x57"
+      }
+    },
+    "5": {
+      "records": 106,
+      "one_player_records": 80,
+      "two_player_only_records": 26,
+      "blocks": 6,
+      "block_layout": [
+        {
+          "block": 1,
+          "batch_counts": [
+            6,
+            5,
+            4
+          ],
+          "timed": 6,
+          "deferred": 0
+        },
+        {
+          "block": 2,
+          "batch_counts": [
+            9,
+            2,
+            1
+          ],
+          "timed": 8,
+          "deferred": 6
+        },
+        {
+          "block": 3,
+          "batch_counts": [
+            4,
+            3,
+            4
+          ],
+          "timed": 0,
+          "deferred": 2
+        },
+        {
+          "block": 4,
+          "batch_counts": [
+            2,
+            4,
+            5
+          ],
+          "timed": 1,
+          "deferred": 1
+        },
+        {
+          "block": 5,
+          "batch_counts": [
+            2,
+            4,
+            1
+          ],
+          "timed": 8,
+          "deferred": 0
+        },
+        {
+          "block": 6,
+          "batch_counts": [
+            5,
+            6,
+            2
+          ],
+          "timed": 0,
+          "deferred": 5
+        }
+      ],
+      "grunt_census": {
+        "0x20": 6,
+        "0x21": 3,
+        "0x22": 26,
+        "0x23": 3,
+        "0x24": 6,
+        "0x25": 12,
+        "0x26": 7,
+        "0x27": 6,
+        "0x2A": 2
+      },
+      "grunt_census_match": true,
+      "grunt_diffs": {},
+      "non_grunt_records": {
+        "0x1F": {
+          "count": 8,
+          "guess": "prop (unidentified)"
+        },
+        "0x30": {
+          "count": 1,
+          "guess": "boss / heavy (unidentified)"
+        }
+      },
+      "tail": {
+        "raw": "00 10 58 00 0a 03 10 00 00 10 58 01 0b 03 10 01 00 99 00 02 99 00 40 01 a7 03 4c 00 40 00 99 00 00 10 58 00 0a 03 10 00 00 10 58 01 0b 03",
+        "bytes": 46,
+        "first_delay": 16,
+        "first_record": "58 00 0a 03 10 00",
+        "first_type": "0x58"
+      }
+    },
+    "6": {
+      "records": 93,
+      "one_player_records": 75,
+      "two_player_only_records": 18,
+      "blocks": 6,
+      "block_layout": [
+        {
+          "block": 1,
+          "batch_counts": [
+            2,
+            3,
+            3
+          ],
+          "timed": 3,
+          "deferred": 4
+        },
+        {
+          "block": 2,
+          "batch_counts": [
+            4,
+            5,
+            2
+          ],
+          "timed": 2,
+          "deferred": 2
+        },
+        {
+          "block": 3,
+          "batch_counts": [
+            4,
+            4,
+            2
+          ],
+          "timed": 3,
+          "deferred": 3
+        },
+        {
+          "block": 4,
+          "batch_counts": [
+            2,
+            5,
+            3
+          ],
+          "timed": 2,
+          "deferred": 2
+        },
+        {
+          "block": 5,
+          "batch_counts": [
+            3,
+            3,
+            3
+          ],
+          "timed": 3,
+          "deferred": 3
+        },
+        {
+          "block": 6,
+          "batch_counts": [
+            4,
+            3,
+            4
+          ],
+          "timed": 3,
+          "deferred": 4
+        }
+      ],
+      "grunt_census": {
+        "0x20": 4,
+        "0x21": 8,
+        "0x22": 10,
+        "0x23": 2,
+        "0x24": 15,
+        "0x25": 7,
+        "0x26": 9,
+        "0x27": 3
+      },
+      "grunt_census_match": true,
+      "grunt_diffs": {},
+      "non_grunt_records": {
+        "0x41": {
+          "count": 10,
+          "guess": "prop (unidentified)"
+        },
+        "0x42": {
+          "count": 6,
+          "guess": "prop (unidentified)"
+        },
+        "0x57": {
+          "count": 1,
+          "guess": "boss (unidentified)"
+        }
+      },
+      "tail": {
+        "raw": "00 10 55 00 08 10 10 00 00 10 55 01 09 10 10 01 00 60 a0 00 4d 00 30 00 00 99 00 14 a1 00 48 00 60 01 a2 00 6e 00 20 00 a0 00 5c 01 41 00 99 00 00 60 a0 00 4d 00 30 00 00 99 00 14 a1 00 48 00 60 01 a2 00 6e 00 20 00 a0 00",
+        "bytes": 74,
+        "first_delay": 16,
+        "first_record": "55 00 08 10 10 00",
+        "first_type": "0x55"
+      }
+    },
+    "7": {
+      "records": 59,
+      "one_player_records": 52,
+      "two_player_only_records": 7,
+      "blocks": 5,
+      "block_layout": [
+        {
+          "block": 1,
+          "batch_counts": [
+            -1,
+            -1,
+            -1
+          ],
+          "timed": 5,
+          "deferred": 5
+        },
+        {
+          "block": 2,
+          "batch_counts": [
+            -1,
+            -1,
+            -1
+          ],
+          "timed": 4,
+          "deferred": 8
+        },
+        {
+          "block": 3,
+          "batch_counts": [
+            -1,
+            -1,
+            -1
+          ],
+          "timed": 4,
+          "deferred": 6
+        },
+        {
+          "block": 4,
+          "batch_counts": [
+            -1,
+            -1,
+            -1
+          ],
+          "timed": 4,
+          "deferred": 7
+        },
+        {
+          "block": 5,
+          "batch_counts": [
+            -1,
+            -1,
+            -1
+          ],
+          "timed": 6,
+          "deferred": 10
+        }
+      ],
+      "grunt_census": {
+        "0x20": 3,
+        "0x21": 4,
+        "0x22": 9,
+        "0x23": 1,
+        "0x24": 15,
+        "0x25": 15,
+        "0x26": 5,
+        "0x27": 0
+      },
+      "grunt_census_match": true,
+      "grunt_diffs": {},
+      "non_grunt_records": {},
+      "tail": {
+        "raw": "ff ff ff ff ff ff 00 99 00 02 99 00 24 01 6b 01 69 01 26 00",
+        "bytes": 20,
+        "first_delay": 65535,
+        "first_record": "ff ff ff ff 00 99",
+        "first_type": "0xFF"
+      }
+    },
+    "8": {
+      "records": 107,
+      "one_player_records": 89,
+      "two_player_only_records": 18,
+      "blocks": 6,
+      "block_layout": [
+        {
+          "block": 1,
+          "batch_counts": [
+            2,
+            6,
+            1
+          ],
+          "timed": 2,
+          "deferred": 3
+        },
+        {
+          "block": 2,
+          "batch_counts": [
+            6,
+            5,
+            1
+          ],
+          "timed": 2,
+          "deferred": 4
+        },
+        {
+          "block": 3,
+          "batch_counts": [
+            3,
+            6,
+            5
+          ],
+          "timed": 2,
+          "deferred": 4
+        },
+        {
+          "block": 4,
+          "batch_counts": [
+            4,
+            4,
+            4
+          ],
+          "timed": 2,
+          "deferred": 4
+        },
+        {
+          "block": 5,
+          "batch_counts": [
+            5,
+            2,
+            5
+          ],
+          "timed": 2,
+          "deferred": 4
+        },
+        {
+          "block": 6,
+          "batch_counts": [
+            5,
+            5,
+            1
+          ],
+          "timed": 2,
+          "deferred": 6
+        }
+      ],
+      "grunt_census": {
+        "0x20": 3,
+        "0x21": 8,
+        "0x22": 6,
+        "0x23": 2,
+        "0x24": 20,
+        "0x25": 12,
+        "0x26": 5,
+        "0x27": 2,
+        "0x2A": 1
+      },
+      "grunt_census_match": true,
+      "grunt_diffs": {},
+      "non_grunt_records": {
+        "0x15": {
+          "count": 5,
+          "guess": "prop (unidentified)"
+        },
+        "0x30": {
+          "count": 1,
+          "guess": "boss / heavy (unidentified)"
+        },
+        "0x45": {
+          "count": 19,
+          "guess": "prop (unidentified)"
+        },
+        "0x55": {
+          "count": 1,
+          "guess": "boss (Souther-class)"
+        },
+        "0x56": {
+          "count": 1,
+          "guess": "boss (round-1)"
+        },
+        "0x57": {
+          "count": 1,
+          "guess": "boss (unidentified)"
+        },
+        "0x58": {
+          "count": 2,
+          "guess": "boss (unidentified)"
+        }
+      },
+      "tail": {
+        "raw": "00 01 33 00 00 00 24 00 15 00 00 00 80 00 00 00 15 01 00 00 c0 00 ff ff 00 40 22 80 4a 02 28 00 00 01 22 80 4a 02 28 01 00 99 00 20 22 80 4a 02 28 00 00 01 22 80 4a 02 28 01 00 99 00 01 22 80 4a 02 28 00 00 01 22 80 4a 02 28 01 00 99 00 38 22 a3 4a 02 28 01 22 a0 4a 02 39 01 a2 80 4a 02 30 00 22 80 4a 02 2a 01 22 80 4a 02 48 00 22 80 4a 02 2a 00 21 80 4a 02 58 00 22 83 4a 02 48 01 22 83 4a 02 50 00 99 00 22 80 4a 02 48 00 22 80 4a 02 2a 00 21 80 4a 02 58 00 22 83 4a 02",
+        "bytes": 158,
+        "first_delay": 1,
+        "first_record": "33 00 00 00 24 00",
+        "first_type": "0x33"
+      }
+    }
+  }
+}

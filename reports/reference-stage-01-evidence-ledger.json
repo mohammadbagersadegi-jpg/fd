@@ -1,0 +1,78 @@
+{
+  "ledger_version": "0.2",
+  "stage": "round 1",
+  "evidence": [
+    {
+      "id": "REF-E001",
+      "claim": "Round 1's enemy-load-cue stream lives at ROM 0x1B046 and decompresses to 448 bytes.",
+      "source_type": "static",
+      "source": "Streets of Rage (JUE) (REV 00) [!].asm lines 47937-47950; offset table 0x1B036",
+      "method": "byte extraction + Nemesis decompression; size matches the documented 0x1C0",
+      "confidence": "VERIFIED_DIRECT"
+    },
+    {
+      "id": "REF-E002",
+      "claim": "The round-1 stream is 4 wave blocks with batch/timed/deferred counts 6/2/2, 10/3/3, 12/3/3, 10/3/2.",
+      "source_type": "static",
+      "source": "decoded stream + parser; independent census in game-engine-and-levels.md \u00a75 matches",
+      "method": "parser + cross-source count comparison",
+      "confidence": "VERIFIED_CROSS_SOURCE"
+    },
+    {
+      "id": "REF-E003",
+      "claim": "One-player enemy census for all eight rounds reproduces the published autoplay table exactly (0 mismatches).",
+      "source_type": "static",
+      "source": "reference-all-rounds-census.json; RuiNelson autoplay/CLAUDE.md census table",
+      "method": "two independent decoders (our Nemesis + parser vs their decompress.py) and two independent counts",
+      "confidence": "VERIFIED_CROSS_SOURCE"
+    },
+    {
+      "id": "REF-E004",
+      "claim": "Batch spawn X = (base & 0xFF00) | byte4 with base starting at 0x0300 and the high byte incremented between columns.",
+      "source_type": "static",
+      "source": "Init_Enemy 0x0CC0-0x0D66; Load_Enemy_Into_RAM 0x0E98-0x0F1C; EnemySpawn_Scene loc_682",
+      "method": "instruction-level reading + 68000 byte-order check",
+      "confidence": "VERIFIED_DIRECT"
+    },
+    {
+      "id": "REF-E005",
+      "claim": "The model predicts the runtime booth positions 2016 and 2920 exactly.",
+      "source_type": "cross-check",
+      "source": "autoplay/CLAUDE.md runtime notes + parsed records",
+      "method": "two-point prediction test",
+      "confidence": "VERIFIED_AGAINST_SECONDARY_RUNTIME"
+    },
+    {
+      "id": "REF-E006",
+      "claim": "Timed/deferred records spawn at cam_x+0x148 when byte5 == 0, or cam_x-8 when byte5 != 0, once their countdown expires.",
+      "source_type": "static",
+      "source": "sub_C60 0x0C60-0x0CBE; timed loop loc_784-loc_7C8",
+      "method": "instruction-level reading",
+      "confidence": "VERIFIED_DIRECT"
+    },
+    {
+      "id": "REF-E007",
+      "claim": "Round-1 camera gates are 0x04C0, 0x07C0, 0x0AC0, 0x0DC0, 0x10C0, 0x13C0; 0xFFFF ends the stage.",
+      "source_type": "static",
+      "source": "word_195D8 (0x195D8), consumer sub_19570",
+      "method": "table read + code path",
+      "confidence": "VERIFIED_DIRECT"
+    },
+    {
+      "id": "REF-E008",
+      "claim": "Round 1 contains 7 one-player phone booths (type 0x11) as breakables.",
+      "source_type": "static",
+      "source": "parsed records; type name from autoplay/CLAUDE.md",
+      "method": "type filter",
+      "confidence": "STRONG_INFERENCE"
+    },
+    {
+      "id": "REF-E009",
+      "claim": "No runtime observation of the original game was performed in this environment.",
+      "source_type": "meta",
+      "source": "reports/00_environment_audit.md",
+      "method": "environment audit",
+      "confidence": "VERIFIED_DIRECT"
+    }
+  ]
+}

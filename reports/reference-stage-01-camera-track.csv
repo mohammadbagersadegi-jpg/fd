@@ -1,0 +1,8 @@
+gate_index,max_x,max_x_hex,source,notes
+1,1216,0x04C0,word_195D8 (0x195D8),shared by rounds 1-7
+2,1984,0x07C0,word_195D8 (0x195D8),shared by rounds 1-7
+3,2752,0x0AC0,word_195D8 (0x195D8),shared by rounds 1-7
+4,3520,0x0DC0,word_195D8 (0x195D8),shared by rounds 1-7
+5,4288,0x10C0,word_195D8 (0x195D8),shared by rounds 1-7
+6,5056,0x13C0,word_195D8 (0x195D8),shared by rounds 1-7
+7,65535,0xFFFF,word_195D8,"end marker: FadeOut_Flag=1, palette fade counter 0x40"

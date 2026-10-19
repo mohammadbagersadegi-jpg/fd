@@ -1,0 +1,111 @@
+{
+  "stage": "round 1",
+  "status": "PARTIAL - runtime capture BLOCKED in this environment",
+  "display": {
+    "resolution": [
+      320,
+      224
+    ],
+    "evidence": "VDP R12 = 0x81 (H40 / 320 px), graphics-engine.md line 99",
+    "confidence": "VERIFIED_CROSS_SOURCE"
+  },
+  "planes": {
+    "primary_blockmap": "0xFF0000",
+    "secondary_blockmap": "0xFF2000",
+    "primary_metatiles": "0xFF4000",
+    "secondary_metatiles": "0xFF4800",
+    "collision_class_map": "0xFFA000",
+    "cell_size": [
+      8,
+      8
+    ],
+    "plane_cells": [
+      64,
+      32
+    ],
+    "evidence": "graphics-engine.md sections 5-6; VRAM register R16 = 0x01 (64x32 planes)"
+  },
+  "level_package": {
+    "table": "0x5F5B8",
+    "round1_music": "0x81",
+    "compression": [
+      "Nemesis (ELC, art)",
+      "Enigma (metatiles)",
+      "Kosinski (block maps)"
+    ],
+    "resident_art_streams": 2
+  },
+  "palette_descriptors_round1": {
+    "scene0_to_1": "00 01 02 00 00 03",
+    "scene1_to_2": "00 01 02 00 00 03",
+    "scene2_to_3": "00 01 03 00 00 06",
+    "scene3_to_4": "00 01 04 00 10 00",
+    "scene4": "00 00 00 00 00 00"
+  },
+  "breakables": {
+    "type": "0x11",
+    "name": "phone booth",
+    "records_one_player": 7,
+    "positions": [
+      {
+        "block": 2,
+        "x": 2016,
+        "depth": 32
+      },
+      {
+        "block": 2,
+        "x": 2192,
+        "depth": 32
+      },
+      {
+        "block": 3,
+        "x": 2472,
+        "depth": 32
+      },
+      {
+        "block": 3,
+        "x": 2920,
+        "depth": 32
+      },
+      {
+        "block": 3,
+        "x": 2960,
+        "depth": 32
+      },
+      {
+        "block": 3,
+        "x": 3000,
+        "depth": 32
+      },
+      {
+        "block": 4,
+        "x": 3672,
+        "depth": 32
+      }
+    ],
+    "evidence": "parsed records; name and world X from autoplay/CLAUDE.md runtime notes",
+    "confidence": "VERIFIED_CROSS_SOURCE"
+  },
+  "measurements": [
+    {
+      "key": "sprite_scale",
+      "status": "BLOCKED",
+      "reason": "no runtime capture / ROM"
+    },
+    {
+      "key": "layer_composition",
+      "status": "PARTIAL",
+      "reason": "addresses known, pixel content needs the ROM"
+    },
+    {
+      "key": "palette_values",
+      "status": "BLOCKED",
+      "reason": "palette data not decoded here"
+    },
+    {
+      "key": "tile_texture_density",
+      "status": "BLOCKED",
+      "reason": "requires decoded block maps"
+    }
+  ]
+}

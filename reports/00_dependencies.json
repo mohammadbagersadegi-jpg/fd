@@ -1,0 +1,89 @@
+{
+  "audit_date": "2026-10-20",
+  "environment": {
+    "kernel": "6.1.158+",
+    "os": "Debian GNU/Linux 12 (bookworm)",
+    "python": "3.11.2",
+    "node": "22.22.3",
+    "gcc": "12.2.0",
+    "cpu_count": 2,
+    "memory_gb": 3,
+    "disk_free_gb": 19
+  },
+  "tools": [
+    {"name": "python3", "version": "3.11.2", "status": "VERIFIED_AVAILABLE", "used_for": "nemesis.py, listing.py, elc.py, extract_stage01.py (stdlib only)"},
+    {"name": "node", "version": "22.22.3", "status": "VERIFIED_AVAILABLE", "used_for": "baseline prototype tests only"},
+    {"name": "git", "status": "VERIFIED_AVAILABLE", "used_for": "depth-1 clones"},
+    {"name": "gh", "status": "VERIFIED_AVAILABLE", "used_for": "repository metadata"},
+    {"name": "cmake", "status": "MISSING", "blocks": "MegaDriveEnvironment build"},
+    {"name": "sdl3", "status": "MISSING", "blocks": "MegaDriveEnvironment build"},
+    {"name": "ffmpeg", "status": "MISSING", "blocks": "video encoding", "required_for_research": false},
+    {"name": "wine", "status": "MISSING", "blocks": "Windows binaries, IDA"},
+    {"name": "java", "status": "MISSING", "blocks": "Java tools, Ghidra"},
+    {"name": "ida", "status": "MISSING", "blocks": ".idb databases"},
+    {"name": "ghidra", "status": "MISSING", "blocks": "alternative disassembly workflow"},
+    {"name": "emulator", "status": "MISSING", "blocks": "runtime capture"},
+    {"name": "rom_image", "status": "MISSING", "blocks": "asset decode, runtime capture", "note": "not redistributable; not present and not downloaded"}
+  ],
+  "repositories": [
+    {
+      "name": "RuiNelson/StreetsOfRageProject",
+      "url": "https://github.com/RuiNelson/StreetsOfRageProject.git",
+      "commit": "d91bea9481b8a1856491007174ba64d34dbfac75",
+      "commit_date": "2026-10-18T12:11:32",
+      "license": "no top-level LICENSE in the clone",
+      "status": "VERIFIED_AVAILABLE",
+      "notes": "meta-repo; submodule directories are empty in a --depth 1 clone; README documents the JUE hashes and the recompilation loop"
+    },
+    {
+      "name": "RuiNelson/StreetsOfRageRecompilation",
+      "url": "https://github.com/RuiNelson/StreetsOfRageRecompilation.git",
+      "commit": "64c744208ce2531ec5319a3c2e45d3ef99f5fbae",
+      "commit_date": "2026-10-18T12:11:11",
+      "license": "MIT",
+      "status": "VERIFIED_AVAILABLE",
+      "notes": "ai-analysis documents ELC framing, camera model, RAM map; rom/ is empty; SoRDecompress.cpp is an MIT Nemesis implementation"
+    },
+    {
+      "name": "gsaurus/sor-disassemblies",
+      "url": "https://github.com/gsaurus/sor-disassemblies.git",
+      "commit": "4dd719f3ed5c24c86deee616b56cea885e3113d7",
+      "commit_date": "2020-05-09T14:16:48",
+      "license": "MISSING (no LICENSE file in the clone)",
+      "status": "VERIFIED_AVAILABLE",
+      "notes": "primary text source; 137 MB; JUE REV 00 listing is 72,920 lines, SHA-256 b21835df76ba33bc11c0d922bada8947d19106c8f112b61d8715abab4704ac16; .idb not usable here"
+    },
+    {
+      "name": "Dandaman955/Streets-of-Rage-1-Disassembly-Redux",
+      "url": "https://github.com/Dandaman955/Streets-of-Rage-1-Disassembly-Redux.git",
+      "commit": "e09451eb9bf362ecc4883dae135930ccb75c4e56",
+      "commit_date": "2015-12-27T03:09:21",
+      "license": "MISSING (no LICENSE file in the clone)",
+      "status": "INCOMPATIBLE",
+      "notes": "Bare Knuckle (J): input MD5 569CFEC15813294A8F0CF88CCCC8C151, CRC32 BFF227C6; ROM header string 'BARE KNUCKLE'; addresses must not be cross-referenced with the JUE listing"
+    },
+    {
+      "name": "morluto/rea",
+      "url": "https://github.com/morluto/rea.git",
+      "commit": "7a0c47bfa4259af859779000bf8bc8aaf16b35bd",
+      "commit_date": "2026-10-19T14:29:43",
+      "license": "MIT (LICENSE + licenses/)",
+      "status": "AVAILABLE_BUT_UNTESTED",
+      "notes": "MCP-style reverse-engineering wrapper; no MCP host in this environment"
+    },
+    {
+      "name": "alchaincyf/huashu-art-motion",
+      "url": "https://github.com/alchaincyf/huashu-art-motion.git",
+      "commit": "8a0d7d72ca65fcce6f8ba82c4a6c8dfe35b8422c",
+      "commit_date": "2026-10-17T01:02:46",
+      "license": "MIT",
+      "status": "NOT_REQUIRED",
+      "notes": "deferred to Phase 5; produces video, not sprite sheets; no claim about its output is made here"
+    }
+  ],
+  "data_sources": [
+    {"name": "ELC byte dumps", "location": "listing dc.b lines, round 1 at 0x1B046", "status": "VERIFIED_AVAILABLE", "requires_rom": false},
+    {"name": "ROM image", "location": "n/a", "status": "MISSING", "requires_rom": true},
+    {"name": "IDA databases", "location": "vendor/sor-dis/... .idb", "status": "INCOMPATIBLE", "reason": "no IDA"}
+  ]
+}
