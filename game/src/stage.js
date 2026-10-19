@@ -24,11 +24,11 @@
     game.enemies = [];
     game.player = FD.Actors.createPlayer(game, st.startX, st.startZ);
     game.player.facing = 1;
-    game.timerTicks = 99 * 60;
+    game.timerTicks = (st.timeLimitSeconds || 99) * 60;
+    game.stageStartScore = game.score;
   };
 
   S.createProp = function (game, def, index) {
-    const meta = FD.assets.dataRef.stage; // props come from config/stage.json
     const sizes = { crate: [34, 34], barrel: [26, 36], trash: [24, 30] };
     const [w, h] = sizes[def.type] || [30, 30];
     return {
@@ -65,7 +65,11 @@
     // spawnOffset is measured from the camera edge: right side => cam + 480 + offset
     if (def.spawnSide === 'right') x = cam + 480 + (def.spawnOffset || 40);
     const side = x > game.player.x ? 1 : -1;
-    const e = FD.Actors.createEnemy(game, def.type, x, def.spawnZ, { side });
+    const e = FD.Actors.createEnemy(game, def.type, x, def.spawnZ, {
+      side,
+      healthMul: def.healthMul || st.enemyHealthMul,
+      damageMul: def.damageMul || st.enemyDamageMul,
+    });
     game.enemies.push(e);
     game.addEffect({ type: 'spawn', x: clampWorld(x), y: def.spawnZ, t: 0, life: 24 });
     return e;

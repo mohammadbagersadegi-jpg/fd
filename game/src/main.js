@@ -28,6 +28,9 @@
       this.stats = { hits: 0, damageTaken: 0, enemiesDefeated: 0, propsBroken: 0 };
       this.debug = { invincible: false, showHitboxes: false };
       this.stageState = null;
+      this.stageIndex = 0;
+      this.stageClearNext = false;
+      this.campaign = { cleared: 0, score: 0, hits: 0, damageTaken: 0 };
       this.timerTicks = 99 * 60;
       this.autopilot = false;
       this.autopilotPlan = { attackCooldown: 0, specialCooldown: 0, dirHold: 0, dir: 0 };
@@ -102,19 +105,35 @@
     onStageClear() {
       this.player.state = 'victory';
       FD.Actors.setAnim(this.player, 'victory');
+      const stages = FD.stageList ? FD.stageList() : [];
+      const total = Math.max(1, stages.length);
+      const finalStage = this.stageIndex >= total - 1;
+      this.campaign.cleared += 1;
+      this.campaign.score = this.score;
+      this.campaign.hits = this.stats.hits;
+      this.campaign.damageTaken = this.stats.damageTaken;
       this.results = {
         score: this.score,
         timeLeft: Math.max(0, Math.ceil(this.timerTicks / 60)),
         hits: this.stats.hits,
         damageTaken: this.stats.damageTaken,
         cleared: true,
+        stage: this.stageIndex + 1,
+        stages: total,
+        finalStage,
+        campaign: { ...this.campaign },
       };
+      this.stageClearNext = !finalStage;
       this.addEffect({ type: 'ko', x: this.player.x, y: this.player.z - 90, t: 0, life: 60 });
       this.setState('stageclear');
       FD.audio.duckMusic(false);
     }
 
-    startStage() {
+    startStage(index) {
+      if (typeof index === 'number') this.stageIndex = index;
+      const list = FD.stageList ? FD.stageList() : [];
+      if (list.length) this.stageIndex = FD.clamp(this.stageIndex, 0, list.length - 1);
+      if (FD.setStage) FD.setStage(this.stageIndex);
       FD.Stage.init(this);
       FD.Renderer.init(this);
       this.setState('intro');
@@ -122,6 +141,11 @@
     }
 
     startTitle() {
+      this.stageIndex = 0;
+      this.stageClearNext = false;
+      this.campaign = { cleared: 0, score: 0, hits: 0, damageTaken: 0 };
+      this.results = null;
+      if (FD.setStage) FD.setStage(0);
       FD.Stage.init(this);
       FD.Renderer.init(this);
       this.state = 'title';
@@ -203,7 +227,8 @@
           FD.Renderer.updateWeather(this);
           this.updateEffects();
           if (this.stateTicks > 260) {
-            this.setState('results');
+            if (this.stageClearNext) this.startStage(this.stageIndex + 1);
+            else this.setState('results');
           }
           break;
         }
@@ -223,7 +248,7 @@
           this.updateEffects();
           if (this.gameoverTicks > 90 && (input.wasPressed('start') || input.wasPressed('attack'))) {
             FD.sfx('select');
-            this.startStage();
+            this.startStage(this.stageIndex);
           }
           break;
         }
@@ -479,7 +504,8 @@
       ctx.fillStyle = '#63f7ff';
       ctx.fillRect(0, 150, FD.VIEW_W, 1);
       ctx.fillRect(0, 223, FD.VIEW_W, 1);
-      FD.font.draw(ctx, 'STAGE 1', 240, 158, { align: 'center', color: 'amber', scale: 1 });
+      const total = Math.max(1, (FD.stageList ? FD.stageList().length : 1));
+      FD.font.draw(ctx, `STAGE ${this.stageIndex + 1} / ${total}`, 240, 158, { align: 'center', color: 'amber', scale: 1 });
       FD.font.draw(ctx, FD.cfg.stage.title, 240, 172, { align: 'center', color: 'white', scale: 2 });
       FD.font.draw(ctx, FD.cfg.stage.subtitle, 240, 196, { align: 'center', color: 'cyanDim' });
       ctx.restore();
@@ -504,8 +530,12 @@
       ctx.globalAlpha = a;
       ctx.fillStyle = 'rgba(4,6,14,0.5)';
       ctx.fillRect(0, 86, FD.VIEW_W, 74);
-      FD.font.draw(ctx, 'STAGE CLEAR', 240, 100, { align: 'center', color: 'amber', scale: 3 });
+      const list = FD.stageList ? FD.stageList() : [];
+      FD.font.draw(ctx, `STAGE ${this.stageIndex + 1} CLEAR`, 240, 100, { align: 'center', color: 'amber', scale: 3 });
       FD.font.draw(ctx, `SCORE ${FD.pad(this.score, 6)}`, 240, 134, { align: 'center', color: 'white', scale: 1 });
+      if (this.stageClearNext && list[this.stageIndex + 1]) {
+        FD.font.draw(ctx, `NEXT: ${list[this.stageIndex + 1].title}`, 240, 148, { align: 'center', color: 'cyanDim', scale: 1 });
+      }
       ctx.restore();
     }
 
@@ -523,13 +553,16 @@
       ctx.fillRect(0, 0, FD.VIEW_W, FD.VIEW_H);
       FD.font.draw(ctx, 'RESULTS', 240, 30, { align: 'center', color: 'cyan', scale: 3 });
       const r = this.results || { score: 0, timeLeft: 0, hits: 0, cleared: false };
-      FD.font.draw(ctx, r.cleared ? 'RAIN DISTRICT CLEARED' : 'MISSION FAILED', 240, 66, {
+      const campaign = this.campaign || { cleared: 0, score: 0, hits: 0, damageTaken: 0 };
+      const allClear = r.finalStage === true;
+      FD.font.draw(ctx, allClear ? 'ALL STAGES CLEAR' : (r.cleared ? `STAGE ${r.stage || 1} CLEARED` : 'MISSION FAILED'), 240, 66, {
         align: 'center', color: r.cleared ? 'amber' : 'red', scale: 1,
       });
       const rows = [
-        ['SCORE', FD.pad(r.score, 6)],
-        ['TIME LEFT', FD.pad(r.timeLeft, 2) + ' SEC'],
-        ['HITS LANDED', FD.pad(r.hits, 3)],
+        ['SCORE', FD.pad(campaign.score || r.score, 6)],
+        ['STAGES CLEARED', `${campaign.cleared || 0} / ${r.stages || 1}`],
+        ['HITS LANDED', FD.pad(campaign.hits || r.hits, 3)],
+        ['DAMAGE TAKEN', FD.pad(campaign.damageTaken || 0, 3)],
       ];
       rows.forEach((row, i) => {
         const y = 96 + i * 18;

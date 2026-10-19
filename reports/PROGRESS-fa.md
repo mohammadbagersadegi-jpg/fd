@@ -119,3 +119,12 @@ byte-accounting هر هشت stream؛ تست‌ها.
 **IMPLEMENTED-BUT-NOT-FULLY-VERIFIED:** نگاشت boss type ↔ boss art (STRONG_INFERENCE)؛
 معنای semantic فیلد `Pal_Correct`.
 **BLOCKED-OR-NOT-IMPLEMENTED:** تأیید runtime مقدار Scene؛ RGB؛ گرافیک؛ دنبالهٔ راندهای ۷ و ۸.
+
+---
+
+## پیوست: کار کمپین (خارج از فاز تحلیل)
+
+افزودن هشت مرحله، چهار آرکی‌تایپ دشمن و جریان مرحله‌به‌مرحله یک تغییر در
+**پروتوتایپ بازی** است، نه شاهد تازه‌ای برای تحلیل SoR1. جزئیات و وضعیت
+تفکیک‌شده در [`reports/DELIVERY-fa.md`](DELIVERY-fa.md) آمده است. هیچ ادعای
+ROM/زمان‌اجرا دربارهٔ SoR1 اضافه نشد و شواهد فاز ۱ بدون تغییر باقی مانده‌اند.

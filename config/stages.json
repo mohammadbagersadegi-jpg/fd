@@ -1,0 +1,1576 @@
+{
+  "$schema_version": "1.0",
+  "stages": [
+    {
+      "$schema_version": "1.0",
+      "id": "rain_district_1",
+      "title": "RAIN DISTRICT",
+      "subtitle": "STAGE 1 - BLOCK 07",
+      "worldWidth": 1800,
+      "laneMin": 204,
+      "laneMax": 250,
+      "startX": 80,
+      "startZ": 226,
+      "music": "neon-rain-loop",
+      "banners": {
+        "title": "RAIN DISTRICT",
+        "wave": "RUSTLINE CREW",
+        "clear": "STAGE CLEAR",
+        "go": "GO"
+      },
+      "waves": [
+        {
+          "id": 1,
+          "triggerX": 300,
+          "lockCamera": true,
+          "banner": "WAVE 1",
+          "enemies": [
+            {
+              "type": "rivet",
+              "spawnSide": "right",
+              "spawnOffset": 24,
+              "spawnZ": 212,
+              "delay": 0
+            },
+            {
+              "type": "rivet",
+              "spawnSide": "right",
+              "spawnOffset": 58,
+              "spawnZ": 242,
+              "delay": 55
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "triggerX": 930,
+          "lockCamera": true,
+          "banner": "WAVE 2",
+          "enemies": [
+            {
+              "type": "rivet",
+              "spawnSide": "right",
+              "spawnOffset": 24,
+              "spawnZ": 238,
+              "delay": 0
+            },
+            {
+              "type": "rivet_elite",
+              "spawnSide": "right",
+              "spawnOffset": 58,
+              "spawnZ": 210,
+              "delay": 40
+            },
+            {
+              "type": "rivet",
+              "spawnSide": "right",
+              "spawnOffset": 92,
+              "spawnZ": 224,
+              "delay": 150
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "triggerX": 1460,
+          "lockCamera": true,
+          "banner": "FINAL WAVE",
+          "enemies": [
+            {
+              "type": "rivet_elite",
+              "spawnSide": "right",
+              "spawnOffset": 24,
+              "spawnZ": 232,
+              "delay": 0
+            },
+            {
+              "type": "rivet",
+              "spawnSide": "right",
+              "spawnOffset": 58,
+              "spawnZ": 208,
+              "delay": 30
+            },
+            {
+              "type": "rivet",
+              "spawnSide": "right",
+              "spawnOffset": 92,
+              "spawnZ": 246,
+              "delay": 90
+            }
+          ]
+        }
+      ],
+      "props": [
+        {
+          "id": "crate_a",
+          "type": "crate",
+          "x": 560,
+          "z": 240,
+          "hp": 2,
+          "drop": "health"
+        },
+        {
+          "id": "trash_a",
+          "type": "trash",
+          "x": 1080,
+          "z": 214,
+          "hp": 1,
+          "drop": "score"
+        },
+        {
+          "id": "crate_b",
+          "type": "crate",
+          "x": 1260,
+          "z": 246,
+          "hp": 2,
+          "drop": "health"
+        },
+        {
+          "id": "barrel_a",
+          "type": "barrel",
+          "x": 1620,
+          "z": 218,
+          "hp": 2,
+          "drop": "health"
+        }
+      ],
+      "pickups": {
+        "health": {
+          "heal": 24,
+          "ttl": 600,
+          "label": "CHARGE"
+        },
+        "score": {
+          "points": 150,
+          "ttl": 600,
+          "label": "SCRAP"
+        }
+      },
+      "finishLineX": 1740,
+      "index": 0,
+      "theme": "rgba(80,170,255,0.05)",
+      "timeLimitSeconds": 99,
+      "enemyHealthMul": 1.0,
+      "enemyDamageMul": 1.0
+    },
+    {
+      "$schema_version": "1.0",
+      "index": 1,
+      "id": "stage_02",
+      "title": "SOUTH DOCKS",
+      "subtitle": "STAGE 2 - PIER NINE",
+      "theme": "rgba(255,170,90,0.06)",
+      "timeLimitSeconds": 104,
+      "enemyHealthMul": 1.1,
+      "enemyDamageMul": 1.06,
+      "worldWidth": 1900,
+      "laneMin": 204,
+      "laneMax": 250,
+      "startX": 80,
+      "startZ": 226,
+      "music": "neon-rain-loop",
+      "banners": {
+        "title": "SOUTH DOCKS",
+        "wave": "WAVE",
+        "clear": "STAGE CLEAR",
+        "go": "GO"
+      },
+      "waves": [
+        {
+          "id": 1,
+          "triggerX": 240,
+          "lockCamera": true,
+          "banner": "WAVE 1",
+          "enemies": [
+            {
+              "type": "rivet",
+              "spawnSide": "right",
+              "spawnOffset": 30,
+              "spawnZ": 212,
+              "delay": 0
+            },
+            {
+              "type": "runner",
+              "spawnSide": "left",
+              "spawnOffset": 64,
+              "spawnZ": 238,
+              "delay": 80
+            },
+            {
+              "type": "rivet",
+              "spawnSide": "right",
+              "spawnOffset": 98,
+              "spawnZ": 224,
+              "delay": 115
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "triggerX": 930,
+          "lockCamera": true,
+          "banner": "WAVE 2",
+          "enemies": [
+            {
+              "type": "rivet",
+              "spawnSide": "right",
+              "spawnOffset": 40,
+              "spawnZ": 238,
+              "delay": 0
+            },
+            {
+              "type": "runner",
+              "spawnSide": "left",
+              "spawnOffset": 74,
+              "spawnZ": 224,
+              "delay": 80
+            },
+            {
+              "type": "rivet",
+              "spawnSide": "right",
+              "spawnOffset": 108,
+              "spawnZ": 246,
+              "delay": 115
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "triggerX": 1620,
+          "lockCamera": true,
+          "banner": "BOSS",
+          "enemies": [
+            {
+              "type": "overlord",
+              "spawnSide": "right",
+              "spawnOffset": 60,
+              "spawnZ": 226,
+              "delay": 30
+            },
+            {
+              "type": "rivet_elite",
+              "spawnSide": "left",
+              "spawnOffset": 40,
+              "spawnZ": 214,
+              "delay": 90
+            },
+            {
+              "type": "runner",
+              "spawnSide": "right",
+              "spawnOffset": 96,
+              "spawnZ": 242,
+              "delay": 140
+            }
+          ]
+        }
+      ],
+      "props": [
+        {
+          "id": "prop_1_0",
+          "type": "crate",
+          "x": 418,
+          "z": 212,
+          "hp": 2,
+          "drop": "score"
+        },
+        {
+          "id": "prop_1_1",
+          "type": "trash",
+          "x": 684,
+          "z": 238,
+          "hp": 1,
+          "drop": "health"
+        },
+        {
+          "id": "prop_1_2",
+          "type": "barrel",
+          "x": 950,
+          "z": 224,
+          "hp": 1,
+          "drop": "score"
+        },
+        {
+          "id": "prop_1_3",
+          "type": "crate",
+          "x": 1216,
+          "z": 246,
+          "hp": 2,
+          "drop": "score"
+        },
+        {
+          "id": "prop_1_4",
+          "type": "crate",
+          "x": 1482,
+          "z": 218,
+          "hp": 2,
+          "drop": "health"
+        }
+      ],
+      "pickups": {
+        "health": {
+          "heal": 24,
+          "ttl": 600,
+          "label": "CHARGE"
+        },
+        "score": {
+          "points": 150,
+          "ttl": 600,
+          "label": "SCRAP"
+        }
+      },
+      "finishLineX": 1860
+    },
+    {
+      "$schema_version": "1.0",
+      "index": 2,
+      "id": "stage_03",
+      "title": "NEON MARKET",
+      "subtitle": "STAGE 3 - ARCADE ROW",
+      "theme": "rgba(255,90,200,0.06)",
+      "timeLimitSeconds": 109,
+      "enemyHealthMul": 1.2,
+      "enemyDamageMul": 1.12,
+      "worldWidth": 2000,
+      "laneMin": 204,
+      "laneMax": 250,
+      "startX": 80,
+      "startZ": 226,
+      "music": "neon-rain-loop",
+      "banners": {
+        "title": "NEON MARKET",
+        "wave": "WAVE",
+        "clear": "STAGE CLEAR",
+        "go": "GO"
+      },
+      "waves": [
+        {
+          "id": 1,
+          "triggerX": 240,
+          "lockCamera": true,
+          "banner": "WAVE 1",
+          "enemies": [
+            {
+              "type": "rivet",
+              "spawnSide": "right",
+              "spawnOffset": 30,
+              "spawnZ": 212,
+              "delay": 0
+            },
+            {
+              "type": "runner",
+              "spawnSide": "left",
+              "spawnOffset": 64,
+              "spawnZ": 238,
+              "delay": 80
+            },
+            {
+              "type": "rivet_elite",
+              "spawnSide": "right",
+              "spawnOffset": 98,
+              "spawnZ": 224,
+              "delay": 115
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "triggerX": 980,
+          "lockCamera": true,
+          "banner": "WAVE 2",
+          "enemies": [
+            {
+              "type": "rivet",
+              "spawnSide": "right",
+              "spawnOffset": 40,
+              "spawnZ": 238,
+              "delay": 0
+            },
+            {
+              "type": "runner",
+              "spawnSide": "left",
+              "spawnOffset": 74,
+              "spawnZ": 224,
+              "delay": 80
+            },
+            {
+              "type": "rivet_elite",
+              "spawnSide": "right",
+              "spawnOffset": 108,
+              "spawnZ": 246,
+              "delay": 115
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "triggerX": 1720,
+          "lockCamera": true,
+          "banner": "BOSS",
+          "enemies": [
+            {
+              "type": "overlord",
+              "spawnSide": "right",
+              "spawnOffset": 60,
+              "spawnZ": 226,
+              "delay": 30
+            },
+            {
+              "type": "rivet_elite",
+              "spawnSide": "left",
+              "spawnOffset": 40,
+              "spawnZ": 214,
+              "delay": 90
+            },
+            {
+              "type": "runner",
+              "spawnSide": "right",
+              "spawnOffset": 96,
+              "spawnZ": 242,
+              "delay": 140
+            }
+          ]
+        }
+      ],
+      "props": [
+        {
+          "id": "prop_2_0",
+          "type": "crate",
+          "x": 440,
+          "z": 212,
+          "hp": 2,
+          "drop": "score"
+        },
+        {
+          "id": "prop_2_1",
+          "type": "trash",
+          "x": 720,
+          "z": 238,
+          "hp": 1,
+          "drop": "health"
+        },
+        {
+          "id": "prop_2_2",
+          "type": "barrel",
+          "x": 1000,
+          "z": 224,
+          "hp": 1,
+          "drop": "score"
+        },
+        {
+          "id": "prop_2_3",
+          "type": "crate",
+          "x": 1280,
+          "z": 246,
+          "hp": 2,
+          "drop": "score"
+        },
+        {
+          "id": "prop_2_4",
+          "type": "crate",
+          "x": 1560,
+          "z": 218,
+          "hp": 2,
+          "drop": "health"
+        }
+      ],
+      "pickups": {
+        "health": {
+          "heal": 24,
+          "ttl": 600,
+          "label": "CHARGE"
+        },
+        "score": {
+          "points": 150,
+          "ttl": 600,
+          "label": "SCRAP"
+        }
+      },
+      "finishLineX": 1960
+    },
+    {
+      "$schema_version": "1.0",
+      "index": 3,
+      "id": "stage_04",
+      "title": "STEEL YARD",
+      "subtitle": "STAGE 4 - FOUNDRY",
+      "theme": "rgba(255,210,120,0.05)",
+      "timeLimitSeconds": 114,
+      "enemyHealthMul": 1.3,
+      "enemyDamageMul": 1.18,
+      "worldWidth": 2100,
+      "laneMin": 204,
+      "laneMax": 250,
+      "startX": 80,
+      "startZ": 226,
+      "music": "neon-rain-loop",
+      "banners": {
+        "title": "STEEL YARD",
+        "wave": "WAVE",
+        "clear": "STAGE CLEAR",
+        "go": "GO"
+      },
+      "waves": [
+        {
+          "id": 1,
+          "triggerX": 240,
+          "lockCamera": true,
+          "banner": "WAVE 1",
+          "enemies": [
+            {
+              "type": "rivet",
+              "spawnSide": "right",
+              "spawnOffset": 30,
+              "spawnZ": 212,
+              "delay": 0
+            },
+            {
+              "type": "runner",
+              "spawnSide": "left",
+              "spawnOffset": 64,
+              "spawnZ": 238,
+              "delay": 80
+            },
+            {
+              "type": "rivet",
+              "spawnSide": "right",
+              "spawnOffset": 98,
+              "spawnZ": 224,
+              "delay": 115
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "triggerX": 766,
+          "lockCamera": true,
+          "banner": "WAVE 2",
+          "enemies": [
+            {
+              "type": "rivet",
+              "spawnSide": "right",
+              "spawnOffset": 40,
+              "spawnZ": 238,
+              "delay": 0
+            },
+            {
+              "type": "runner",
+              "spawnSide": "left",
+              "spawnOffset": 74,
+              "spawnZ": 224,
+              "delay": 80
+            },
+            {
+              "type": "rivet",
+              "spawnSide": "right",
+              "spawnOffset": 108,
+              "spawnZ": 246,
+              "delay": 115
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "triggerX": 1293,
+          "lockCamera": true,
+          "banner": "WAVE 3",
+          "enemies": [
+            {
+              "type": "rivet",
+              "spawnSide": "right",
+              "spawnOffset": 30,
+              "spawnZ": 224,
+              "delay": 0
+            },
+            {
+              "type": "runner",
+              "spawnSide": "left",
+              "spawnOffset": 64,
+              "spawnZ": 246,
+              "delay": 80
+            },
+            {
+              "type": "rivet",
+              "spawnSide": "right",
+              "spawnOffset": 98,
+              "spawnZ": 218,
+              "delay": 115
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "triggerX": 1820,
+          "lockCamera": true,
+          "banner": "BOSS",
+          "enemies": [
+            {
+              "type": "overlord",
+              "spawnSide": "right",
+              "spawnOffset": 60,
+              "spawnZ": 226,
+              "delay": 30
+            },
+            {
+              "type": "rivet_elite",
+              "spawnSide": "left",
+              "spawnOffset": 40,
+              "spawnZ": 214,
+              "delay": 90
+            },
+            {
+              "type": "runner",
+              "spawnSide": "right",
+              "spawnOffset": 96,
+              "spawnZ": 242,
+              "delay": 140
+            }
+          ]
+        }
+      ],
+      "props": [
+        {
+          "id": "prop_3_0",
+          "type": "crate",
+          "x": 462,
+          "z": 212,
+          "hp": 2,
+          "drop": "score"
+        },
+        {
+          "id": "prop_3_1",
+          "type": "trash",
+          "x": 756,
+          "z": 238,
+          "hp": 1,
+          "drop": "health"
+        },
+        {
+          "id": "prop_3_2",
+          "type": "barrel",
+          "x": 1050,
+          "z": 224,
+          "hp": 1,
+          "drop": "score"
+        },
+        {
+          "id": "prop_3_3",
+          "type": "crate",
+          "x": 1344,
+          "z": 246,
+          "hp": 2,
+          "drop": "score"
+        },
+        {
+          "id": "prop_3_4",
+          "type": "crate",
+          "x": 1638,
+          "z": 218,
+          "hp": 2,
+          "drop": "health"
+        }
+      ],
+      "pickups": {
+        "health": {
+          "heal": 24,
+          "ttl": 600,
+          "label": "CHARGE"
+        },
+        "score": {
+          "points": 150,
+          "ttl": 600,
+          "label": "SCRAP"
+        }
+      },
+      "finishLineX": 2060
+    },
+    {
+      "$schema_version": "1.0",
+      "index": 4,
+      "id": "stage_05",
+      "title": "SKYLINE TRANSIT",
+      "subtitle": "STAGE 5 - PLATFORM B",
+      "theme": "rgba(120,255,220,0.05)",
+      "timeLimitSeconds": 119,
+      "enemyHealthMul": 1.4,
+      "enemyDamageMul": 1.24,
+      "worldWidth": 2200,
+      "laneMin": 204,
+      "laneMax": 250,
+      "startX": 80,
+      "startZ": 226,
+      "music": "neon-rain-loop",
+      "banners": {
+        "title": "SKYLINE TRANSIT",
+        "wave": "WAVE",
+        "clear": "STAGE CLEAR",
+        "go": "GO"
+      },
+      "waves": [
+        {
+          "id": 1,
+          "triggerX": 240,
+          "lockCamera": true,
+          "banner": "WAVE 1",
+          "enemies": [
+            {
+              "type": "rivet",
+              "spawnSide": "right",
+              "spawnOffset": 30,
+              "spawnZ": 212,
+              "delay": 0
+            },
+            {
+              "type": "runner",
+              "spawnSide": "left",
+              "spawnOffset": 64,
+              "spawnZ": 238,
+              "delay": 80
+            },
+            {
+              "type": "rivet_elite",
+              "spawnSide": "right",
+              "spawnOffset": 98,
+              "spawnZ": 224,
+              "delay": 115
+            },
+            {
+              "type": "rivet",
+              "spawnSide": "left",
+              "spawnOffset": 30,
+              "spawnZ": 246,
+              "delay": 150
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "triggerX": 800,
+          "lockCamera": true,
+          "banner": "WAVE 2",
+          "enemies": [
+            {
+              "type": "rivet",
+              "spawnSide": "right",
+              "spawnOffset": 40,
+              "spawnZ": 238,
+              "delay": 0
+            },
+            {
+              "type": "runner",
+              "spawnSide": "left",
+              "spawnOffset": 74,
+              "spawnZ": 224,
+              "delay": 80
+            },
+            {
+              "type": "rivet_elite",
+              "spawnSide": "right",
+              "spawnOffset": 108,
+              "spawnZ": 246,
+              "delay": 115
+            },
+            {
+              "type": "rivet",
+              "spawnSide": "left",
+              "spawnOffset": 40,
+              "spawnZ": 218,
+              "delay": 150
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "triggerX": 1360,
+          "lockCamera": true,
+          "banner": "WAVE 3",
+          "enemies": [
+            {
+              "type": "rivet",
+              "spawnSide": "right",
+              "spawnOffset": 30,
+              "spawnZ": 224,
+              "delay": 0
+            },
+            {
+              "type": "runner",
+              "spawnSide": "left",
+              "spawnOffset": 64,
+              "spawnZ": 246,
+              "delay": 80
+            },
+            {
+              "type": "rivet_elite",
+              "spawnSide": "right",
+              "spawnOffset": 98,
+              "spawnZ": 218,
+              "delay": 115
+            },
+            {
+              "type": "rivet",
+              "spawnSide": "left",
+              "spawnOffset": 30,
+              "spawnZ": 232,
+              "delay": 150
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "triggerX": 1920,
+          "lockCamera": true,
+          "banner": "BOSS",
+          "enemies": [
+            {
+              "type": "overlord",
+              "spawnSide": "right",
+              "spawnOffset": 60,
+              "spawnZ": 226,
+              "delay": 30
+            },
+            {
+              "type": "rivet_elite",
+              "spawnSide": "left",
+              "spawnOffset": 40,
+              "spawnZ": 214,
+              "delay": 90
+            },
+            {
+              "type": "runner",
+              "spawnSide": "right",
+              "spawnOffset": 96,
+              "spawnZ": 242,
+              "delay": 140
+            }
+          ]
+        }
+      ],
+      "props": [
+        {
+          "id": "prop_4_0",
+          "type": "crate",
+          "x": 484,
+          "z": 212,
+          "hp": 2,
+          "drop": "score"
+        },
+        {
+          "id": "prop_4_1",
+          "type": "trash",
+          "x": 792,
+          "z": 238,
+          "hp": 1,
+          "drop": "health"
+        },
+        {
+          "id": "prop_4_2",
+          "type": "barrel",
+          "x": 1100,
+          "z": 224,
+          "hp": 1,
+          "drop": "score"
+        },
+        {
+          "id": "prop_4_3",
+          "type": "crate",
+          "x": 1408,
+          "z": 246,
+          "hp": 2,
+          "drop": "score"
+        },
+        {
+          "id": "prop_4_4",
+          "type": "crate",
+          "x": 1716,
+          "z": 218,
+          "hp": 2,
+          "drop": "health"
+        }
+      ],
+      "pickups": {
+        "health": {
+          "heal": 24,
+          "ttl": 600,
+          "label": "CHARGE"
+        },
+        "score": {
+          "points": 150,
+          "ttl": 600,
+          "label": "SCRAP"
+        }
+      },
+      "finishLineX": 2160
+    },
+    {
+      "$schema_version": "1.0",
+      "index": 5,
+      "id": "stage_06",
+      "title": "RED SECTOR",
+      "subtitle": "STAGE 6 - CHECKPOINT",
+      "theme": "rgba(255,90,90,0.07)",
+      "timeLimitSeconds": 124,
+      "enemyHealthMul": 1.5,
+      "enemyDamageMul": 1.3,
+      "worldWidth": 2300,
+      "laneMin": 204,
+      "laneMax": 250,
+      "startX": 80,
+      "startZ": 226,
+      "music": "neon-rain-loop",
+      "banners": {
+        "title": "RED SECTOR",
+        "wave": "WAVE",
+        "clear": "STAGE CLEAR",
+        "go": "GO"
+      },
+      "waves": [
+        {
+          "id": 1,
+          "triggerX": 240,
+          "lockCamera": true,
+          "banner": "WAVE 1",
+          "enemies": [
+            {
+              "type": "rivet_elite",
+              "spawnSide": "right",
+              "spawnOffset": 30,
+              "spawnZ": 212,
+              "delay": 0
+            },
+            {
+              "type": "runner",
+              "spawnSide": "left",
+              "spawnOffset": 64,
+              "spawnZ": 238,
+              "delay": 80
+            },
+            {
+              "type": "rivet",
+              "spawnSide": "right",
+              "spawnOffset": 98,
+              "spawnZ": 224,
+              "delay": 115
+            },
+            {
+              "type": "rivet_elite",
+              "spawnSide": "left",
+              "spawnOffset": 30,
+              "spawnZ": 246,
+              "delay": 150
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "triggerX": 833,
+          "lockCamera": true,
+          "banner": "WAVE 2",
+          "enemies": [
+            {
+              "type": "rivet_elite",
+              "spawnSide": "right",
+              "spawnOffset": 40,
+              "spawnZ": 238,
+              "delay": 0
+            },
+            {
+              "type": "runner",
+              "spawnSide": "left",
+              "spawnOffset": 74,
+              "spawnZ": 224,
+              "delay": 80
+            },
+            {
+              "type": "rivet",
+              "spawnSide": "right",
+              "spawnOffset": 108,
+              "spawnZ": 246,
+              "delay": 115
+            },
+            {
+              "type": "rivet_elite",
+              "spawnSide": "left",
+              "spawnOffset": 40,
+              "spawnZ": 218,
+              "delay": 150
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "triggerX": 1426,
+          "lockCamera": true,
+          "banner": "WAVE 3",
+          "enemies": [
+            {
+              "type": "rivet_elite",
+              "spawnSide": "right",
+              "spawnOffset": 30,
+              "spawnZ": 224,
+              "delay": 0
+            },
+            {
+              "type": "runner",
+              "spawnSide": "left",
+              "spawnOffset": 64,
+              "spawnZ": 246,
+              "delay": 80
+            },
+            {
+              "type": "rivet",
+              "spawnSide": "right",
+              "spawnOffset": 98,
+              "spawnZ": 218,
+              "delay": 115
+            },
+            {
+              "type": "rivet_elite",
+              "spawnSide": "left",
+              "spawnOffset": 30,
+              "spawnZ": 232,
+              "delay": 150
+            },
+            {
+              "type": "rivet_elite",
+              "spawnSide": "right",
+              "spawnOffset": 64,
+              "spawnZ": 208,
+              "delay": 185
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "triggerX": 2020,
+          "lockCamera": true,
+          "banner": "BOSS",
+          "enemies": [
+            {
+              "type": "overlord",
+              "spawnSide": "right",
+              "spawnOffset": 60,
+              "spawnZ": 226,
+              "delay": 30
+            },
+            {
+              "type": "rivet_elite",
+              "spawnSide": "left",
+              "spawnOffset": 40,
+              "spawnZ": 214,
+              "delay": 90
+            },
+            {
+              "type": "runner",
+              "spawnSide": "right",
+              "spawnOffset": 96,
+              "spawnZ": 242,
+              "delay": 140
+            }
+          ]
+        }
+      ],
+      "props": [
+        {
+          "id": "prop_5_0",
+          "type": "crate",
+          "x": 506,
+          "z": 212,
+          "hp": 2,
+          "drop": "score"
+        },
+        {
+          "id": "prop_5_1",
+          "type": "trash",
+          "x": 828,
+          "z": 238,
+          "hp": 1,
+          "drop": "health"
+        },
+        {
+          "id": "prop_5_2",
+          "type": "barrel",
+          "x": 1150,
+          "z": 224,
+          "hp": 1,
+          "drop": "score"
+        },
+        {
+          "id": "prop_5_3",
+          "type": "crate",
+          "x": 1472,
+          "z": 246,
+          "hp": 2,
+          "drop": "score"
+        },
+        {
+          "id": "prop_5_4",
+          "type": "crate",
+          "x": 1794,
+          "z": 218,
+          "hp": 2,
+          "drop": "health"
+        }
+      ],
+      "pickups": {
+        "health": {
+          "heal": 24,
+          "ttl": 600,
+          "label": "CHARGE"
+        },
+        "score": {
+          "points": 150,
+          "ttl": 600,
+          "label": "SCRAP"
+        }
+      },
+      "finishLineX": 2260
+    },
+    {
+      "$schema_version": "1.0",
+      "index": 6,
+      "id": "stage_07",
+      "title": "TOWER BASE",
+      "subtitle": "STAGE 7 - LOBBY",
+      "theme": "rgba(150,150,255,0.06)",
+      "timeLimitSeconds": 129,
+      "enemyHealthMul": 1.6,
+      "enemyDamageMul": 1.36,
+      "worldWidth": 2400,
+      "laneMin": 204,
+      "laneMax": 250,
+      "startX": 80,
+      "startZ": 226,
+      "music": "neon-rain-loop",
+      "banners": {
+        "title": "TOWER BASE",
+        "wave": "WAVE",
+        "clear": "STAGE CLEAR",
+        "go": "GO"
+      },
+      "waves": [
+        {
+          "id": 1,
+          "triggerX": 240,
+          "lockCamera": true,
+          "banner": "WAVE 1",
+          "enemies": [
+            {
+              "type": "rivet_elite",
+              "spawnSide": "right",
+              "spawnOffset": 30,
+              "spawnZ": 212,
+              "delay": 0
+            },
+            {
+              "type": "runner",
+              "spawnSide": "left",
+              "spawnOffset": 64,
+              "spawnZ": 238,
+              "delay": 80
+            },
+            {
+              "type": "rivet",
+              "spawnSide": "right",
+              "spawnOffset": 98,
+              "spawnZ": 224,
+              "delay": 115
+            },
+            {
+              "type": "rivet_elite",
+              "spawnSide": "left",
+              "spawnOffset": 30,
+              "spawnZ": 246,
+              "delay": 150
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "triggerX": 866,
+          "lockCamera": true,
+          "banner": "WAVE 2",
+          "enemies": [
+            {
+              "type": "rivet_elite",
+              "spawnSide": "right",
+              "spawnOffset": 40,
+              "spawnZ": 238,
+              "delay": 0
+            },
+            {
+              "type": "runner",
+              "spawnSide": "left",
+              "spawnOffset": 74,
+              "spawnZ": 224,
+              "delay": 80
+            },
+            {
+              "type": "rivet",
+              "spawnSide": "right",
+              "spawnOffset": 108,
+              "spawnZ": 246,
+              "delay": 115
+            },
+            {
+              "type": "rivet_elite",
+              "spawnSide": "left",
+              "spawnOffset": 40,
+              "spawnZ": 218,
+              "delay": 150
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "triggerX": 1493,
+          "lockCamera": true,
+          "banner": "WAVE 3",
+          "enemies": [
+            {
+              "type": "rivet_elite",
+              "spawnSide": "right",
+              "spawnOffset": 30,
+              "spawnZ": 224,
+              "delay": 0
+            },
+            {
+              "type": "runner",
+              "spawnSide": "left",
+              "spawnOffset": 64,
+              "spawnZ": 246,
+              "delay": 80
+            },
+            {
+              "type": "rivet",
+              "spawnSide": "right",
+              "spawnOffset": 98,
+              "spawnZ": 218,
+              "delay": 115
+            },
+            {
+              "type": "rivet_elite",
+              "spawnSide": "left",
+              "spawnOffset": 30,
+              "spawnZ": 232,
+              "delay": 150
+            },
+            {
+              "type": "rivet_elite",
+              "spawnSide": "right",
+              "spawnOffset": 64,
+              "spawnZ": 208,
+              "delay": 185
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "triggerX": 2120,
+          "lockCamera": true,
+          "banner": "BOSS",
+          "enemies": [
+            {
+              "type": "overlord",
+              "spawnSide": "right",
+              "spawnOffset": 60,
+              "spawnZ": 226,
+              "delay": 30
+            },
+            {
+              "type": "rivet_elite",
+              "spawnSide": "left",
+              "spawnOffset": 40,
+              "spawnZ": 214,
+              "delay": 90
+            },
+            {
+              "type": "runner",
+              "spawnSide": "right",
+              "spawnOffset": 96,
+              "spawnZ": 242,
+              "delay": 140
+            }
+          ]
+        }
+      ],
+      "props": [
+        {
+          "id": "prop_6_0",
+          "type": "crate",
+          "x": 528,
+          "z": 212,
+          "hp": 2,
+          "drop": "score"
+        },
+        {
+          "id": "prop_6_1",
+          "type": "trash",
+          "x": 864,
+          "z": 238,
+          "hp": 1,
+          "drop": "health"
+        },
+        {
+          "id": "prop_6_2",
+          "type": "barrel",
+          "x": 1200,
+          "z": 224,
+          "hp": 1,
+          "drop": "score"
+        },
+        {
+          "id": "prop_6_3",
+          "type": "crate",
+          "x": 1536,
+          "z": 246,
+          "hp": 2,
+          "drop": "score"
+        },
+        {
+          "id": "prop_6_4",
+          "type": "crate",
+          "x": 1872,
+          "z": 218,
+          "hp": 2,
+          "drop": "health"
+        }
+      ],
+      "pickups": {
+        "health": {
+          "heal": 24,
+          "ttl": 600,
+          "label": "CHARGE"
+        },
+        "score": {
+          "points": 150,
+          "ttl": 600,
+          "label": "SCRAP"
+        }
+      },
+      "finishLineX": 2360
+    },
+    {
+      "$schema_version": "1.0",
+      "index": 7,
+      "id": "stage_08",
+      "title": "MR. X TOWER",
+      "subtitle": "STAGE 8 - PENTHOUSE",
+      "theme": "rgba(255,60,60,0.08)",
+      "timeLimitSeconds": 134,
+      "enemyHealthMul": 1.7,
+      "enemyDamageMul": 1.42,
+      "worldWidth": 2500,
+      "laneMin": 204,
+      "laneMax": 250,
+      "startX": 80,
+      "startZ": 226,
+      "music": "neon-rain-loop",
+      "banners": {
+        "title": "MR. X TOWER",
+        "wave": "WAVE",
+        "clear": "STAGE CLEAR",
+        "go": "GO"
+      },
+      "waves": [
+        {
+          "id": 1,
+          "triggerX": 240,
+          "lockCamera": true,
+          "banner": "WAVE 1",
+          "enemies": [
+            {
+              "type": "rivet_elite",
+              "spawnSide": "right",
+              "spawnOffset": 30,
+              "spawnZ": 212,
+              "delay": 0
+            },
+            {
+              "type": "runner",
+              "spawnSide": "left",
+              "spawnOffset": 64,
+              "spawnZ": 238,
+              "delay": 80
+            },
+            {
+              "type": "rivet_elite",
+              "spawnSide": "right",
+              "spawnOffset": 98,
+              "spawnZ": 224,
+              "delay": 115
+            },
+            {
+              "type": "runner",
+              "spawnSide": "left",
+              "spawnOffset": 30,
+              "spawnZ": 246,
+              "delay": 150
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "triggerX": 900,
+          "lockCamera": true,
+          "banner": "WAVE 2",
+          "enemies": [
+            {
+              "type": "rivet_elite",
+              "spawnSide": "right",
+              "spawnOffset": 40,
+              "spawnZ": 238,
+              "delay": 0
+            },
+            {
+              "type": "runner",
+              "spawnSide": "left",
+              "spawnOffset": 74,
+              "spawnZ": 224,
+              "delay": 80
+            },
+            {
+              "type": "rivet_elite",
+              "spawnSide": "right",
+              "spawnOffset": 108,
+              "spawnZ": 246,
+              "delay": 115
+            },
+            {
+              "type": "runner",
+              "spawnSide": "left",
+              "spawnOffset": 40,
+              "spawnZ": 218,
+              "delay": 150
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "triggerX": 1560,
+          "lockCamera": true,
+          "banner": "WAVE 3",
+          "enemies": [
+            {
+              "type": "rivet_elite",
+              "spawnSide": "right",
+              "spawnOffset": 30,
+              "spawnZ": 224,
+              "delay": 0
+            },
+            {
+              "type": "runner",
+              "spawnSide": "left",
+              "spawnOffset": 64,
+              "spawnZ": 246,
+              "delay": 80
+            },
+            {
+              "type": "rivet_elite",
+              "spawnSide": "right",
+              "spawnOffset": 98,
+              "spawnZ": 218,
+              "delay": 115
+            },
+            {
+              "type": "runner",
+              "spawnSide": "left",
+              "spawnOffset": 30,
+              "spawnZ": 232,
+              "delay": 150
+            },
+            {
+              "type": "rivet_elite",
+              "spawnSide": "right",
+              "spawnOffset": 64,
+              "spawnZ": 208,
+              "delay": 185
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "triggerX": 2220,
+          "lockCamera": true,
+          "banner": "BOSS",
+          "enemies": [
+            {
+              "type": "overlord",
+              "spawnSide": "right",
+              "spawnOffset": 60,
+              "spawnZ": 226,
+              "delay": 30
+            },
+            {
+              "type": "rivet_elite",
+              "spawnSide": "left",
+              "spawnOffset": 40,
+              "spawnZ": 214,
+              "delay": 90
+            },
+            {
+              "type": "runner",
+              "spawnSide": "right",
+              "spawnOffset": 96,
+              "spawnZ": 242,
+              "delay": 140
+            }
+          ]
+        }
+      ],
+      "props": [
+        {
+          "id": "prop_7_0",
+          "type": "crate",
+          "x": 550,
+          "z": 212,
+          "hp": 2,
+          "drop": "score"
+        },
+        {
+          "id": "prop_7_1",
+          "type": "trash",
+          "x": 900,
+          "z": 238,
+          "hp": 1,
+          "drop": "health"
+        },
+        {
+          "id": "prop_7_2",
+          "type": "barrel",
+          "x": 1250,
+          "z": 224,
+          "hp": 1,
+          "drop": "score"
+        },
+        {
+          "id": "prop_7_3",
+          "type": "crate",
+          "x": 1600,
+          "z": 246,
+          "hp": 2,
+          "drop": "score"
+        },
+        {
+          "id": "prop_7_4",
+          "type": "crate",
+          "x": 1950,
+          "z": 218,
+          "hp": 2,
+          "drop": "health"
+        }
+      ],
+      "pickups": {
+        "health": {
+          "heal": 24,
+          "ttl": 600,
+          "label": "CHARGE"
+        },
+        "score": {
+          "points": 150,
+          "ttl": 600,
+          "label": "SCRAP"
+        }
+      },
+      "finishLineX": 2460
+    }
+  ]
+}

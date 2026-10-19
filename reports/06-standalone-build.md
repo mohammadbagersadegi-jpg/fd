@@ -30,19 +30,21 @@ changes.
 | Property | Value |
 |---|---|
 | File | `dist/neon-gauntlet.html` |
-| Size | 0.44 MB |
+| Size | 0.48 MB |
 | Scripts inlined | 12 (data bundle, font, core, assets, font renderer, input, audio, actors, stage, render, cinematic, main) |
-| Images embedded | 102 (84 character frames, 5 stage layers, 9 props, 4 UI) |
+| Images embedded | 102 (84 character frames, 5 stage layers, 9 prop/pickup images, 4 UI images) |
 | External references | 0 |
 | Works from | `file://`, no server |
 
 ## Verification
 
 `node tools/tests/standalone.js` executes the scripts extracted from the built
-HTML with a DOM shim and a real PNG decoder, then plays the stage:
+HTML with a DOM shim and a real PNG decoder, then plays the **whole campaign**
+(invincible autopilot, so the test proves the asset/campaign pipeline rather
+than survival):
 
 ```
-standalone: 102 images from data URIs, 0 external refs, stage CLEARED
+standalone: 102 images from data URIs, 0 external refs, campaign CLEARED (8/8 stages)
 ```
 
 The autopilot is stochastic, so the clear time and score vary per run
@@ -68,7 +70,7 @@ Fix in `game/src/assets.js`:
 * the `FD.cfg` getters return `null` instead of throwing when the bundle is
   absent.
 
-Regression coverage: the 23 module tests (`npm test`) plus
+Regression coverage: the 25 module tests (`npm test`) plus
 `node tools/tests/standalone.js` now exercise the real boot order.
 
 ## Not embedded

@@ -1,8 +1,10 @@
 #!/usr/bin/env node
 // Scripted end-to-end playtest of stage 1.
-// 1. Runs the autopilot through the stage, recording an event log.
-// 2. Re-runs it with the storyboard camera and saves proof frames.
-// 3. Writes artifacts/playtest.json + artifacts/playtest/*.png
+// 1. Runs the autopilot through stage 1, recording an event log.
+// 2. Saves proof frames for each notable beat.
+// 3. Stops as soon as stage 2 starts (the campaign hand-off) so the run stays
+//    a single-stage playtest.
+// 4. Writes artifacts/playtest.json + artifacts/playtest/*.png
 'use strict';
 const fs = require('fs');
 const path = require('path');
@@ -17,6 +19,7 @@ const LOG = path.join(ROOT, 'artifacts/playtest.json');
   fs.mkdirSync(OUT, { recursive: true });
   const game = makeGame(FD, 'stage');
   game.autopilot = true;
+  const stageId = FD.cfg.stage.id;
 
   const events = [];
   const seen = new Set();
@@ -35,12 +38,13 @@ const LOG = path.join(ROOT, 'artifacts/playtest.json');
     { id: 'wave2', when: () => game.stageState.waveIndex >= 1, title: 'wave 2 starts' },
     { id: 'wave3', when: () => game.stageState.waveIndex >= 2, title: 'wave 3 starts' },
     { id: 'clear', when: () => game.state === 'stageclear', title: 'stage clear' },
+    { id: 'stage2', when: () => game.stageIndex === 1 && game.state === 'intro', title: 'stage 2 intro' },
   ];
 
   let framesCaptured = 0;
   let ticks = 0;
   const limit = 60 * 200;
-  while (ticks < limit && game.state !== 'results' && game.state !== 'gameover') {
+  while (ticks < limit && game.stageIndex === 0 && game.state !== 'gameover') {
     game.update();
     ticks++;
     for (const c of captured) {
@@ -66,7 +70,7 @@ const LOG = path.join(ROOT, 'artifacts/playtest.json');
     }
     if (!game.player.dead && game.player.health <= 0) snap(ticks, 'player died');
   }
-  if (game.state === 'stageclear' || game.state === 'results') {
+  if (game.stageIndex > 0 || game.state === 'results') {
     snap(ticks, 'stage completed');
     game.draw();
     savePng(game.canvas, path.join(OUT, `${String(framesCaptured).padStart(2, '0')}-results.png`), 3);
@@ -74,8 +78,9 @@ const LOG = path.join(ROOT, 'artifacts/playtest.json');
 
   const out = {
     generatedAt: new Date().toISOString(),
-    stage: FD.cfg.stage.id,
-    endedIn: game.state,
+    stage: stageId,
+    endedIn: game.state === 'gameover' ? 'gameover' : 'stage_cleared',
+    nextStage: game.stageIndex > 0 ? game.stageIndex + 1 : null,
     ticks,
     seconds: +(ticks / 60).toFixed(2),
     results: game.results,

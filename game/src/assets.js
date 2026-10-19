@@ -131,7 +131,32 @@
     get collision() { return section('collision'); },
     get combat() { return section('combat'); },
     get animation() { return section('animation'); },
-    get stage() { return section('stage'); },
+    get stage() {
+      const d = FD.assets.dataRef;
+      if (!d) return null;
+      if (d.currentStage) return d.currentStage;
+      const list = FD.stageList();
+      return list[0] || d.stage || null;
+    },
     get presentation() { return section('presentation'); },
+  };
+
+  // ---- eight-stage campaign -------------------------------------------------
+  // config/stages.json holds the whole campaign.  The runtime keeps the active
+  // stage in `currentStage` so every module can keep reading FD.cfg.stage.
+  FD.stageList = function () {
+    const data = FD.assets.dataRef;
+    const raw = data && data.stages;
+    if (!raw) return data && data.stage ? [data.stage] : [];
+    return Array.isArray(raw) ? raw : raw.stages || [];
+  };
+
+  FD.setStage = function (index) {
+    const list = FD.stageList();
+    if (!list.length) return null;
+    const i = Math.max(0, Math.min(list.length - 1, index | 0));
+    const copy = JSON.parse(JSON.stringify(list[i]));
+    FD.assets.dataRef.currentStage = copy;
+    return copy;
   };
 })();

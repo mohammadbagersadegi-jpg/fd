@@ -84,18 +84,26 @@ function extractScripts(html) {
   if (loaded < 100) throw new Error(`only ${loaded} images decoded`);
 
   game.autopilot = true;
+  // The build now carries all eight stages; invincibility keeps this test on
+  // the pipeline (asset decode -> campaign -> results) rather than on survival.
+  game.debug.invincible = true;
   game.startStage();
   game.setState('intro');
   let ticks = 0;
-  while (!['results', 'gameover'].includes(game.state) && ticks < 60 * 180) {
+  const stagesSeen = new Set();
+  while (!['results', 'gameover'].includes(game.state) && ticks < 60 * 60 * 20) {
     game.update();
     ticks++;
-    if (ticks % 8 === 0) game.draw();
+    if (game.state === 'playing') stagesSeen.add(game.stageIndex);
+    // Rendering the whole campaign every frame is needlessly slow; sampling
+    // every 10 s still exercises every draw path (title/intro/play/clear/results).
+    if (ticks % 600 === 0) game.draw();
   }
   game.draw();
   savePng(game.canvas, path.join(ROOT, 'artifacts/standalone-proof.png'), 2);
 
-  const ok = game.state === 'results' && game.results && game.results.cleared;
+  const ok = game.state === 'results' && game.results && game.results.cleared &&
+    game.results.finalStage === true && stagesSeen.size === 8;
   const report = {
     file: 'dist/neon-gauntlet.html',
     bytes: fs.statSync(HTML).size,
@@ -108,12 +116,15 @@ function extractScripts(html) {
     score: game.results ? game.results.score : null,
     hits: game.results ? game.results.hits : null,
     cleared: game.state === 'results' && game.results.cleared === true,
+    stagesCleared: stagesSeen.size,
+    finalStage: game.results ? game.results.finalStage === true : false,
     verifiedAt: new Date().toISOString(),
   };
   fs.writeFileSync(REPORT, JSON.stringify(report, null, 2) + '\n');
   console.log(
     `standalone: ${report.imagesDecoded} images from data URIs, 0 external refs, ` +
-      `stage ${ok ? 'CLEARED' : 'FAILED'} in ${report.seconds}s (score ${report.score})`
+      `campaign ${ok ? 'CLEARED' : 'FAILED'} in ${report.seconds}s ` +
+      `(${report.stagesCleared}/8 stages, score ${report.score})`
   );
   if (!ok) process.exit(1);
 })().catch((err) => {

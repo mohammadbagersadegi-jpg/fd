@@ -1,16 +1,16 @@
 {
   "suite": "neon-gauntlet",
-  "generatedAt": "2026-10-19T22:18:20.647Z",
+  "generatedAt": "2026-10-19T23:12:41.857Z",
   "totals": {
-    "passed": 23,
+    "passed": 25,
     "failed": 0,
-    "total": 23
+    "total": 25
   },
   "results": [
     {
       "name": "config: all JSON parse and required keys exist",
       "status": "PASS",
-      "detail": "3 waves, 2 character sheets"
+      "detail": "3 waves, 4 enemy types, 2 character sheets"
     },
     {
       "name": "assets: every configured animation frame image exists",
@@ -88,9 +88,19 @@
       "detail": "2 enemies spawned, wave advanced to 2"
     },
     {
-      "name": "flow: full stage playthrough reaches stage clear and results",
+      "name": "flow: all eight stages clear in sequence and reach the results screen",
       "status": "PASS",
-      "detail": "cleared in 39.7s, score 4600, 64 hits"
+      "detail": "8 stages in 687.3s, score 64000, 1299 hits"
+    },
+    {
+      "name": "config: stages.json matches its generator and holds a valid campaign",
+      "status": "PASS",
+      "detail": "8 stages, 29 waves, 7 bosses"
+    },
+    {
+      "name": "flow: every stage loads its own waves, props and timer",
+      "status": "PASS",
+      "detail": "RAIN DISTRICT:3w/4p SOUTH DOCKS:3w/5p NEON MARKET:3w/5p STEEL YARD:4w/5p SKYLINE TRANSIT:4w/5p RED SECTOR:4w/5p TOWER BASE:4w/5p MR. X TOWER:4w/5p"
     },
     {
       "name": "cinematic: title Enter starts the 12 s intro and hands off to the stage intro",

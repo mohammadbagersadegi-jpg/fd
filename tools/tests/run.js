@@ -40,8 +40,10 @@ function testAssets() {
       assert(d[key], `missing config ${key}`);
     }
     assert(d.stage.waves.length === 3, 'expected 3 waves');
-    assert(d.combat.enemyTypes.rivet, 'missing enemy type');
-    return `${d.stage.waves.length} waves, ${Object.keys(d.animation.characters).length} character sheets`;
+    for (const type of ['rivet', 'runner', 'rivet_elite', 'overlord']) {
+      assert(d.combat.enemyTypes[type], `missing enemy type ${type}`);
+    }
+    return `${d.stage.waves.length} waves, ${Object.keys(d.combat.enemyTypes).length} enemy types, ${Object.keys(d.animation.characters).length} character sheets`;
   });
 
   test('assets: every configured animation frame image exists', () => {
@@ -302,17 +304,73 @@ function testGameplay() {
     return `${spawned} enemies spawned, wave advanced to 2`;
   });
 
-  test('flow: full stage playthrough reaches stage clear and results', () => {
+  test('flow: all eight stages clear in sequence and reach the results screen', () => {
     const game = makeGame(FD, 'stage');
     game.autopilot = true;
+    // Invincibility keeps this test about progression; survival is covered by
+    // the game-over test below.
+    game.debug.invincible = true;
+    const seen = [];
     let ticks = 0;
-    while (game.state !== 'results' && game.state !== 'gameover' && ticks < 60 * 180) {
+    let guard = 0;
+    while (game.state !== 'results' && guard < 60 * 60 * 20) {
       game.update();
       ticks++;
+      guard++;
+      if (game.state === 'playing' && seen[seen.length - 1] !== game.stageIndex) {
+        seen.push(game.stageIndex);
+      }
     }
-    assert(game.state === 'results', `ended in ${game.state}`);
+    assert(game.state === 'results', `ended in ${game.state} after ${(ticks / 60).toFixed(1)}s`);
     assert(game.results.cleared === true, 'results did not report a clear');
-    return `cleared in ${(ticks / 60).toFixed(1)}s, score ${game.results.score}, ${game.results.hits} hits`;
+    assert(new Set(seen).size === 8, `only reached stage ${new Set(seen).size} of 8 (${seen.join(',')})`);
+    assert(game.results.finalStage === true, 'results did not mark the final stage');
+    return `8 stages in ${(ticks / 60).toFixed(1)}s, score ${game.results.score}, ${game.results.hits} hits`;
+  });
+
+  test('config: stages.json matches its generator and holds a valid campaign', () => {
+    const { execFileSync } = require('child_process');
+    execFileSync('python3', ['tools/stage_pipeline/make_stages.py', '--check'], { cwd: ROOT, stdio: 'pipe' });
+    const list = FD.stageList();
+    const errors = [];
+    list.forEach((st, i) => {
+      if (st.index !== i) errors.push(`stage ${i + 1} index ${st.index}`);
+      if (st.worldWidth < 1600) errors.push(`stage ${i + 1} width ${st.worldWidth}`);
+      st.waves.forEach((w, wi) => {
+        if (!w.enemies.length) errors.push(`stage ${i + 1} wave ${wi + 1} empty`);
+        if (w.triggerX < 200 || w.triggerX > st.worldWidth - 100) errors.push(`stage ${i + 1} wave ${wi + 1} trigger ${w.triggerX}`);
+        if (wi > 0 && w.triggerX <= st.waves[wi - 1].triggerX) errors.push(`stage ${i + 1} wave ${wi + 1} trigger not increasing`);
+        for (const e of w.enemies) {
+          if (!FD.cfg.combat.enemyTypes[e.type]) errors.push(`stage ${i + 1} wave ${wi + 1} enemy type ${e.type}`);
+          if (e.spawnZ < st.laneMin || e.spawnZ > st.laneMax) errors.push(`stage ${i + 1} wave ${wi + 1} z ${e.spawnZ} outside lanes`);
+        }
+        const bosses = w.enemies.filter((e) => e.type === 'overlord').length;
+        if (bosses && wi !== st.waves.length - 1) errors.push('boss outside a final wave');
+      });
+      if (st.finishLineX <= st.waves[st.waves.length - 1].triggerX) errors.push(`stage ${i + 1} finish before last wave`);
+    });
+    assert(errors.length === 0, errors.slice(0, 4).join('; '));
+    const bosses = list.reduce((n, st) => n + st.waves.reduce((m, w) => m + w.enemies.filter((e) => e.type === 'overlord').length, 0), 0);
+    assert(bosses === list.length - 1, `expected bosses in stages 2-8, got ${bosses}`);
+    const stage1Bosses = list[0].waves.reduce((m, w) => m + w.enemies.filter((e) => e.type === 'overlord').length, 0);
+    assert(stage1Bosses === 0, 'stage 1 is the tutorial stage and must stay boss-free');
+    return `${list.length} stages, ${list.reduce((n, s2) => n + s2.waves.length, 0)} waves, ${bosses} bosses`;
+  });
+
+  test('flow: every stage loads its own waves, props and timer', () => {
+    const list = FD.stageList();
+    assert(list.length === 8, `expected 8 stages, got ${list.length}`);
+    const rows = list.map((st, i) => {
+      FD.setStage(i);
+      const cfg = FD.cfg.stage;
+      assert(cfg.title === st.title, `stage ${i + 1} title mismatch`);
+      assert(cfg.waves.length >= 3, `stage ${i + 1} has ${cfg.waves.length} waves`);
+      assert(cfg.props.length >= 4, `stage ${i + 1} has ${cfg.props.length} props`);
+      assert(cfg.timeLimitSeconds >= 99, `stage ${i + 1} timer ${cfg.timeLimitSeconds}`);
+      return `${cfg.title}:${cfg.waves.length}w/${cfg.props.length}p`;
+    });
+    FD.setStage(0);
+    return rows.join(' ');
   });
 
   test('cinematic: title Enter starts the 12 s intro and hands off to the stage intro', () => {

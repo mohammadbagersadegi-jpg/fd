@@ -13,6 +13,7 @@ index.html
   └─ src/audio.js               procedural WebAudio SFX and stage track
   └─ src/actors.js              player + enemy state machines, hit resolution
   └─ src/stage.js               waves, props, pickups, camera, arena
+                              + campaign: startStage(i) -> setStage(i) -> init
   └─ src/render.js              parallax, rain, depth sort, HUD, effects
   └─ src/cinematic.js           12 s intro drawn from the same assets
   └─ src/main.js                fixed 60 Hz loop, scenes, autopilot
@@ -33,9 +34,15 @@ are structural (e.g. which state follows which), never speeds, damage or timings
 
 ```
 boot -> title -> cinematic -> intro -> playing <-> paused
-                                        |  \-> stageclear -> results -> title
-                                        \-> gameover (after death) -> retry -> intro
+                                        |  \-> stageclear --(stages left)--> intro (stage+1)
+                                        |                \--(stage 8)-----> results -> title
+                                        \-> gameover (after death) -> retry -> same stage
 ```
+
+`FD.stageList()` reads `config/stages.json`; `FD.setStage(i)` deep-copies stage
+`i` into `FD.assets.dataRef.currentStage`, which `FD.cfg.stage` prefers. That is
+the whole campaign layer: the stage, wave, render and HUD code never learns
+that more than one stage exists.
 
 ## Coordinate model
 
@@ -50,8 +57,10 @@ boot -> title -> cinematic -> intro -> playing <-> paused
 
 ## Testing
 
-* `tools/tests/run.js` - 23 behavioural and asset tests, run in the headless
-  harness against the production modules.
+* `tools/tests/run.js` - 25 behavioural, asset and campaign tests, run in the
+  headless harness against the production modules. The campaign test plays all
+  eight stages with invincibility (survival is covered by the game-over test)
+  and asserts the results screen reports `finalStage`.
 * `tools/validation/validate_assets.py` - frame/sheet/manifest QA gate.
 * `tools/capture/harness.js` - ~60 line DOM shim (document, Image, localStorage,
   requestAnimationFrame, navigator) that mounts `game/src/*` on `@napi-rs/canvas`.

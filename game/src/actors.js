@@ -424,16 +424,23 @@
     const def = FD.cfg.combat.enemyTypes[type];
     if (!def) throw new Error('unknown enemy type ' + type);
     const col = FD.cfg.collision.enemy;
+    const st = FD.cfg.stage || {};
+    const hpMul = opts.healthMul || st.enemyHealthMul || 1;
+    const dmgMul = opts.damageMul || st.enemyDamageMul || 1;
+    const maxHealth = Math.max(1, Math.round(def.maxHealth * hpMul));
+    const sheet = def.elite ? 'rivet_elite' : (type === 'rivet' ? 'rivet' : type);
     const e = {
-      kind: 'enemy', charId: type === 'rivet_elite' ? 'rivet_elite' : 'rivet', type, id: opts.id || `e${Math.random().toString(36).slice(2, 7)}`,
+      kind: 'enemy', charId: type === 'rivet_elite' ? 'rivet_elite' : 'rivet', sheet, type, id: opts.id || `e${Math.random().toString(36).slice(2, 7)}`,
       x, z, facing: -1,
       state: 'spawn', anim: 'walk', frame: 0, frameTicks: 0, animTicks: 0,
-      health: def.maxHealth, maxHealth: def.maxHealth,
+      health: maxHealth, maxHealth,
       vx: 0, vz: 0, vy: 0, yOffset: 0,
       def, invulnTicks: 0, hurtTicks: 0, knockdownTicks: 0, cooldown: opts.cooldown || 30,
       decisionTicks: 0, side: opts.side || (x < game.player.x ? -1 : 1),
       attackId: null, attackTicks: 0, dead: false, defeatedTicks: 0,
       depthTolerance: col.depthTolerance, bodyWidth: col.bodyWidth, bodyHeight: col.bodyHeight,
+      drawScale: def.drawScale || 1, boss: !!def.boss,
+      attackDamage: Math.max(1, Math.round(def.attackDamage * dmgMul)),
       hitSet: new Set(), propHitSet: new Set(),
       flash: 0, spawnTicks: 0, alpha: 0, safeTime: 30,
       zJitter: (Math.random() * 2 - 1) * 5,
@@ -726,7 +733,7 @@
       const hb = hurtBoxFor(p);
       if (boxesOverlap(box, hb)) {
         e.hitSet.add('player');
-        const def = { damage: e.def.attackDamage, knockdown: false, knockback: 1.4 };
+        const def = { damage: e.attackDamage || e.def.attackDamage, knockdown: false, knockback: 1.4 };
         if (playerTakeHit(game, p, def.damage, { dir: FD.sign(p.x - e.x) || e.facing, knockback: def.knockback })) {
           game.combo.playerHits = 0;
         }

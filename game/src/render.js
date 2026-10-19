@@ -182,19 +182,22 @@
     const animDef = cfg.animations[actor.anim];
     if (!animDef) return;
     const frame = Math.min(actor.frame, animDef.frames.length - 1);
-    const rel = `characters/${actor.charId}/frames/${actor.anim}/${actor.anim}_${String(frame).padStart(2, '0')}.png`;
+    const sheet = actor.sheet || actor.charId;
+    const rel = `characters/${sheet}/frames/${actor.anim}/${actor.anim}_${String(frame).padStart(2, '0')}.png`;
     const img = FD.assets.img(rel);
     if (!img) return;
     const ax = cfg.frame.anchorX;
     const ay = cfg.frame.anchorY;
     const sx = Math.round(actor.x - gameCamX - ax);
     const sy = Math.round(actor.z - ay - (actor.yOffset || 0));
+    const scale = actor.drawScale && actor.drawScale !== 1 ? actor.drawScale : 1;
     ctx.save();
     if (actor.alpha !== undefined && actor.alpha < 1) ctx.globalAlpha = actor.alpha;
-    if (actor.facing < 0) {
-      ctx.translate(sx + ax, 0);
-      ctx.scale(-1, 1);
-      ctx.drawImage(img, -ax, sy);
+    if (scale !== 1 || actor.facing < 0) {
+      // Scale and flip around the frame anchor so the feet stay planted.
+      ctx.translate(actor.x - gameCamX, actor.z - (actor.yOffset || 0));
+      ctx.scale(scale * (actor.facing < 0 ? -1 : 1), scale);
+      ctx.drawImage(img, -ax, -ay);
     } else {
       ctx.drawImage(img, sx, sy);
     }
@@ -210,10 +213,10 @@
         // sprite silhouette for 6 ticks, which looked like a rendering bug.
         ctx.globalAlpha = flashColor ? (actor.flash >= 5 ? 0.55 : 0.16) : 0.24;
         if (actor.alpha !== undefined && actor.alpha < 1) ctx.globalAlpha *= actor.alpha;
-        if (actor.facing < 0) {
-          ctx.translate(sx + ax, 0);
-          ctx.scale(-1, 1);
-          ctx.drawImage(sil, -ax, sy);
+        if (scale !== 1 || actor.facing < 0) {
+          ctx.translate(actor.x - gameCamX, actor.z - (actor.yOffset || 0));
+          ctx.scale(scale * (actor.facing < 0 ? -1 : 1), scale);
+          ctx.drawImage(sil, -ax, -ay);
         } else {
           ctx.drawImage(sil, sx, sy);
         }
@@ -374,7 +377,8 @@
         const sx = e.x - gameCamX;
         if (sx < 0 || sx > FD.VIEW_W) continue;
         const y = e.z - 74;
-        drawBar(ctx, sx - 14, y, 28, 2, e.health / e.maxHealth, e.type === 'rivet_elite' ? '#ff8a6a' : '#ff5cc4');
+        const barColor = e.boss ? '#ffd24a' : e.def && e.def.elite ? '#ff8a6a' : '#ff5cc4';
+        drawBar(ctx, sx - 14, y, e.boss ? 40 : 28, e.boss ? 3 : 2, e.health / e.maxHealth, barColor);
       }
     }
     // combo
