@@ -94,10 +94,10 @@ The alternate in-game entry `loc_10920` (L30380) also calls
 | L1819 | `move.l (a1)+,($FFFFFC14).w` | descriptor[Scene=0] | cursor := `$FF6800` | `Cur_ELC_Adr = $FF6800` |
 | L1820 | `move.w (a1)+,d0` | descriptor | geometry selector = 0 | d0 = 0 |
 | L1822-23 | `move.w (a2,d0.w),$FFFB20` / `2(a2,d0.w),$FFFB12` | `word_1C1BC` | stride = 1, base = `$0300` | `$FFFB20=1`, `$FFFB12=$0300` |
-| L1826 | `jsr Update_Enemy_Pal` | descriptor bytes 0–5 | palettes | `$FFFA60..$FFFA63`, `$FFFA6A` |
-| L1827 | `jsr Init_Enemy` | cursor | block 1, column 0 | cursor after column 0 |
-| L1830 | `add.b d2,($FFFFFB12).w` | d2 = 1 | **high byte** += 1 | base = `$0400` |
-| L1831-36 | `Init_Enemy` ×2 | cursor | columns 1, 2 | cursor after block 1 |
+| L1825 | `jsr Update_Enemy_Pal` | descriptor bytes 0–5 | palettes | `$FFFA60..$FFFA63`, `$FFFA6A` |
+| L1826 | `jsr Init_Enemy` | cursor | block 1, column 0 | cursor after column 0 |
+| L1828 | `add.b d2,($FFFFFB12).w` | d2 = 1 | **high byte** += 1 | base = `$0400` |
+| L1829-1832 | `Init_Enemy` ×2 | cursor | columns 1, 2 | cursor after block 1 |
 | L1856-57 | `move.w #$12,$FFFB14; bset #2,$FFFB14` | — | state 9 (Write_Art), flag 2 set | next: `jmp Write_Art` (L1860) |
 | L1717 `loc_DF4` | after art | flag 2 **set** at level start | pending bit **not** set | state 1 (`#2`, L1735) |
 
@@ -168,8 +168,8 @@ Evidence split:
 ```
 
 `Load_Enemy_Into_RAM` and `EnemySpawn_Scene` bump the base with
-`add.b d2,($FFFFFB12).w` (L1830/1832/1834, L831/833/835), i.e. the byte at the
-word's address — the **high** byte. With `$FFFB20 = 1` each column therefore
+`add.b d2,($FFFFFB12).w` (L1828/1830/1832 and L832/834/836), i.e. the byte at
+the word's address — the **high** byte. With `$FFFB20 = 1` each column therefore
 adds `$0100`, and the base keeps advancing across blocks: `$0300, $0400, …,
 $0E00` for twelve columns.
 
