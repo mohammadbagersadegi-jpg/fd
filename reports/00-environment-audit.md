@@ -66,5 +66,5 @@ The game needs a canvas to render into and screenshots for verification.
 ## 6. Disk / time budget
 
 - Repository + node_modules + artifacts: measured after the build; see `du -sh` output in `reports/07-final-report.md`.
-- Full asset rebuild (font + 111 frames + sheets + GIF previews + 5 stage layers + props + UI): ~2 s.
+- Full asset rebuild (font + 84 frames + sheets + GIF previews + 5 stage layers + props + UI): ~2 s.
 - Offline video render: 12 s cinematic ≈ 10 s; 46 s gameplay reel ≈ 50 s.

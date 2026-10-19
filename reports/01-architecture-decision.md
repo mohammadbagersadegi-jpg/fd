@@ -24,7 +24,7 @@
 
 ## ADR-003: Procedural sprite rig instead of hand-painted frames
 
-**Decision:** `tools/asset_pipeline/rig.py` draws the characters from a skeleton (IK limbs, torso, head, boots, gauntlets) with a fixed palette and anchor. 111 frames are rendered from pose functions.
+**Decision:** `tools/asset_pipeline/rig.py` draws the characters from a skeleton (IK limbs, torso, head, boots, gauntlets) with a fixed palette and anchor. 84 frames are rendered from pose functions.
 
 **Consequences:**
 - Proportions, palette and pivot are identical across every frame by construction, which is exactly the failure mode hand-drawn sets usually suffer from.

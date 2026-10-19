@@ -42,7 +42,7 @@ Total distinct frames: **84**, plus 11 resolved test references for the elite al
 
 ## Validation gate
 
-`tools/validation/validate_assets.py` checks 111 frame files and 26 spritesheets:
+`tools/validation/validate_assets.py` checks 84 frame files and 19 spritesheets:
 
 * every configured frame exists and decodes,
 * size equals the configured canvas,
