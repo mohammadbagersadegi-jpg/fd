@@ -10,10 +10,14 @@
     "validate": "python3 tools/validation/validate_assets.py",
     "playtest": "node tools/tests/playtest.js",
     "capture:shots": "node tools/capture/screenshots.js",
-    "capture:movie": "node tools/capture/movie.js"
+    "capture:movie": "node tools/capture/movie.js",
+    "build:standalone": "python3 tools/build_standalone.py",
+    "test:standalone": "node tools/tests/standalone.js"
   },
   "devDependencies": {
     "@napi-rs/canvas": "^0.1.80"
   },
-  "engines": { "node": ">=18" }
+  "engines": {
+    "node": ">=18"
+  }
 }

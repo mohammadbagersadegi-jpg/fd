@@ -1,7 +1,7 @@
 // Asset loading.  In normal HTTP mode images come from game/assets/*.
-// Captured film pages inject window.FD_FILM = { data, assets: {path: dataURI},
-// font, cinematic } so the very same build renders inside a headless browser
-// without a network server.
+// An embed (the single-file build in dist/, or a captured film page) injects
+// window.FD_EMBED = { assets: {path: dataURI}, data?, font?, cinematic? } so the
+// same modules run from a file:// URL with no server and no network.
 (function () {
   'use strict';
   const FD = window.FD;
@@ -13,20 +13,27 @@
     ready: false,
     failures: [],
 
+    embed() {
+      return window.FD_EMBED || window.FD_FILM || null;
+    },
+
     isFilm() {
       return !!window.FD_FILM;
     },
 
     data() {
-      return window.FD_FILM ? window.FD_FILM.data : window.FD_DATA;
+      const e = this.embed();
+      return e && e.data ? e.data : window.FD_DATA;
     },
 
     font() {
-      return window.FD_FILM && window.FD_FILM.font ? window.FD_FILM.font : window.FD_FONT;
+      const e = this.embed();
+      return e && e.font ? e.font : window.FD_FONT;
     },
 
     cinematic() {
-      return window.FD_FILM && window.FD_FILM.cinematic ? window.FD_FILM.cinematic : window.FD_CINEMATIC;
+      const e = this.embed();
+      return e && e.cinematic ? e.cinematic : window.FD_CINEMATIC;
     },
 
     // Build the full list of image paths from the config (no runtime JSON fetch).
@@ -58,9 +65,8 @@
     },
 
     srcFor(relPath) {
-      if (window.FD_FILM && window.FD_FILM.assets && window.FD_FILM.assets[relPath]) {
-        return window.FD_FILM.assets[relPath];
-      }
+      const e = this.embed();
+      if (e && e.assets && e.assets[relPath]) return e.assets[relPath];
       return `assets/${relPath}`;
     },
 
@@ -107,18 +113,25 @@
     },
   };
 
+  // The bundle is already on the page (data.js or an embed), so expose it
+  // synchronously.  FD.boot() creates the Game before assets.load() resolves
+  // and createGame() reads FD.cfg.presentation.
+  FD.assets.dataRef = FD.assets.data() || null;
+  FD.assets.fontRef = FD.assets.font() || null;
+
   // Convenience accessors used across modules.
   FD.characterCfg = function (charId) {
     const chars = FD.assets.dataRef.animation.characters;
     return chars[charId] || chars[String(charId).replace('_elite', '')];
   };
 
+  const section = (key) => (FD.assets.dataRef ? FD.assets.dataRef[key] : null);
   FD.cfg = {
-    get movement() { return FD.assets.dataRef.movement; },
-    get collision() { return FD.assets.dataRef.collision; },
-    get combat() { return FD.assets.dataRef.combat; },
-    get animation() { return FD.assets.dataRef.animation; },
-    get stage() { return FD.assets.dataRef.stage; },
-    get presentation() { return FD.assets.dataRef.presentation; },
+    get movement() { return section('movement'); },
+    get collision() { return section('collision'); },
+    get combat() { return section('combat'); },
+    get animation() { return section('animation'); },
+    get stage() { return section('stage'); },
+    get presentation() { return section('presentation'); },
   };
 })();

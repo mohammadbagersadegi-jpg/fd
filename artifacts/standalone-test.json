@@ -1,0 +1,14 @@
+{
+  "file": "dist/neon-gauntlet.html",
+  "bytes": 460590,
+  "scriptsInlined": 14,
+  "imagesEmbedded": 102,
+  "imagesDecoded": 102,
+  "decodeFailures": 0,
+  "endedIn": "results",
+  "seconds": 39.63,
+  "score": 4450,
+  "hits": 63,
+  "cleared": true,
+  "verifiedAt": "2026-10-19T22:18:05.127Z"
+}
