@@ -1,29 +1,29 @@
 {
-  "generatedAt": "2026-10-19T23:12:51.835Z",
+  "generatedAt": "2026-10-19T23:13:44.551Z",
   "stage": "rain_district_1",
   "endedIn": "stage_cleared",
   "nextStage": 2,
-  "ticks": 2496,
-  "seconds": 41.6,
+  "ticks": 2527,
+  "seconds": 42.12,
   "results": {
-    "score": 4550,
+    "score": 4400,
     "timeLeft": 67,
-    "hits": 59,
-    "damageTaken": 11,
+    "hits": 64,
+    "damageTaken": 8,
     "cleared": true,
     "stage": 1,
     "stages": 8,
     "finalStage": false,
     "campaign": {
       "cleared": 1,
-      "score": 4550,
-      "hits": 59,
-      "damageTaken": 11
+      "score": 4400,
+      "hits": 64,
+      "damageTaken": 8
     }
   },
   "stats": {
-    "hits": 59,
-    "damageTaken": 11,
+    "hits": 64,
+    "damageTaken": 8,
     "enemiesDefeated": 8,
     "propsBroken": 2
   },
@@ -49,40 +49,40 @@
       "alive": 2
     },
     {
-      "tick": 341,
-      "seconds": 5.68,
+      "tick": 340,
+      "seconds": 5.67,
       "event": "enemy attacks",
       "frame": "01-enemy-attack.png",
       "state": "playing",
-      "x": 442
+      "x": 440
     },
     {
-      "tick": 345,
-      "seconds": 5.75,
+      "tick": 346,
+      "seconds": 5.77,
       "event": "player attacks",
       "frame": "02-attack.png",
       "state": "playing",
-      "x": 448
+      "x": 450
     },
     {
-      "tick": 349,
-      "seconds": 5.82,
+      "tick": 350,
+      "seconds": 5.83,
       "event": "enemy is hit",
       "frame": "03-enemy-hit.png",
       "state": "playing",
-      "x": 449
+      "x": 451
     },
     {
-      "tick": 505,
-      "seconds": 8.42,
+      "tick": 506,
+      "seconds": 8.43,
       "event": "enemy knocked down",
       "frame": "04-knockdown.png",
       "state": "playing",
-      "x": 456
+      "x": 458
     },
     {
-      "tick": 597,
-      "seconds": 9.95,
+      "tick": 598,
+      "seconds": 9.97,
       "event": "enemy defeated",
       "alive": 1
     },
@@ -98,7 +98,7 @@
       "event": "wave 2 starts",
       "frame": "05-wave2.png",
       "state": "playing",
-      "x": 532
+      "x": 529
     },
     {
       "tick": 702,
@@ -106,140 +106,132 @@
       "event": "wave 1 cleared"
     },
     {
-      "tick": 912,
-      "seconds": 15.2,
+      "tick": 1012,
+      "seconds": 16.87,
       "event": "enemies spawned",
       "alive": 1
     },
     {
-      "tick": 951,
-      "seconds": 15.85,
+      "tick": 1051,
+      "seconds": 17.52,
       "event": "enemies spawned",
       "alive": 2
     },
     {
-      "tick": 995,
-      "seconds": 16.58,
+      "tick": 1095,
+      "seconds": 18.25,
       "event": "prop destroyed",
       "frame": "06-prop-break.png",
       "state": "playing",
-      "x": 1081
+      "x": 1080
     },
     {
-      "tick": 1070,
-      "seconds": 17.83,
+      "tick": 1170,
+      "seconds": 19.5,
       "event": "enemies spawned",
       "alive": 3
     },
     {
-      "tick": 1243,
-      "seconds": 20.72,
+      "tick": 1343,
+      "seconds": 22.38,
       "event": "enemy defeated",
       "alive": 2
     },
     {
-      "tick": 1402,
-      "seconds": 23.37,
+      "tick": 1429,
+      "seconds": 23.82,
+      "event": "player hurt",
+      "frame": "07-player-hurt.png",
+      "state": "playing",
+      "x": 1095
+    },
+    {
+      "tick": 1506,
+      "seconds": 25.1,
       "event": "enemy defeated",
       "alive": 1
     },
     {
-      "tick": 1421,
-      "seconds": 23.68,
+      "tick": 1560,
+      "seconds": 26,
       "event": "enemy defeated",
       "alive": 0
     },
     {
-      "tick": 1451,
-      "seconds": 24.18,
+      "tick": 1590,
+      "seconds": 26.5,
       "event": "wave 3 starts",
-      "frame": "07-wave3.png",
+      "frame": "08-wave3.png",
       "state": "playing",
       "x": 1161
     },
     {
-      "tick": 1451,
-      "seconds": 24.18,
+      "tick": 1590,
+      "seconds": 26.5,
       "event": "wave 2 cleared"
     },
     {
-      "tick": 1609,
-      "seconds": 26.82,
+      "tick": 1748,
+      "seconds": 29.13,
       "event": "enemies spawned",
       "alive": 1
     },
     {
-      "tick": 1638,
-      "seconds": 27.3,
+      "tick": 1777,
+      "seconds": 29.62,
       "event": "enemies spawned",
       "alive": 2
     },
     {
-      "tick": 1701,
-      "seconds": 28.35,
+      "tick": 1840,
+      "seconds": 30.67,
       "event": "enemies spawned",
       "alive": 3
     },
     {
-      "tick": 1869,
-      "seconds": 31.15,
-      "event": "special move",
-      "frame": "08-special.png",
-      "state": "playing",
-      "x": 1615
-    },
-    {
-      "tick": 1967,
-      "seconds": 32.78,
+      "tick": 2108,
+      "seconds": 35.13,
       "event": "enemy defeated",
       "alive": 2
     },
     {
-      "tick": 2063,
-      "seconds": 34.38,
-      "event": "player hurt",
-      "frame": "09-player-hurt.png",
-      "state": "playing",
-      "x": 1667
-    },
-    {
-      "tick": 2097,
-      "seconds": 34.95,
+      "tick": 2184,
+      "seconds": 36.4,
       "event": "enemy defeated",
       "alive": 1
     },
     {
-      "tick": 2179,
-      "seconds": 36.32,
+      "tick": 2210,
+      "seconds": 36.83,
       "event": "enemy defeated",
       "alive": 0
     },
     {
-      "tick": 2209,
-      "seconds": 36.82,
+      "tick": 2240,
+      "seconds": 37.33,
       "event": "wave 3 cleared"
     },
     {
-      "tick": 2235,
-      "seconds": 37.25,
+      "tick": 2266,
+      "seconds": 37.77,
       "event": "stage clear",
-      "frame": "10-clear.png",
+      "frame": "09-clear.png",
       "state": "stageclear",
       "x": 1741
     },
     {
-      "tick": 2496,
-      "seconds": 41.6,
+      "tick": 2527,
+      "seconds": 42.12,
       "event": "stage 2 intro",
-      "frame": "11-stage2.png",
+      "frame": "10-stage2.png",
       "state": "intro",
       "x": 80
     },
     {
-      "tick": 2496,
-      "seconds": 41.6,
+      "tick": 2527,
+      "seconds": 42.12,
       "event": "stage completed"
     }
   ],
-  "frames": 12
+  "frames": 11
 }

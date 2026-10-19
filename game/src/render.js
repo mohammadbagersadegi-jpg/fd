@@ -130,6 +130,15 @@
       }
       ctx.restore();
     }
+    // Per-stage colour wash. Painted behind the actors, so silhouettes keep
+    // their contrast while each stage reads as a different time of night.
+    const theme = FD.cfg.stage.theme;
+    if (theme) {
+      ctx.save();
+      ctx.fillStyle = theme;
+      ctx.fillRect(0, 0, FD.VIEW_W, FD.VIEW_H);
+      ctx.restore();
+    }
   }
 
   function drawRain(game, ctx) {

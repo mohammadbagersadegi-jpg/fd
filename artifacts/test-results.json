@@ -1,6 +1,6 @@
 {
   "suite": "neon-gauntlet",
-  "generatedAt": "2026-10-19T23:12:41.857Z",
+  "generatedAt": "2026-10-19T23:13:13.551Z",
   "totals": {
     "passed": 25,
     "failed": 0,
@@ -90,7 +90,7 @@
     {
       "name": "flow: all eight stages clear in sequence and reach the results screen",
       "status": "PASS",
-      "detail": "8 stages in 687.3s, score 64000, 1299 hits"
+      "detail": "8 stages in 698.9s, score 64200, 1315 hits"
     },
     {
       "name": "config: stages.json matches its generator and holds a valid campaign",
