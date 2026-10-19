@@ -1,0 +1,13 @@
+{
+  "$schema_version": "1.0",
+  "description": "Body sizes and depth rules. Hitboxes themselves live per animation frame in animation.json.",
+  "player": { "bodyWidth": 24, "bodyHeight": 58, "hurtboxOffsetY": -58, "depthTolerance": 15, "pushRadius": 15 },
+  "enemy": { "bodyWidth": 28, "bodyHeight": 64, "hurtboxOffsetY": -64, "depthTolerance": 17, "pushRadius": 17 },
+  "prop": { "depthTolerance": 20 },
+  "rules": {
+    "simultaneousOverlapWidth": 22,
+    "separationForce": 0.45,
+    "depthSort": true,
+    "attackDepthToleranceBonus": 3
+  }
+}

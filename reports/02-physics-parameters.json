@@ -1,0 +1,111 @@
+{
+  "game": "Streets of Rage 1, JUE REV 00",
+  "unitNotes": "All SoR1 values are 68000 16.16 fixed point constants or byte table entries converted per Update_Inertia. 1 tick = 1/60 s on NTSC hardware.",
+  "parameters": [
+    {
+      "name": "walk speed (horizontal)",
+      "value": 3.0,
+      "unit": "px/tick",
+      "source": "SOR1-E001",
+      "method": "table byte $30 -> 16.16 synthesis",
+      "confidence": "inferred-from-table",
+      "engineUse": "config/movement.json player.walkSpeed scaled to 480x270 (1.9)"
+    },
+    {
+      "name": "depth speed",
+      "value": 12.0,
+      "unit": "px/tick",
+      "source": "SOR1-E002",
+      "method": "table byte $C0",
+      "confidence": "inferred-from-table",
+      "engineUse": "config/movement.json player.depthSpeed (1.45) - deliberately slower for a modern feel"
+    },
+    {
+      "name": "jump initial velocity",
+      "value": 7.0,
+      "unit": "px/tick (upward)",
+      "source": "SOR1-E003",
+      "method": "#$FFF90000 as 16.16",
+      "confidence": "verified",
+      "engineUse": "config/movement.json player.jumpVelocity (-5.2) tuned to 18 tick airtime"
+    },
+    {
+      "name": "gravity",
+      "value": 0.90625,
+      "unit": "px/tick^2",
+      "source": "SOR1-E003",
+      "method": "#$E800 as 16.16",
+      "confidence": "verified",
+      "engineUse": "config/movement.json player.gravity (0.56)"
+    },
+    {
+      "name": "maximum fall speed",
+      "value": 12.0,
+      "unit": "px/tick",
+      "source": "SOR1-E003",
+      "method": "clamp at $C0000",
+      "confidence": "verified",
+      "engineUse": "config/movement.json maxFallSpeed (8.0)"
+    },
+    {
+      "name": "derived jump apex",
+      "value": 27.03,
+      "unit": "px",
+      "source": "computed from SOR1-E003",
+      "method": "v^2 / 2g",
+      "confidence": "verified-arithmetic",
+      "engineUse": "new game targets ~22px apex at 480x270"
+    },
+    {
+      "name": "derived airtime",
+      "value": 15.45,
+      "unit": "ticks",
+      "source": "computed from SOR1-E003",
+      "method": "2v/g",
+      "confidence": "verified-arithmetic",
+      "engineUse": "new game measures 18 ticks"
+    },
+    {
+      "name": "attack hit box",
+      "value": [
+        40,
+        32
+      ],
+      "unit": "px (w,h)",
+      "source": "SOR1-E004",
+      "method": "Chk_Hit offsets",
+      "confidence": "verified",
+      "engineUse": "hit rectangles in config/animation.json (24-38 px wide)"
+    },
+    {
+      "name": "hit box forward offset",
+      "value": [
+        -20,
+        -16
+      ],
+      "unit": "px relative to object XPos/YPos",
+      "source": "SOR1-E004",
+      "method": "Chk_Hit addi.w constants",
+      "confidence": "verified",
+      "engineUse": "hit rect x/y offsets per frame"
+    },
+    {
+      "name": "depth tolerance vs enemy",
+      "value": 8,
+      "unit": "units",
+      "source": "SOR1-E005",
+      "method": "field $18 +/-8 window",
+      "confidence": "high",
+      "engineUse": "collision.player.depthTolerance = 15 for a 480x270 canvas"
+    },
+    {
+      "name": "animation clock",
+      "value": "per-frame countdown",
+      "unit": "ticks",
+      "source": "SOR1-E008",
+      "method": "FrameTimer byte",
+      "confidence": "high",
+      "engineUse": "config/animation.json frames[].dur"
+    }
+  ]
+}

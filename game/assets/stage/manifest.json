@@ -1,0 +1,98 @@
+{
+  "id": "rain_district_1",
+  "layers": {
+    "sky": {
+      "file": "layers/sky.png",
+      "parallax": 0.0,
+      "size": [
+        480,
+        270
+      ]
+    },
+    "far": {
+      "file": "layers/far.png",
+      "parallax": 0.15,
+      "tile": true,
+      "size": [
+        512,
+        270
+      ]
+    },
+    "mid": {
+      "file": "layers/mid.png",
+      "parallax": 0.45,
+      "tile": true,
+      "size": [
+        960,
+        270
+      ]
+    },
+    "near": {
+      "file": "layers/near.png",
+      "parallax": 1.0,
+      "tile": false,
+      "size": [
+        1800,
+        270
+      ]
+    },
+    "fg": {
+      "file": "layers/fg.png",
+      "parallax": 1.18,
+      "tile": true,
+      "size": [
+        480,
+        270
+      ]
+    }
+  },
+  "props": {
+    "crate": {
+      "frames": [
+        "props/crate_0.png",
+        "props/crate_1.png"
+      ],
+      "size": [
+        34,
+        34
+      ]
+    },
+    "barrel": {
+      "frames": [
+        "props/barrel_0.png",
+        "props/barrel_1.png"
+      ],
+      "size": [
+        26,
+        36
+      ]
+    },
+    "trash": {
+      "frames": [
+        "props/trash_0.png",
+        "props/trash_1.png"
+      ],
+      "size": [
+        24,
+        30
+      ]
+    }
+  },
+  "pickups": {
+    "health": {
+      "file": "props/pickup_health.png",
+      "size": [
+        18,
+        18
+      ]
+    },
+    "score": {
+      "file": "props/pickup_score.png",
+      "size": [
+        18,
+        18
+      ]
+    }
+  },
+  "lightPool": "props/light_pool.png"
+}

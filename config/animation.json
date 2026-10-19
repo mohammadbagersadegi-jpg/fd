@@ -1,0 +1,434 @@
+{
+  "$schema_version": "1.0",
+  "description": "Frame counts, per-frame display durations (60Hz ticks) and hit windows. Coordinates are relative to the sprite anchor at the feet, +x is forward, +y is down. Hit rectangles are only active on the frames that declare them.",
+  "characters": {
+    "volt": {
+      "frame": {
+        "width": 128,
+        "height": 96,
+        "anchorX": 64,
+        "anchorY": 88
+      },
+      "animations": {
+        "idle": {
+          "loop": true,
+          "frames": [
+            {
+              "dur": 12
+            },
+            {
+              "dur": 12
+            },
+            {
+              "dur": 12
+            },
+            {
+              "dur": 12
+            },
+            {
+              "dur": 12
+            },
+            {
+              "dur": 12
+            }
+          ]
+        },
+        "walk": {
+          "loop": true,
+          "frames": [
+            {
+              "dur": 8
+            },
+            {
+              "dur": 7
+            },
+            {
+              "dur": 7
+            },
+            {
+              "dur": 8
+            },
+            {
+              "dur": 7
+            },
+            {
+              "dur": 7
+            }
+          ]
+        },
+        "attack1": {
+          "loop": false,
+          "frames": [
+            {
+              "dur": 4
+            },
+            {
+              "dur": 3,
+              "hit": {
+                "x": 10,
+                "y": -56,
+                "w": 30,
+                "h": 16
+              }
+            },
+            {
+              "dur": 3,
+              "hit": {
+                "x": 10,
+                "y": -56,
+                "w": 30,
+                "h": 16
+              }
+            },
+            {
+              "dur": 5
+            },
+            {
+              "dur": 7
+            }
+          ]
+        },
+        "attack2": {
+          "loop": false,
+          "frames": [
+            {
+              "dur": 4
+            },
+            {
+              "dur": 3,
+              "hit": {
+                "x": 12,
+                "y": -58,
+                "w": 34,
+                "h": 16
+              }
+            },
+            {
+              "dur": 3,
+              "hit": {
+                "x": 12,
+                "y": -58,
+                "w": 34,
+                "h": 16
+              }
+            },
+            {
+              "dur": 5
+            },
+            {
+              "dur": 8
+            }
+          ]
+        },
+        "attack3": {
+          "loop": false,
+          "frames": [
+            {
+              "dur": 5
+            },
+            {
+              "dur": 4
+            },
+            {
+              "dur": 3,
+              "hit": {
+                "x": 14,
+                "y": -44,
+                "w": 38,
+                "h": 20
+              }
+            },
+            {
+              "dur": 4,
+              "hit": {
+                "x": 14,
+                "y": -44,
+                "w": 38,
+                "h": 20
+              }
+            },
+            {
+              "dur": 6
+            },
+            {
+              "dur": 9
+            }
+          ]
+        },
+        "special": {
+          "loop": false,
+          "frames": [
+            {
+              "dur": 6
+            },
+            {
+              "dur": 5
+            },
+            {
+              "dur": 6,
+              "hit": {
+                "radial": true
+              }
+            },
+            {
+              "dur": 5,
+              "hit": {
+                "radial": true
+              }
+            },
+            {
+              "dur": 6
+            },
+            {
+              "dur": 8
+            },
+            {
+              "dur": 8
+            },
+            {
+              "dur": 12
+            }
+          ]
+        },
+        "jump": {
+          "loop": false,
+          "frames": [
+            {
+              "dur": 8
+            },
+            {
+              "dur": 12
+            },
+            {
+              "dur": 12
+            },
+            {
+              "dur": 8
+            }
+          ]
+        },
+        "jump_attack": {
+          "loop": false,
+          "frames": [
+            {
+              "dur": 4
+            },
+            {
+              "dur": 8,
+              "hit": {
+                "x": 6,
+                "y": -46,
+                "w": 36,
+                "h": 24
+              }
+            },
+            {
+              "dur": 10
+            }
+          ]
+        },
+        "hurt": {
+          "loop": false,
+          "frames": [
+            {
+              "dur": 8
+            },
+            {
+              "dur": 10
+            }
+          ]
+        },
+        "fall": {
+          "loop": false,
+          "frames": [
+            {
+              "dur": 6
+            },
+            {
+              "dur": 6
+            },
+            {
+              "dur": 8
+            },
+            {
+              "dur": 14
+            }
+          ]
+        },
+        "getup": {
+          "loop": false,
+          "frames": [
+            {
+              "dur": 8
+            },
+            {
+              "dur": 6
+            },
+            {
+              "dur": 6
+            },
+            {
+              "dur": 8
+            }
+          ]
+        },
+        "victory": {
+          "loop": true,
+          "frames": [
+            {
+              "dur": 12
+            },
+            {
+              "dur": 12
+            },
+            {
+              "dur": 12
+            },
+            {
+              "dur": 12
+            }
+          ]
+        }
+      }
+    },
+    "rivet": {
+      "frame": {
+        "width": 128,
+        "height": 96,
+        "anchorX": 64,
+        "anchorY": 88
+      },
+      "animations": {
+        "idle": {
+          "loop": true,
+          "frames": [
+            {
+              "dur": 15
+            },
+            {
+              "dur": 15
+            },
+            {
+              "dur": 15
+            },
+            {
+              "dur": 15
+            }
+          ]
+        },
+        "walk": {
+          "loop": true,
+          "frames": [
+            {
+              "dur": 9
+            },
+            {
+              "dur": 8
+            },
+            {
+              "dur": 8
+            },
+            {
+              "dur": 9
+            },
+            {
+              "dur": 8
+            },
+            {
+              "dur": 8
+            }
+          ]
+        },
+        "attack": {
+          "loop": false,
+          "frames": [
+            {
+              "dur": 8
+            },
+            {
+              "dur": 7
+            },
+            {
+              "dur": 4,
+              "hit": {
+                "x": 10,
+                "y": -62,
+                "w": 44,
+                "h": 20
+              }
+            },
+            {
+              "dur": 5,
+              "hit": {
+                "x": 10,
+                "y": -62,
+                "w": 44,
+                "h": 20
+              }
+            },
+            {
+              "dur": 12
+            }
+          ]
+        },
+        "hurt": {
+          "loop": false,
+          "frames": [
+            {
+              "dur": 8
+            },
+            {
+              "dur": 10
+            }
+          ]
+        },
+        "fall": {
+          "loop": false,
+          "frames": [
+            {
+              "dur": 6
+            },
+            {
+              "dur": 6
+            },
+            {
+              "dur": 8
+            },
+            {
+              "dur": 14
+            }
+          ]
+        },
+        "getup": {
+          "loop": false,
+          "frames": [
+            {
+              "dur": 8
+            },
+            {
+              "dur": 6
+            },
+            {
+              "dur": 6
+            },
+            {
+              "dur": 8
+            }
+          ]
+        },
+        "defeated": {
+          "loop": false,
+          "hold": true,
+          "frames": [
+            {
+              "dur": 10
+            },
+            {
+              "dur": 24
+            }
+          ]
+        }
+      }
+    }
+  }
+}

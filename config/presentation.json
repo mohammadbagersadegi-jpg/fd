@@ -1,0 +1,34 @@
+{
+  "$schema_version": "1.0",
+  "description": "Look, feel and debug switches. Presentation only: changing these never changes gameplay balance.",
+  "render": {
+    "resolution": [480, 270],
+    "integerScale": true,
+    "scanlines": true,
+    "vignette": true,
+    "screenShakeDecay": 0.86,
+    "hitstopFrames": 3,
+    "flashAlpha": 0.55
+  },
+  "weather": {
+    "rainDrops": 190,
+    "rainSpeed": 7.5,
+    "rainAngle": -0.22,
+    "splashChance": 0.25,
+    "lightningMinTicks": 900,
+    "lightningMaxTicks": 2100,
+    "fogAlpha": 0.10
+  },
+  "ui": {
+    "showFps": false,
+    "hudScale": 1,
+    "damageNumbers": true,
+    "enemyHealthBars": true
+  },
+  "debug": {
+    "startAt": "title",
+    "showHitboxes": false,
+    "invincible": false,
+    "skipCinematic": false
+  }
+}

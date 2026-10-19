@@ -1,0 +1,442 @@
+{
+  "id": "volt",
+  "elite": false,
+  "frame": {
+    "width": 128,
+    "height": 96,
+    "anchorX": 64,
+    "anchorY": 88
+  },
+  "source": "tools/asset_pipeline/build_characters.py",
+  "animations": {
+    "idle": {
+      "loop": true,
+      "hold": false,
+      "sheet": "spritesheets/idle.png",
+      "frames": [
+        {
+          "i": 0,
+          "file": "frames/idle/idle_00.png",
+          "dur": 12
+        },
+        {
+          "i": 1,
+          "file": "frames/idle/idle_01.png",
+          "dur": 12
+        },
+        {
+          "i": 2,
+          "file": "frames/idle/idle_02.png",
+          "dur": 12
+        },
+        {
+          "i": 3,
+          "file": "frames/idle/idle_03.png",
+          "dur": 12
+        },
+        {
+          "i": 4,
+          "file": "frames/idle/idle_04.png",
+          "dur": 12
+        },
+        {
+          "i": 5,
+          "file": "frames/idle/idle_05.png",
+          "dur": 12
+        }
+      ],
+      "totalTicks": 72
+    },
+    "walk": {
+      "loop": true,
+      "hold": false,
+      "sheet": "spritesheets/walk.png",
+      "frames": [
+        {
+          "i": 0,
+          "file": "frames/walk/walk_00.png",
+          "dur": 8
+        },
+        {
+          "i": 1,
+          "file": "frames/walk/walk_01.png",
+          "dur": 7
+        },
+        {
+          "i": 2,
+          "file": "frames/walk/walk_02.png",
+          "dur": 7
+        },
+        {
+          "i": 3,
+          "file": "frames/walk/walk_03.png",
+          "dur": 8
+        },
+        {
+          "i": 4,
+          "file": "frames/walk/walk_04.png",
+          "dur": 7
+        },
+        {
+          "i": 5,
+          "file": "frames/walk/walk_05.png",
+          "dur": 7
+        }
+      ],
+      "totalTicks": 44
+    },
+    "attack1": {
+      "loop": false,
+      "hold": false,
+      "sheet": "spritesheets/attack1.png",
+      "frames": [
+        {
+          "i": 0,
+          "file": "frames/attack1/attack1_00.png",
+          "dur": 4
+        },
+        {
+          "i": 1,
+          "file": "frames/attack1/attack1_01.png",
+          "dur": 3,
+          "hit": {
+            "x": 10,
+            "y": -56,
+            "w": 30,
+            "h": 16
+          }
+        },
+        {
+          "i": 2,
+          "file": "frames/attack1/attack1_02.png",
+          "dur": 3,
+          "hit": {
+            "x": 10,
+            "y": -56,
+            "w": 30,
+            "h": 16
+          }
+        },
+        {
+          "i": 3,
+          "file": "frames/attack1/attack1_03.png",
+          "dur": 5
+        },
+        {
+          "i": 4,
+          "file": "frames/attack1/attack1_04.png",
+          "dur": 7
+        }
+      ],
+      "totalTicks": 22
+    },
+    "attack2": {
+      "loop": false,
+      "hold": false,
+      "sheet": "spritesheets/attack2.png",
+      "frames": [
+        {
+          "i": 0,
+          "file": "frames/attack2/attack2_00.png",
+          "dur": 4
+        },
+        {
+          "i": 1,
+          "file": "frames/attack2/attack2_01.png",
+          "dur": 3,
+          "hit": {
+            "x": 12,
+            "y": -58,
+            "w": 34,
+            "h": 16
+          }
+        },
+        {
+          "i": 2,
+          "file": "frames/attack2/attack2_02.png",
+          "dur": 3,
+          "hit": {
+            "x": 12,
+            "y": -58,
+            "w": 34,
+            "h": 16
+          }
+        },
+        {
+          "i": 3,
+          "file": "frames/attack2/attack2_03.png",
+          "dur": 5
+        },
+        {
+          "i": 4,
+          "file": "frames/attack2/attack2_04.png",
+          "dur": 8
+        }
+      ],
+      "totalTicks": 23
+    },
+    "attack3": {
+      "loop": false,
+      "hold": false,
+      "sheet": "spritesheets/attack3.png",
+      "frames": [
+        {
+          "i": 0,
+          "file": "frames/attack3/attack3_00.png",
+          "dur": 5
+        },
+        {
+          "i": 1,
+          "file": "frames/attack3/attack3_01.png",
+          "dur": 4
+        },
+        {
+          "i": 2,
+          "file": "frames/attack3/attack3_02.png",
+          "dur": 3,
+          "hit": {
+            "x": 14,
+            "y": -44,
+            "w": 38,
+            "h": 20
+          }
+        },
+        {
+          "i": 3,
+          "file": "frames/attack3/attack3_03.png",
+          "dur": 4,
+          "hit": {
+            "x": 14,
+            "y": -44,
+            "w": 38,
+            "h": 20
+          }
+        },
+        {
+          "i": 4,
+          "file": "frames/attack3/attack3_04.png",
+          "dur": 6
+        },
+        {
+          "i": 5,
+          "file": "frames/attack3/attack3_05.png",
+          "dur": 9
+        }
+      ],
+      "totalTicks": 31
+    },
+    "special": {
+      "loop": false,
+      "hold": false,
+      "sheet": "spritesheets/special.png",
+      "frames": [
+        {
+          "i": 0,
+          "file": "frames/special/special_00.png",
+          "dur": 6
+        },
+        {
+          "i": 1,
+          "file": "frames/special/special_01.png",
+          "dur": 5
+        },
+        {
+          "i": 2,
+          "file": "frames/special/special_02.png",
+          "dur": 6,
+          "hit": {
+            "radial": true
+          }
+        },
+        {
+          "i": 3,
+          "file": "frames/special/special_03.png",
+          "dur": 5,
+          "hit": {
+            "radial": true
+          }
+        },
+        {
+          "i": 4,
+          "file": "frames/special/special_04.png",
+          "dur": 6
+        },
+        {
+          "i": 5,
+          "file": "frames/special/special_05.png",
+          "dur": 8
+        },
+        {
+          "i": 6,
+          "file": "frames/special/special_06.png",
+          "dur": 8
+        },
+        {
+          "i": 7,
+          "file": "frames/special/special_07.png",
+          "dur": 12
+        }
+      ],
+      "totalTicks": 56
+    },
+    "jump": {
+      "loop": false,
+      "hold": false,
+      "sheet": "spritesheets/jump.png",
+      "frames": [
+        {
+          "i": 0,
+          "file": "frames/jump/jump_00.png",
+          "dur": 8
+        },
+        {
+          "i": 1,
+          "file": "frames/jump/jump_01.png",
+          "dur": 12
+        },
+        {
+          "i": 2,
+          "file": "frames/jump/jump_02.png",
+          "dur": 12
+        },
+        {
+          "i": 3,
+          "file": "frames/jump/jump_03.png",
+          "dur": 8
+        }
+      ],
+      "totalTicks": 40
+    },
+    "jump_attack": {
+      "loop": false,
+      "hold": false,
+      "sheet": "spritesheets/jump_attack.png",
+      "frames": [
+        {
+          "i": 0,
+          "file": "frames/jump_attack/jump_attack_00.png",
+          "dur": 4
+        },
+        {
+          "i": 1,
+          "file": "frames/jump_attack/jump_attack_01.png",
+          "dur": 8,
+          "hit": {
+            "x": 6,
+            "y": -46,
+            "w": 36,
+            "h": 24
+          }
+        },
+        {
+          "i": 2,
+          "file": "frames/jump_attack/jump_attack_02.png",
+          "dur": 10
+        }
+      ],
+      "totalTicks": 22
+    },
+    "hurt": {
+      "loop": false,
+      "hold": false,
+      "sheet": "spritesheets/hurt.png",
+      "frames": [
+        {
+          "i": 0,
+          "file": "frames/hurt/hurt_00.png",
+          "dur": 8
+        },
+        {
+          "i": 1,
+          "file": "frames/hurt/hurt_01.png",
+          "dur": 10
+        }
+      ],
+      "totalTicks": 18
+    },
+    "fall": {
+      "loop": false,
+      "hold": false,
+      "sheet": "spritesheets/fall.png",
+      "frames": [
+        {
+          "i": 0,
+          "file": "frames/fall/fall_00.png",
+          "dur": 6
+        },
+        {
+          "i": 1,
+          "file": "frames/fall/fall_01.png",
+          "dur": 6
+        },
+        {
+          "i": 2,
+          "file": "frames/fall/fall_02.png",
+          "dur": 8
+        },
+        {
+          "i": 3,
+          "file": "frames/fall/fall_03.png",
+          "dur": 14
+        }
+      ],
+      "totalTicks": 34
+    },
+    "getup": {
+      "loop": false,
+      "hold": false,
+      "sheet": "spritesheets/getup.png",
+      "frames": [
+        {
+          "i": 0,
+          "file": "frames/getup/getup_00.png",
+          "dur": 8
+        },
+        {
+          "i": 1,
+          "file": "frames/getup/getup_01.png",
+          "dur": 6
+        },
+        {
+          "i": 2,
+          "file": "frames/getup/getup_02.png",
+          "dur": 6
+        },
+        {
+          "i": 3,
+          "file": "frames/getup/getup_03.png",
+          "dur": 8
+        }
+      ],
+      "totalTicks": 28
+    },
+    "victory": {
+      "loop": true,
+      "hold": false,
+      "sheet": "spritesheets/victory.png",
+      "frames": [
+        {
+          "i": 0,
+          "file": "frames/victory/victory_00.png",
+          "dur": 12
+        },
+        {
+          "i": 1,
+          "file": "frames/victory/victory_01.png",
+          "dur": 12
+        },
+        {
+          "i": 2,
+          "file": "frames/victory/victory_02.png",
+          "dur": 12
+        },
+        {
+          "i": 3,
+          "file": "frames/victory/victory_03.png",
+          "dur": 12
+        }
+      ],
+      "totalTicks": 48
+    }
+  }
+}

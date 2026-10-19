@@ -1,0 +1,107 @@
+{
+  "game": "Streets of Rage (JUE) (REV 00)",
+  "disassembly": "gsaurus/sor-disassemblies -> Assemblies/Streets of Rage (JUE) (REV 00) [!].asm (72,919 lines)",
+  "method": "Static reading of the IDA Pro listing in the public disassembly repository. No ROM file was downloaded or analysed; every address below is the CPU address printed by IDA in that listing.",
+  "addressSpaces": "The listing uses 68000 CPU addresses (ROM window starts at $000000). File offsets in the ROM header equal CPU addresses for REV 00 because the cartridge maps at $000000, but this project did not verify that mapping against a ROM.",
+  "records": [
+    {
+      "id": "SOR1-E001",
+      "claim": "Player walk speed is read from a per-character byte table indexed by ObjMode, then converted to 16.16 fixed point by ext.w + swap + asr.l #4.",
+      "source": "Assemblies/Streets of Rage (JUE) (REV 00) [!].asm",
+      "location": "Update_Inertia subroutine, listing line 6656; table byte_3670 at line 6696",
+      "analysis": "disassembly-reading",
+      "evidence": "move.b (a1,d1.w),d2 ; ext.w d2 ; swap d2 ; asr.l #4,d2 ; move.l d2,X_Inertia(a0). Table entry 5 ($30) therefore becomes $30<<16>>4 = $30000 = 3.0 px/tick.",
+      "confidence": "verified-arithmetic, value inferred from table layout",
+      "uncertainty": "The table was not matched byte-for-byte against a running ROM; the mapping of table index -> animation/mode was inferred from ObjMode values and the identical 5-entry pattern repeated per character.",
+      "downstream": "reports/02-physics-parameters.json, config/movement.json walkSpeed (scaled), docs/calibration.md"
+    },
+    {
+      "id": "SOR1-E002",
+      "claim": "Depth-axis movement uses a second velocity byte in the same table pair at 4x the horizontal step (3.0 -> 12.0 px/tick).",
+      "source": "Assemblies/Streets of Rage (JUE) (REV 00) [!].asm",
+      "location": "byte_3670 entry 5 = $30, next byte = $C0; Update_Inertia reads 1(a1,d1.w) into Y_Inertia",
+      "analysis": "disassembly-reading",
+      "evidence": "$C0 converted the same way = 12.0 px/tick. SoR1 runs at 60 fps so 12 px/tick is fast enough to cross the lane in a few ticks.",
+      "confidence": "verified-arithmetic",
+      "uncertainty": "This project did not confirm that both bytes are used simultaneously in one frame (the code clears one inertia when the other is set via the bclr #2,$58(a0) path).",
+      "downstream": "config/movement.json depthSpeed rationale"
+    },
+    {
+      "id": "SOR1-E003",
+      "claim": "Jump initial velocity is -7.0 px/tick and gravity is 0.90625 px/tick^2.",
+      "source": "Assemblies/Streets of Rage (JUE) (REV 00) [!].asm",
+      "location": "loc_20BA jump start (listing line 3860: move.l #$FFF90000,Jump_Inertia(a0)); sub_389A gravity (line 6872: move.l #$E800,d0 ; add.l d0,Jump_Inertia(a0)); sub_3886 velocity clamp (line 6849: cmpi.l #$C0000,$24(a0))",
+      "analysis": "disassembly-reading + arithmetic",
+      "evidence": "$FFF90000 as 16.16 = -7.0. $E800 as 16.16 = 0.90625. The clamp caps downward speed at $C0000 = 12.0 px/tick.",
+      "confidence": "verified",
+      "uncertainty": "None for the constants; frame-to-frame application order (gravity before or after position) was not traced in full.",
+      "downstream": "reports/02-physics-parameters.json, tests 'derived SoR1 jump'"
+    },
+    {
+      "id": "SOR1-E004",
+      "claim": "A single player attack can only damage one object: the active attack box is sized 40x32 px (X+0x28, Y+0x20) around the attacker offset by (-0x14, -0x10).",
+      "source": "Assemblies/Streets of Rage (JUE) (REV 00) [!].asm",
+      "location": "Chk_Hit, listing lines 6007-6032",
+      "analysis": "disassembly-reading",
+      "evidence": "move.w XPos(a0),d1 ; addi.w #-$14,d1 ; move.w d1,d2 ; addi.w #$28,d2 ... addi.w #-$10,d3 ; move.w d3,d4 ; addi.w #$20,d4 ... it then tests enemy SST fields XPos/YPos/field $18 (a depth-like value offset by \u00b18).",
+      "confidence": "verified-arithmetic",
+      "uncertainty": "The loop bound ($43 = 67 entries) and the exact meaning of SST field $18 are inferred; the routine name Chk_Hit is the disassembly author's, not Capcom/Sega's.",
+      "downstream": "this project's hit rectangles (config/animation.json), reports/02-physics-parameters.json"
+    },
+    {
+      "id": "SOR1-E005",
+      "claim": "Depth tolerance against enemies is +-8 units in the collision test.",
+      "source": "Assemblies/Streets of Rage (JUE) (REV 00) [!].asm",
+      "location": "Chk_Hit, line 6022-6026: move.w $18(a0),d5 ; addi.w #-8,d5 ; move.w d5,d6 ; addq.w #8,d6",
+      "analysis": "disassembly-reading",
+      "evidence": "The comparison window around the attacker's depth value is [-8, +8].",
+      "confidence": "high",
+      "uncertainty": "It is unclear whether $18 is the same axis as YPos (screen Y) or a separate depth value; the two are separate SST fields, which suggests a 3D-ish layout.",
+      "downstream": "reports/02-physics-parameters.json, docs/calibration.md"
+    },
+    {
+      "id": "SOR1-E006",
+      "claim": "Object state is a table of word-sized handlers indexed by ObjMode, with 2 consecutive modes per state.",
+      "source": "Assemblies/Streets of Rage (JUE) (REV 00) [!].asm",
+      "location": "off_1CE2 handler table, listing lines 3425-3700",
+      "analysis": "disassembly-reading",
+      "evidence": "Modes 0/1 Init_Stand, 2/3 Obj_Stand, 4/5 Obj_Player_Pose, 6..F Obj_Player_Walk, 10/11 Obj_Jump_1, 12/13 Obj_Jump_2, 14/15 Obj_Jump_Land, 16/17 Obj_Jump_Attack, 18..1D Obj_Attack, 1E/1F Obj_Attack_KO, 22/23 Obj_BackAttack_1, 24/25 Obj_BackAttack_2, 56..59 death, 5A/5B Obj_Player_Hit, 5C/5D Obj_Player_KO, 5E Obj_Player_GetUp.",
+      "confidence": "verified from the table",
+      "uncertainty": "Modes above 5E were not enumerated in this pass.",
+      "downstream": "reports/02-state-machines.md state mapping table"
+    },
+    {
+      "id": "SOR1-E007",
+      "claim": "Attack damage is applied by Chk_Attack_Player, which negates a damage byte, calls Update_HealthBar and returns a flag when health reaches 0.",
+      "source": "Assemblies/Streets of Rage (JUE) (REV 00) [!].asm",
+      "location": "Chk_Attack_Player, listing lines 6466-6492",
+      "analysis": "disassembly-reading",
+      "evidence": "move.b AtkDamage(a1),d7 ... neg.w d7 ; jsr Update_HealthBar ; tst.w Health(a0) ; bmi/beq -> return -1.",
+      "confidence": "high",
+      "uncertainty": "Actual per-attack damage values live in each character's animation data and were not extracted here.",
+      "downstream": "config/combat.json damage design (independent values)"
+    },
+    {
+      "id": "SOR1-E008",
+      "claim": "Frame timing is per-object: FrameTimer(a0) counts down, and the animation advances when it reaches zero.",
+      "source": "Assemblies/Streets of Rage (JUE) (REV 00) [!].asm",
+      "location": "Obj_Stand / Obj_Player_Walk / Update_Frame, listing lines 3690-3700 and 7019",
+      "analysis": "disassembly-reading",
+      "evidence": "Obj_Stand: subq.b #1,FrameTimer(a0) ; bne.w Chk_ButtonPress. Obj_Player_Walk calls Update_Inertia then Update_Frame every tick.",
+      "confidence": "high",
+      "uncertainty": "The per-animation table that sets FrameTimer was not located in this pass.",
+      "downstream": "config/animation.json per-frame 'dur' in 60Hz ticks"
+    },
+    {
+      "id": "SOR1-E009",
+      "claim": "The disassembly repository contains four IDA .idb databases and four text listings, covering SoR1 (JUE) (REV 00), SoR2 (U), SoR3 (U) and Bare Knuckle 3 (J).",
+      "source": "gsaurus/sor-disassemblies repository",
+      "location": "Assemblies/ and IDA Pro Databases/ directories",
+      "analysis": "repository-inspection",
+      "evidence": "Directory listing from the cloned repository; the SoR1 listing carries the IDA header 'Input MD5 : 569CFEC15813294A8F0CF88CCCC8C151, CRC32 : BFF227C6'.",
+      "confidence": "verified",
+      "uncertainty": "The .idb files require IDA Pro (commercial, not installed here) to open; only the .asm text listing was used.",
+      "downstream": "reports/02-reverse-engineering.md"
+    }
+  ]
+}

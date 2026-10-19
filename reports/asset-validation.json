@@ -1,0 +1,274 @@
+{
+  "characters": {
+    "volt": {
+      "frame": [
+        128,
+        96
+      ],
+      "animations": {
+        "idle": {
+          "frames": 6,
+          "loop": true,
+          "ticks": 72,
+          "hitWindows": [],
+          "duplicateFrames": []
+        },
+        "walk": {
+          "frames": 6,
+          "loop": true,
+          "ticks": 44,
+          "hitWindows": [],
+          "duplicateFrames": []
+        },
+        "attack1": {
+          "frames": 5,
+          "loop": false,
+          "ticks": 22,
+          "hitWindows": [
+            1,
+            2
+          ],
+          "duplicateFrames": []
+        },
+        "attack2": {
+          "frames": 5,
+          "loop": false,
+          "ticks": 23,
+          "hitWindows": [
+            1,
+            2
+          ],
+          "duplicateFrames": []
+        },
+        "attack3": {
+          "frames": 6,
+          "loop": false,
+          "ticks": 31,
+          "hitWindows": [
+            2,
+            3
+          ],
+          "duplicateFrames": []
+        },
+        "special": {
+          "frames": 8,
+          "loop": false,
+          "ticks": 56,
+          "hitWindows": [
+            2,
+            3
+          ],
+          "duplicateFrames": []
+        },
+        "jump": {
+          "frames": 4,
+          "loop": false,
+          "ticks": 40,
+          "hitWindows": [],
+          "duplicateFrames": []
+        },
+        "jump_attack": {
+          "frames": 3,
+          "loop": false,
+          "ticks": 22,
+          "hitWindows": [
+            1
+          ],
+          "duplicateFrames": []
+        },
+        "hurt": {
+          "frames": 2,
+          "loop": false,
+          "ticks": 18,
+          "hitWindows": [],
+          "duplicateFrames": []
+        },
+        "fall": {
+          "frames": 4,
+          "loop": false,
+          "ticks": 34,
+          "hitWindows": [],
+          "duplicateFrames": [
+            3
+          ]
+        },
+        "getup": {
+          "frames": 4,
+          "loop": false,
+          "ticks": 28,
+          "hitWindows": [],
+          "duplicateFrames": []
+        },
+        "victory": {
+          "frames": 4,
+          "loop": true,
+          "ticks": 48,
+          "hitWindows": [],
+          "duplicateFrames": []
+        }
+      },
+      "errors": [],
+      "warnings": [
+        "fall: frames identical to the previous frame: [3]"
+      ],
+      "anchor": {
+        "idle": {
+          "feetRows": [
+            89,
+            89,
+            89,
+            89,
+            89,
+            89
+          ],
+          "anchorY": 88
+        },
+        "walk": {
+          "feetRows": [
+            89,
+            89,
+            89,
+            89,
+            89,
+            89
+          ],
+          "anchorY": 88
+        }
+      }
+    },
+    "rivet": {
+      "frame": [
+        128,
+        96
+      ],
+      "animations": {
+        "idle": {
+          "frames": 4,
+          "loop": true,
+          "ticks": 60,
+          "hitWindows": [],
+          "duplicateFrames": []
+        },
+        "walk": {
+          "frames": 6,
+          "loop": true,
+          "ticks": 50,
+          "hitWindows": [],
+          "duplicateFrames": []
+        },
+        "attack": {
+          "frames": 5,
+          "loop": false,
+          "ticks": 36,
+          "hitWindows": [
+            2,
+            3
+          ],
+          "duplicateFrames": []
+        },
+        "hurt": {
+          "frames": 2,
+          "loop": false,
+          "ticks": 18,
+          "hitWindows": [],
+          "duplicateFrames": []
+        },
+        "fall": {
+          "frames": 4,
+          "loop": false,
+          "ticks": 34,
+          "hitWindows": [],
+          "duplicateFrames": [
+            3
+          ]
+        },
+        "getup": {
+          "frames": 4,
+          "loop": false,
+          "ticks": 28,
+          "hitWindows": [],
+          "duplicateFrames": []
+        },
+        "defeated": {
+          "frames": 2,
+          "loop": false,
+          "ticks": 34,
+          "hitWindows": [],
+          "duplicateFrames": [
+            1
+          ]
+        }
+      },
+      "errors": [],
+      "warnings": [
+        "fall: frames identical to the previous frame: [3]",
+        "defeated: frames identical to the previous frame: [1]"
+      ],
+      "anchor": {
+        "idle": {
+          "feetRows": [
+            89,
+            89,
+            89,
+            89
+          ],
+          "anchorY": 88
+        },
+        "walk": {
+          "feetRows": [
+            89,
+            89,
+            89,
+            89,
+            89,
+            89
+          ],
+          "anchorY": 88
+        }
+      }
+    },
+    "rivet_elite": {
+      "frame": [
+        128,
+        96
+      ],
+      "animations": {},
+      "errors": [],
+      "warnings": [],
+      "aliasedTo": "rivet"
+    }
+  },
+  "stage": {
+    "errors": [],
+    "warnings": [],
+    "layers": {
+      "sky": [
+        480,
+        270
+      ],
+      "far": [
+        512,
+        270
+      ],
+      "mid": [
+        960,
+        270
+      ],
+      "near": [
+        1800,
+        270
+      ],
+      "fg": [
+        480,
+        270
+      ]
+    }
+  },
+  "totals": {
+    "errors": 0,
+    "warnings": 3,
+    "frames": 84,
+    "sheets": 19
+  },
+  "ok": true
+}

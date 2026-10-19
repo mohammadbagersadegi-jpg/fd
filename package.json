@@ -1,0 +1,19 @@
+{
+  "name": "neon-gauntlet",
+  "version": "1.0.0",
+  "private": true,
+  "description": "NEON GAUNTLET - an original browser beat 'em up built from a config-driven sprite and stage pipeline",
+  "scripts": {
+    "serve": "node tools/serve.js",
+    "assets": "python3 tools/asset_pipeline/build_all.py",
+    "test": "node tools/tests/run.js",
+    "validate": "python3 tools/validation/validate_assets.py",
+    "playtest": "node tools/tests/playtest.js",
+    "capture:shots": "node tools/capture/screenshots.js",
+    "capture:movie": "node tools/capture/movie.js"
+  },
+  "devDependencies": {
+    "@napi-rs/canvas": "^0.1.80"
+  },
+  "engines": { "node": ">=18" }
+}

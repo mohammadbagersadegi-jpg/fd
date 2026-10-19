@@ -1,0 +1,19 @@
+{
+  "title": "NEON GAUNTLET - intro cinematic",
+  "durationSeconds": 12.0,
+  "fps": 30,
+  "resolution": [1440, 810],
+  "sourceResolution": [480, 270],
+  "scale": 3,
+  "audio": null,
+  "source": "game/src/cinematic.js",
+  "renderer": "tools/capture/movie.js",
+  "output": "artifacts/video/cinematic.mp4",
+  "inGamePlayback": "game/src/main.js state 'cinematic' (ENTER on title screen)",
+  "shots": [
+    { "index": 1, "start": 0.0, "end": 3.0, "name": "district establishing", "camera": "static + parallax", "caption": "RAIN DISTRICT" },
+    { "index": 2, "start": 3.0, "end": 6.2, "name": "hero walk", "camera": "tracking right", "caption": "THE RUSTLINE CREW OWNS THIS BLOCK" },
+    { "index": 3, "start": 6.2, "end": 9.2, "name": "gauntlet charge", "camera": "slow push in", "caption": "ONE SPARK IS ALL IT TAKES" },
+    { "index": 4, "start": 9.2, "end": 12.0, "name": "standoff + title", "camera": "static", "caption": "NEON GAUNTLET" }
+  ]
+}

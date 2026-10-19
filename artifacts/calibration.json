@@ -1,0 +1,17 @@
+{
+  "measured": {
+    "walkSpeedPxPerTick": 1.88,
+    "jumpApexPx": 21.6,
+    "jumpAirTicks": 18,
+    "jumpAirSeconds": 0.3,
+    "attackFirstActiveTick": 4,
+    "attackLastActiveTick": 9,
+    "attackActiveTicks": 6,
+    "attackTotalTicks": 22
+  },
+  "referenceSor1Derived": {
+    "walkSpeedPxPerTick": 3,
+    "jumpApexPx": 27,
+    "jumpAirTicks": 15.45
+  }
+}

@@ -1,0 +1,216 @@
+{
+  "id": "rivet",
+  "elite": false,
+  "frame": {
+    "width": 128,
+    "height": 96,
+    "anchorX": 64,
+    "anchorY": 88
+  },
+  "source": "tools/asset_pipeline/build_characters.py",
+  "animations": {
+    "idle": {
+      "loop": true,
+      "hold": false,
+      "sheet": "spritesheets/idle.png",
+      "frames": [
+        {
+          "i": 0,
+          "file": "frames/idle/idle_00.png",
+          "dur": 15
+        },
+        {
+          "i": 1,
+          "file": "frames/idle/idle_01.png",
+          "dur": 15
+        },
+        {
+          "i": 2,
+          "file": "frames/idle/idle_02.png",
+          "dur": 15
+        },
+        {
+          "i": 3,
+          "file": "frames/idle/idle_03.png",
+          "dur": 15
+        }
+      ],
+      "totalTicks": 60
+    },
+    "walk": {
+      "loop": true,
+      "hold": false,
+      "sheet": "spritesheets/walk.png",
+      "frames": [
+        {
+          "i": 0,
+          "file": "frames/walk/walk_00.png",
+          "dur": 9
+        },
+        {
+          "i": 1,
+          "file": "frames/walk/walk_01.png",
+          "dur": 8
+        },
+        {
+          "i": 2,
+          "file": "frames/walk/walk_02.png",
+          "dur": 8
+        },
+        {
+          "i": 3,
+          "file": "frames/walk/walk_03.png",
+          "dur": 9
+        },
+        {
+          "i": 4,
+          "file": "frames/walk/walk_04.png",
+          "dur": 8
+        },
+        {
+          "i": 5,
+          "file": "frames/walk/walk_05.png",
+          "dur": 8
+        }
+      ],
+      "totalTicks": 50
+    },
+    "attack": {
+      "loop": false,
+      "hold": false,
+      "sheet": "spritesheets/attack.png",
+      "frames": [
+        {
+          "i": 0,
+          "file": "frames/attack/attack_00.png",
+          "dur": 8
+        },
+        {
+          "i": 1,
+          "file": "frames/attack/attack_01.png",
+          "dur": 7
+        },
+        {
+          "i": 2,
+          "file": "frames/attack/attack_02.png",
+          "dur": 4,
+          "hit": {
+            "x": 10,
+            "y": -62,
+            "w": 44,
+            "h": 20
+          }
+        },
+        {
+          "i": 3,
+          "file": "frames/attack/attack_03.png",
+          "dur": 5,
+          "hit": {
+            "x": 10,
+            "y": -62,
+            "w": 44,
+            "h": 20
+          }
+        },
+        {
+          "i": 4,
+          "file": "frames/attack/attack_04.png",
+          "dur": 12
+        }
+      ],
+      "totalTicks": 36
+    },
+    "hurt": {
+      "loop": false,
+      "hold": false,
+      "sheet": "spritesheets/hurt.png",
+      "frames": [
+        {
+          "i": 0,
+          "file": "frames/hurt/hurt_00.png",
+          "dur": 8
+        },
+        {
+          "i": 1,
+          "file": "frames/hurt/hurt_01.png",
+          "dur": 10
+        }
+      ],
+      "totalTicks": 18
+    },
+    "fall": {
+      "loop": false,
+      "hold": false,
+      "sheet": "spritesheets/fall.png",
+      "frames": [
+        {
+          "i": 0,
+          "file": "frames/fall/fall_00.png",
+          "dur": 6
+        },
+        {
+          "i": 1,
+          "file": "frames/fall/fall_01.png",
+          "dur": 6
+        },
+        {
+          "i": 2,
+          "file": "frames/fall/fall_02.png",
+          "dur": 8
+        },
+        {
+          "i": 3,
+          "file": "frames/fall/fall_03.png",
+          "dur": 14
+        }
+      ],
+      "totalTicks": 34
+    },
+    "getup": {
+      "loop": false,
+      "hold": false,
+      "sheet": "spritesheets/getup.png",
+      "frames": [
+        {
+          "i": 0,
+          "file": "frames/getup/getup_00.png",
+          "dur": 8
+        },
+        {
+          "i": 1,
+          "file": "frames/getup/getup_01.png",
+          "dur": 6
+        },
+        {
+          "i": 2,
+          "file": "frames/getup/getup_02.png",
+          "dur": 6
+        },
+        {
+          "i": 3,
+          "file": "frames/getup/getup_03.png",
+          "dur": 8
+        }
+      ],
+      "totalTicks": 28
+    },
+    "defeated": {
+      "loop": false,
+      "hold": true,
+      "sheet": "spritesheets/defeated.png",
+      "frames": [
+        {
+          "i": 0,
+          "file": "frames/defeated/defeated_00.png",
+          "dur": 10
+        },
+        {
+          "i": 1,
+          "file": "frames/defeated/defeated_01.png",
+          "dur": 24
+        }
+      ],
+      "totalTicks": 34
+    }
+  }
+}

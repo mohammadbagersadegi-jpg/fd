@@ -1,0 +1,188 @@
+{
+  "generatedAt": "2026-10-19T22:00:00Z",
+  "host": {
+    "os": "Debian GNU/Linux 12 (bookworm)",
+    "arch": "x86_64",
+    "cpu": 2,
+    "ramGB": 3.8,
+    "diskFreeGB": 20
+  },
+  "network": {
+    "reachable": [
+      "github.com",
+      "codeload.github.com",
+      "api.github.com",
+      "registry.npmjs.org",
+      "pypi.org",
+      "files.pythonhosted.org"
+    ],
+    "blocked": [
+      "release-assets.githubusercontent.com",
+      "apt repositories"
+    ]
+  },
+  "dependencies": [
+    {
+      "name": "node",
+      "status": "installed",
+      "version": "v22.22.3",
+      "evidence": "node --version"
+    },
+    {
+      "name": "npm",
+      "status": "installed",
+      "version": "10.9.8",
+      "evidence": "npm --version"
+    },
+    {
+      "name": "python3",
+      "status": "installed",
+      "version": "3.11.2",
+      "evidence": "python3 --version"
+    },
+    {
+      "name": "pip-system",
+      "status": "incompatible",
+      "version": "23.0.1 (PEP668)",
+      "evidence": "pip install pillow -> externally-managed-environment"
+    },
+    {
+      "name": "venv",
+      "status": "installed",
+      "version": "Python 3.11.2",
+      "evidence": "python3 -m venv /tmp/venv"
+    },
+    {
+      "name": "pillow",
+      "status": "installed",
+      "version": "13.0.0",
+      "evidence": "/tmp/venv/bin/python -c 'import PIL'"
+    },
+    {
+      "name": "numpy",
+      "status": "installed",
+      "version": "2.4.6",
+      "evidence": "venv import"
+    },
+    {
+      "name": "imageio-ffmpeg",
+      "status": "installed",
+      "version": "0.6.0 / ffmpeg 7.0.2",
+      "evidence": "imageio_ffmpeg.get_ffmpeg_exe()"
+    },
+    {
+      "name": "pytest",
+      "status": "installed",
+      "version": "8.x",
+      "evidence": "venv pip"
+    },
+    {
+      "name": "ffmpeg-system",
+      "status": "missing",
+      "version": null,
+      "evidence": "command -v ffmpeg"
+    },
+    {
+      "name": "node-canvas",
+      "status": "installed",
+      "version": "@napi-rs/canvas 0.1.x",
+      "evidence": "npm install + headless render"
+    },
+    {
+      "name": "headless-chromium",
+      "status": "incompatible",
+      "version": "@sparticuz/chromium",
+      "evidence": "libnspr4.so missing"
+    },
+    {
+      "name": "playwright",
+      "status": "missing",
+      "version": null,
+      "evidence": "no python/npm package"
+    },
+    {
+      "name": "uv",
+      "status": "missing",
+      "version": null,
+      "evidence": "command -v uv"
+    },
+    {
+      "name": "imagemagick",
+      "status": "installed",
+      "version": "6.9.11",
+      "evidence": "convert --version"
+    },
+    {
+      "name": "java",
+      "status": "missing",
+      "version": null,
+      "evidence": "command -v java"
+    },
+    {
+      "name": "ghidra",
+      "status": "missing",
+      "version": null,
+      "evidence": "command -v ghidra"
+    },
+    {
+      "name": "ida-pro",
+      "status": "missing",
+      "version": null,
+      "evidence": "command -v ida"
+    },
+    {
+      "name": "hopper",
+      "status": "missing",
+      "version": null,
+      "evidence": "command -v hopper"
+    },
+    {
+      "name": "rea-mcp",
+      "status": "not-installed",
+      "version": "repo cloned (82MB)",
+      "evidence": "no MCP host; not invoked"
+    },
+    {
+      "name": "openbor-binary",
+      "status": "unavailable",
+      "version": "v7533 AppImage",
+      "evidence": "download blocked (release-assets.githubusercontent.com)"
+    },
+    {
+      "name": "openbor-build",
+      "status": "blocked",
+      "version": "-",
+      "evidence": "cmake/pkg-config/SDL2 missing, apt unavailable"
+    },
+    {
+      "name": "gcc",
+      "status": "installed",
+      "version": "12.2.0",
+      "evidence": "gcc --version"
+    },
+    {
+      "name": "cmake",
+      "status": "missing",
+      "version": null,
+      "evidence": "command -v cmake"
+    },
+    {
+      "name": "pkg-config",
+      "status": "missing",
+      "version": null,
+      "evidence": "command -v pkg-config"
+    },
+    {
+      "name": "gh-cli",
+      "status": "installed",
+      "version": "2.23.0",
+      "evidence": "gh --version"
+    },
+    {
+      "name": "git",
+      "status": "installed",
+      "version": "2.39.5",
+      "evidence": "git --version"
+    }
+  ]
+}

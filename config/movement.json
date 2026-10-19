@@ -1,0 +1,31 @@
+{
+  "$schema_version": "1.0",
+  "description": "Movement and physics tunables. World units are virtual pixels at 480x270, 60 simulation ticks per second.",
+  "player": {
+    "walkSpeed": 1.9,
+    "depthSpeed": 1.45,
+    "accel": 0.55,
+    "decel": 0.9,
+    "jumpVelocity": -5.2,
+    "gravity": 0.56,
+    "maxFallSpeed": 8.0,
+    "airControl": 0.8,
+    "jumpBufferTicks": 8,
+    "landRecoveryTicks": 4,
+    "depthTolerance": 14
+  },
+  "enemy": {
+    "walkSpeed": 1.12,
+    "depthSpeed": 0.85,
+    "accel": 0.18,
+    "jumpVelocity": -5.0,
+    "gravity": 0.56,
+    "maxFallSpeed": 7.4
+  },
+  "camera": {
+    "deadzoneLeft": 168,
+    "deadzoneRight": 296,
+    "followSpeed": 2.6,
+    "edgeMargin": 24
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "fps": 30,
+  "scale": 3,
+  "files": {
+    "cinematic": {
+      "file": "cinematic.mp4",
+      "seconds": 12
+    },
+    "gameplay": {
+      "file": "gameplay.mp4",
+      "seconds": 49.7
+    }
+  }
+}

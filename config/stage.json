@@ -1,0 +1,147 @@
+{
+  "$schema_version": "1.0",
+  "id": "rain_district_1",
+  "title": "RAIN DISTRICT",
+  "subtitle": "STAGE 1 - BLOCK 07",
+  "worldWidth": 1800,
+  "laneMin": 204,
+  "laneMax": 250,
+  "startX": 80,
+  "startZ": 226,
+  "music": "neon-rain-loop",
+  "banners": {
+    "title": "RAIN DISTRICT",
+    "wave": "RUSTLINE CREW",
+    "clear": "STAGE CLEAR",
+    "go": "GO"
+  },
+  "waves": [
+    {
+      "id": 1,
+      "triggerX": 300,
+      "lockCamera": true,
+      "banner": "WAVE 1",
+      "enemies": [
+        {
+          "type": "rivet",
+          "spawnSide": "right",
+          "spawnOffset": 24,
+          "spawnZ": 212,
+          "delay": 0
+        },
+        {
+          "type": "rivet",
+          "spawnSide": "right",
+          "spawnOffset": 58,
+          "spawnZ": 242,
+          "delay": 55
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "triggerX": 930,
+      "lockCamera": true,
+      "banner": "WAVE 2",
+      "enemies": [
+        {
+          "type": "rivet",
+          "spawnSide": "right",
+          "spawnOffset": 24,
+          "spawnZ": 238,
+          "delay": 0
+        },
+        {
+          "type": "rivet_elite",
+          "spawnSide": "right",
+          "spawnOffset": 58,
+          "spawnZ": 210,
+          "delay": 40
+        },
+        {
+          "type": "rivet",
+          "spawnSide": "right",
+          "spawnOffset": 92,
+          "spawnZ": 224,
+          "delay": 150
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "triggerX": 1460,
+      "lockCamera": true,
+      "banner": "FINAL WAVE",
+      "enemies": [
+        {
+          "type": "rivet_elite",
+          "spawnSide": "right",
+          "spawnOffset": 24,
+          "spawnZ": 232,
+          "delay": 0
+        },
+        {
+          "type": "rivet",
+          "spawnSide": "right",
+          "spawnOffset": 58,
+          "spawnZ": 208,
+          "delay": 30
+        },
+        {
+          "type": "rivet",
+          "spawnSide": "right",
+          "spawnOffset": 92,
+          "spawnZ": 246,
+          "delay": 90
+        }
+      ]
+    }
+  ],
+  "props": [
+    {
+      "id": "crate_a",
+      "type": "crate",
+      "x": 560,
+      "z": 240,
+      "hp": 2,
+      "drop": "health"
+    },
+    {
+      "id": "trash_a",
+      "type": "trash",
+      "x": 1080,
+      "z": 214,
+      "hp": 1,
+      "drop": "score"
+    },
+    {
+      "id": "crate_b",
+      "type": "crate",
+      "x": 1260,
+      "z": 246,
+      "hp": 2,
+      "drop": "health"
+    },
+    {
+      "id": "barrel_a",
+      "type": "barrel",
+      "x": 1620,
+      "z": 218,
+      "hp": 2,
+      "drop": "health"
+    }
+  ],
+  "pickups": {
+    "health": {
+      "heal": 24,
+      "ttl": 600,
+      "label": "CHARGE"
+    },
+    "score": {
+      "points": 150,
+      "ttl": 600,
+      "label": "SCRAP"
+    }
+  },
+  "finishLineX": 1740
+}

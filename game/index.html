@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>NEON GAUNTLET - an original beat 'em up</title>
+<style>
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; background: #05060c; overflow: hidden; }
+  body {
+    display: flex; align-items: center; justify-content: center;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    color: #cfe8ee; touch-action: none;
+  }
+  #wrap { position: relative; width: min(100vw, 177.78vh); aspect-ratio: 16 / 9; max-height: 100vh; }
+  canvas#screen {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    image-rendering: pixelated; image-rendering: crisp-edges;
+    background: #05060c; display: block; outline: none;
+  }
+  #loading {
+    position: absolute; inset: 0; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 14px;
+    background: #05060c; font-size: 14px; letter-spacing: 0.3em;
+  }
+  #loading.hidden { display: none; }
+  #loading-bar-wrap { width: 220px; height: 4px; background: #14202c; }
+  #loading-bar { height: 100%; width: 0%; background: #63f7ff; transition: width 80ms linear; }
+  #touch {
+    position: absolute; inset: auto 0 0 0; display: none; justify-content: space-between;
+    padding: 12px; pointer-events: none;
+  }
+  #touch .pad, #touch .btns { display: flex; gap: 8px; pointer-events: auto; }
+  #touch button {
+    width: 52px; height: 52px; border-radius: 10px; border: 1px solid #2b4b5a;
+    background: rgba(12, 26, 34, 0.72); color: #9fe9f5; font: 600 13px monospace;
+    -webkit-user-select: none; user-select: none;
+  }
+  #touch button.active { background: rgba(60, 200, 220, 0.35); }
+  @media (hover: none) and (pointer: coarse) { #touch { display: flex; } }
+  #hint {
+    position: absolute; left: 50%; bottom: 6px; transform: translateX(-50%);
+    font-size: 11px; color: #44606c; letter-spacing: 0.12em; white-space: nowrap;
+  }
+</style>
+</head>
+<body>
+<div id="wrap">
+  <canvas id="screen" width="480" height="270" tabindex="0" aria-label="Neon Gauntlet game canvas"></canvas>
+  <div id="loading">
+    <div>LOADING NEON GAUNTLET</div>
+    <div id="loading-bar-wrap"><div id="loading-bar"></div></div>
+    <div style="font-size:10px;color:#3c5a66;letter-spacing:0.15em">ORIGINAL ASSETS - 84 FRAMES</div>
+  </div>
+  <div id="touch">
+    <div class="pad">
+      <button data-action="left">&#9664;</button>
+      <button data-action="right">&#9654;</button>
+      <button data-action="up">&#9650;</button>
+      <button data-action="down">&#9660;</button>
+    </div>
+    <div class="btns">
+      <button data-action="attack">ATK</button>
+      <button data-action="jump">JMP</button>
+      <button data-action="special">SP</button>
+      <button data-action="pause">II</button>
+    </div>
+  </div>
+  <div id="hint">ENTER start &middot; ARROWS move &middot; J attack &middot; K jump &middot; L special &middot; ESC pause &middot; F2 hitboxes</div>
+</div>
+
+<script src="src/generated/data.js"></script>
+<script src="../game/assets/fonts/font5x7.js"></script>
+<script src="src/core.js"></script>
+<script src="src/assets.js"></script>
+<script src="src/font.js"></script>
+<script src="src/input.js"></script>
+<script src="src/audio.js"></script>
+<script src="src/actors.js"></script>
+<script src="src/stage.js"></script>
+<script src="src/render.js"></script>
+<script src="src/cinematic.js"></script>
+<script src="src/main.js"></script>
+<script>
+  // Optional captured cinematic bundle (produced by tools/capture/export_film.js).
+  (function () {
+    const params = new URLSearchParams(location.search);
+    if (params.get('capture') === '1') {
+      window.FD_CAPTURE = true;
+    }
+    if (window.FD_CINEMATIC_SRC) {
+      const s = document.createElement('script');
+      s.src = window.FD_CINEMATIC_SRC;
+      document.body.appendChild(s);
+    }
+  })();
+  window.addEventListener('load', async () => {
+    try {
+      const game = await FD.boot({});
+      FD.input.bindTouch(document.getElementById('touch'));
+      document.getElementById('screen').focus();
+      if (window.FD_CAPTURE) {
+        // capture harness: jump straight into the demo run
+        game.skipCinematic = true;
+        game.autopilot = true;
+        game.startStage();
+        game.setState('intro');
+      }
+    } catch (err) {
+      document.getElementById('loading').textContent = 'ERROR: ' + err.message;
+      console.error(err);
+    }
+  });
+</script>
+</body>
+</html>

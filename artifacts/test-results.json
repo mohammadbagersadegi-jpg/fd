@@ -1,0 +1,121 @@
+{
+  "suite": "neon-gauntlet",
+  "generatedAt": "2026-10-19T22:09:06.050Z",
+  "totals": {
+    "passed": 22,
+    "failed": 0,
+    "total": 22
+  },
+  "results": [
+    {
+      "name": "config: all JSON parse and required keys exist",
+      "status": "PASS",
+      "detail": "3 waves, 2 character sheets"
+    },
+    {
+      "name": "assets: every configured animation frame image exists",
+      "status": "PASS",
+      "detail": "84 frames resolved"
+    },
+    {
+      "name": "assets: frame dimensions match config for every animation",
+      "status": "PASS",
+      "detail": "96x96... 112x96 frames all match"
+    },
+    {
+      "name": "assets: animation timing values are positive integers",
+      "status": "PASS",
+      "detail": "84 frame durations validated"
+    },
+    {
+      "name": "assets: hit windows only reference frames that exist",
+      "status": "PASS",
+      "detail": "11 active hit windows"
+    },
+    {
+      "name": "logic: player walks right at the configured speed",
+      "status": "PASS",
+      "detail": "111.6 px in 60 ticks (1.86 px/tick)"
+    },
+    {
+      "name": "logic: player stops when input stops",
+      "status": "PASS",
+      "detail": "vx decayed to 0.000, state=idle"
+    },
+    {
+      "name": "logic: attack starts, has a finite active window and returns to idle",
+      "status": "PASS",
+      "detail": "active 6 ticks, total 22 ticks"
+    },
+    {
+      "name": "logic: combo chains attack1 -> attack2 -> attack3 while tapping attack",
+      "status": "PASS",
+      "detail": "chained attack1 -> attack2 -> attack3"
+    },
+    {
+      "name": "logic: one attack cannot damage the same enemy twice",
+      "status": "PASS",
+      "detail": "damage applied 6 (single hit cap 6)"
+    },
+    {
+      "name": "logic: enemy hit puts the player into hurt and blocks further damage briefly",
+      "status": "PASS",
+      "detail": "hp 100 -> 92, second hit blocked by 38 i-frames"
+    },
+    {
+      "name": "logic: knockdown -> get up cycle restores control",
+      "status": "PASS",
+      "detail": "recovered to idle after 120 ticks"
+    },
+    {
+      "name": "logic: special costs health, damages all nearby enemies and has a cooldown",
+      "status": "PASS",
+      "detail": "both enemies damaged, 8 HP spent once, 17 ticks of cooldown left after 80 ticks"
+    },
+    {
+      "name": "logic: props break after their HP and drop a pickup",
+      "status": "PASS",
+      "detail": "crate broke after 2 hits, dropped health"
+    },
+    {
+      "name": "logic: pickups heal without exceeding max health",
+      "status": "PASS",
+      "detail": "healed 90 -> 100 (capped)"
+    },
+    {
+      "name": "flow: waves lock the camera, spawn enemies and unlock when cleared",
+      "status": "PASS",
+      "detail": "2 enemies spawned, wave advanced to 2"
+    },
+    {
+      "name": "flow: full stage playthrough reaches stage clear and results",
+      "status": "PASS",
+      "detail": "cleared in 40.0s, score 4400, 63 hits"
+    },
+    {
+      "name": "flow: player death leads to game over, retry restarts the stage",
+      "status": "PASS",
+      "detail": "game over after 204 ticks, retry -> intro"
+    },
+    {
+      "name": "flow: pause freezes the simulation and resumes",
+      "status": "PASS",
+      "detail": "paused for 30 ticks without advancing, resumed"
+    },
+    {
+      "name": "calibration: measured movement, jump and attack timings",
+      "status": "PASS",
+      "detail": "walk 1.88px/t, jump 21.6px/18t, attack active 6t of 22t"
+    },
+    {
+      "name": "calibration: derived SoR1 jump matches the constants in the disassembly",
+      "status": "PASS",
+      "detail": "SoR1: v=7, g=0.90625, apex=27.03px, airtime=15.45 ticks"
+    },
+    {
+      "name": "calibration: depth tolerance and hit box geometry are documented",
+      "status": "PASS",
+      "detail": "player depth ±15px, enemy ±17px, SoR1 reference ±8px"
+    }
+  ]
+}

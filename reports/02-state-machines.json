@@ -1,0 +1,199 @@
+{
+  "games": [
+    "player: volt",
+    "enemy: rivet",
+    "enemy: rivet_elite"
+  ],
+  "note": "Names are this project's conceptual states; the soR1Mapping keys show the matching ObjMode handler from reports/02-evidence-ledger.json SOR1-E006.",
+  "machines": {
+    "player": {
+      "soR1Mapping": {
+        "IDLE": "Obj_Stand (2/3)",
+        "WALK": "Obj_Player_Walk (6-F)",
+        "ATTACK1-3": "Obj_Attack (18-1D)",
+        "JUMP": "Obj_Jump_1/2 (10-13)",
+        "JUMP_ATTACK": "Obj_Jump_Attack (16/17)",
+        "LAND": "Obj_Jump_Land (14/15)",
+        "SPECIAL": "Obj_Player_Pose (4/5) - closest match",
+        "HURT": "Obj_Player_Hit (5A/5B)",
+        "FALL": "Obj_Player_KO (5C/5D)",
+        "GETUP": "Obj_Player_GetUp (5E)",
+        "DEAD": "Obj_Player_Death (56-59)"
+      },
+      "invariants": [
+        "an attack can hit each target at most once (hitSet cleared only when a new attack starts)",
+        "combo input is only accepted during an attack; the chain fires at chainAtTick",
+        "yOffset returns to exactly 0 on landing; landing recovery is 4 ticks",
+        "invulnTicks blocks damage and state changes",
+        "a dead player cannot act"
+      ],
+      "states": {
+        "IDLE": {
+          "anim": "idle",
+          "loop": true,
+          "exits": [
+            "WALK (direction pressed)",
+            "ATTACK (attack pressed)",
+            "JUMP (jump pressed)",
+            "SPECIAL (special pressed, cooldown 0)"
+          ]
+        },
+        "WALK": {
+          "anim": "walk",
+          "loop": true,
+          "exits": [
+            "IDLE (no input)",
+            "ATTACK / JUMP / SPECIAL"
+          ]
+        },
+        "ATTACK": {
+          "anim": "attack1|attack2|attack3",
+          "loop": false,
+          "data": [
+            "comboIndex",
+            "attackBuffer",
+            "chainAtTick",
+            "hitSet"
+          ],
+          "exits": [
+            "ATTACK(next) when attack is buffered and attackTicks >= chainAtTick",
+            "IDLE when the last frame ends"
+          ]
+        },
+        "JUMP": {
+          "anim": "jump",
+          "physics": "vy 5.2, g 0.56",
+          "exits": [
+            "JUMP_ATTACK (attack in air)",
+            "LAND (yOffset <= 0)"
+          ]
+        },
+        "JUMP_ATTACK": {
+          "anim": "jump_attack",
+          "exits": [
+            "LAND (yOffset <= 0)"
+          ]
+        },
+        "LAND": {
+          "anim": "idle frame 0",
+          "duration": "landRecoveryTicks = 4",
+          "exits": [
+            "IDLE"
+          ]
+        },
+        "SPECIAL": {
+          "anim": "special",
+          "data": [
+            "specialCooldown = 90",
+            "invulnTicks = 20",
+            "radial hit on frames 2-3"
+          ],
+          "exits": [
+            "IDLE when frames end"
+          ]
+        },
+        "HURT": {
+          "anim": "hurt",
+          "duration": "hurtTicks = 14",
+          "exits": [
+            "IDLE"
+          ]
+        },
+        "FALL": {
+          "anim": "fall",
+          "physics": "vy 2.2, g 0.56 then knockdownTicks = 82 on the floor",
+          "exits": [
+            "GETUP (knockdown timer)",
+            "DEAD (health 0 then timer)"
+          ]
+        },
+        "GETUP": {
+          "anim": "getup",
+          "invuln": "getupInvulnTicks = 45",
+          "exits": [
+            "IDLE"
+          ]
+        },
+        "DEAD": {
+          "anim": "fall last frame",
+          "exits": [
+            "GAME OVER after 110 ticks"
+          ]
+        },
+        "VICTORY": {
+          "anim": "victory",
+          "loop": true,
+          "entered": "stage clear"
+        }
+      }
+    },
+    "enemy": {
+      "states": {
+        "SPAWN": {
+          "anim": "walk",
+          "note": "walks in from outside the arena; alpha fades in over 24 ticks",
+          "exits": [
+            "APPROACH when on screen or 140 ticks"
+          ]
+        },
+        "APPROACH": {
+          "anim": "walk|idle",
+          "data": [
+            "side",
+            "preferredSideOffset",
+            "preferredDepthOffset",
+            "cooldown",
+            "safeTime"
+          ],
+          "exits": [
+            "ATTACK when in range, cooldown 0 and player vulnerable",
+            "idle pause when in position"
+          ]
+        },
+        "ATTACK": {
+          "anim": "attack",
+          "activeFrames": [
+            2,
+            3
+          ],
+          "hitsPlayerOnce": "hitSet(player)",
+          "exits": [
+            "APPROACH when frames end"
+          ]
+        },
+        "HURT": {
+          "anim": "hurt",
+          "duration": "hurtTicks (13 / 12 elite)",
+          "exits": [
+            "APPROACH"
+          ]
+        },
+        "FALL": {
+          "anim": "fall",
+          "exits": [
+            "GETUP (knockdown timer)",
+            "DEFEATED (health 0)"
+          ]
+        },
+        "GETUP": {
+          "anim": "getup",
+          "invuln": 46,
+          "exits": [
+            "APPROACH"
+          ]
+        },
+        "DEFEATED": {
+          "anim": "defeated",
+          "note": "fades out over 70 ticks, no hitboxes, removed at 80",
+          "exits": []
+        }
+      },
+      "antiStuckRules": [
+        "side flips when another enemy already holds it",
+        "retreat chance after an attack",
+        "personal space push between enemies",
+        "arena expanded 80px beyond the camera so spawns never clamp inside the screen"
+      ]
+    }
+  }
+}

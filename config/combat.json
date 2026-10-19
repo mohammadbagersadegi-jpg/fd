@@ -1,0 +1,65 @@
+{
+  "$schema_version": "1.0",
+  "description": "Damage, reactions and timing for the player and the single enemy archetype. Hit windows live in animation.json.",
+  "player": {
+    "maxHealth": 100,
+    "hurtTicks": 14,
+    "hurtInvulnTicks": 38,
+    "knockdownTicks": 82,
+    "getupTicks": 30,
+    "getupInvulnTicks": 45,
+    "comboWindowTicks": 26,
+    "attackBufferTicks": 10,
+    "attacks": {
+      "attack1": { "damage": 6, "hitstop": 3, "knockback": 1.2, "hitstun": 12, "knockdown": false, "shake": 1.2, "sfx": "punch" },
+      "attack2": { "damage": 7, "hitstop": 4, "knockback": 1.6, "hitstun": 14, "knockdown": false, "shake": 1.6, "sfx": "punch_heavy" },
+      "attack3": { "damage": 12, "hitstop": 5, "knockback": 3.6, "hitstun": 20, "knockdown": true, "shake": 3.0, "sfx": "kick_heavy" },
+      "jump_attack": { "damage": 9, "hitstop": 4, "knockback": 2.0, "hitstun": 16, "knockdown": false, "shake": 2.0, "sfx": "punch_heavy" }
+    },
+    "special": {
+      "damage": 16, "hitstop": 7, "knockback": 4.2, "hitstun": 26, "knockdown": true,
+      "healthCost": 8, "cooldownTicks": 90, "invulnTicks": 20, "radius": 66,
+      "depthRadius": 26, "shake": 5.0, "sfx": "zap"
+    }
+  },
+  "enemyTypes": {
+    "rivet": {
+      "displayName": "RIVET",
+      "maxHealth": 42,
+      "walkSpeed": 1.12,
+      "depthSpeed": 0.85,
+      "attackRange": 44,
+      "attackDamage": 8,
+      "attackCooldownTicks": 72,
+      "reactionTicks": 18,
+      "aggroRadius": 260,
+      "preferredDepthOffset": 4,
+      "preferredSideOffset": 30,
+      "retreatChance": 0.22,
+      "hurtTicks": 13,
+      "knockdownTicks": 72,
+      "getupTicks": 26,
+      "score": 300,
+      "elite": false
+    },
+    "rivet_elite": {
+      "displayName": "RIVET-S",
+      "maxHealth": 64,
+      "walkSpeed": 1.22,
+      "depthSpeed": 0.9,
+      "attackRange": 48,
+      "attackDamage": 11,
+      "attackCooldownTicks": 62,
+      "reactionTicks": 16,
+      "aggroRadius": 280,
+      "preferredDepthOffset": 2,
+      "preferredSideOffset": 32,
+      "retreatChance": 0.16,
+      "hurtTicks": 12,
+      "knockdownTicks": 76,
+      "getupTicks": 26,
+      "score": 550,
+      "elite": true
+    }
+  }
+}
