@@ -27,7 +27,7 @@ included or required.
 | Stage: 1800 px rainy neon street, 5 parallax layers, rain/lightning, camera follow + wave lock, 3 waves, finish trigger | delivered |
 | Destructible props (2 crates, trash bag, barrel) with health pickups and score pickups | delivered |
 | Intro cinematic, 12 s, 4 shots, with in-engine playback and an MP4 export | delivered |
-| Autopilot playthrough + 11 proof frames + 50 s gameplay recording | delivered |
+| Autopilot playthrough + proof frames + 50 s gameplay recording | delivered |
 | 22 automated behaviour/asset tests, 84-frame art QA gate (0 errors, 3 intentional hold-frame warnings) | delivered |
 | Audio: procedural WebAudio SFX + stage bed (no external audio files) | delivered |
 | Gamepad and touch controls | delivered |

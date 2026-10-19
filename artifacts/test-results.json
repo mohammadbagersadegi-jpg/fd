@@ -1,6 +1,6 @@
 {
   "suite": "neon-gauntlet",
-  "generatedAt": "2026-10-19T22:09:06.050Z",
+  "generatedAt": "2026-10-19T22:11:35.045Z",
   "totals": {
     "passed": 22,
     "failed": 0,
@@ -90,7 +90,7 @@
     {
       "name": "flow: full stage playthrough reaches stage clear and results",
       "status": "PASS",
-      "detail": "cleared in 40.0s, score 4400, 63 hits"
+      "detail": "cleared in 42.9s, score 4450, 60 hits"
     },
     {
       "name": "flow: player death leads to game over, retry restarts the stage",

@@ -13,6 +13,7 @@ const LOG = path.join(ROOT, 'artifacts/playtest.json');
 
 (async () => {
   const { FD } = await loadProject();
+  fs.rmSync(OUT, { recursive: true, force: true });
   fs.mkdirSync(OUT, { recursive: true });
   const game = makeGame(FD, 'stage');
   game.autopilot = true;
