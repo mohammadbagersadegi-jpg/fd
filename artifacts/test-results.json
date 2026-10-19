@@ -1,6 +1,6 @@
 {
   "suite": "neon-gauntlet",
-  "generatedAt": "2026-10-19T22:17:32.431Z",
+  "generatedAt": "2026-10-19T22:18:20.647Z",
   "totals": {
     "passed": 23,
     "failed": 0,
@@ -90,7 +90,7 @@
     {
       "name": "flow: full stage playthrough reaches stage clear and results",
       "status": "PASS",
-      "detail": "cleared in 43.5s, score 4450, 60 hits"
+      "detail": "cleared in 39.7s, score 4600, 64 hits"
     },
     {
       "name": "cinematic: title Enter starts the 12 s intro and hands off to the stage intro",
