@@ -8,7 +8,7 @@
 **Decision:** deliver a self-contained HTML5 Canvas2D engine (ES2020, no framework, no build step), with all gameplay data in JSON. The rendering code is written so that the same modules run in a browser *and* in a Node canvas harness, which is what produced every screenshot and both MP4 files.
 
 **Consequences:**
-- (+) The build is verifiable here: 22 automated tests, 11 screenshots, 2 rendered videos.
+- (+) The build is verifiable here: 23 automated tests, 11 screenshots, 2 rendered videos.
 - (+) All art, audio and timing are original and editable.
 - (-) No OpenBOR module is delivered. The port path is documented, not claimed.
 - (-) Browser keyboard/gamepad input is the only control scheme (touch buttons provided).

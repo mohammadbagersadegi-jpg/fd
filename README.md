@@ -28,7 +28,7 @@ included or required.
 | Destructible props (2 crates, trash bag, barrel) with health pickups and score pickups | delivered |
 | Intro cinematic, 12 s, 4 shots, with in-engine playback and an MP4 export | delivered |
 | Autopilot playthrough + proof frames + 50 s gameplay recording | delivered |
-| 22 automated behaviour/asset tests, 84-frame art QA gate (0 errors, 3 intentional hold-frame warnings) | delivered |
+| 23 automated behaviour/asset tests, 84-frame art QA gate (0 errors, 3 intentional hold-frame warnings) | delivered |
 | Audio: procedural WebAudio SFX + stage bed (no external audio files) | delivered |
 | Gamepad and touch controls | delivered |
 
@@ -131,7 +131,7 @@ game/
 tools/
   asset_pipeline/       rig, font, stage, bundler, design sheet, build_all
   validation/           sprite QA gate
-  tests/                run.js (22 tests), playtest.js (scripted E2E)
+  tests/                run.js (23 tests), playtest.js (scripted E2E)
   capture/              harness.js, screenshots.js, movie.js
   serve.js              zero-dependency static server
 reports/                environment, engine choice, RE evidence, state machines,
@@ -170,7 +170,7 @@ Adding a frame or a whole animation is described in section 8.
 ## 7. Running the tests
 
 ```bash
-npm test                    # 22 behaviour + asset tests, headless
+npm test                    # 23 behaviour + asset tests, headless
 npm run validate            # sprite/sheet/manifest QA gate
 npm run playtest            # scripted end-to-end run, writes artifacts/playtest*
 node tools/capture/screenshots.js   # 11 PNGs into artifacts/screenshots/

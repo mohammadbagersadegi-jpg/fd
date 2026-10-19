@@ -17,7 +17,7 @@ Scoring is based on what was *actually* verified in this sandbox on 2026-10-19.
 | Standalone output | Y (engine + .pak) | Y (patched exe) | Y (static site) |
 | Documentation quality | good (engine repo + community) | low / fragmented | in-repo docs, this report set |
 | Setup cost | high (module format, packer) | high (proprietary tooling) | low |
-| Automated testing | **N** (manual play) | **N** | **Y** - 22 automated checks |
+| Automated testing | **N** (manual play) | **N** | **Y** - 23 automated checks |
 | Original art usable | Y | ? | Y - all art generated here |
 | Long-term maintainability | strong (community) | weak | strong (plain ES2020 + JSON) |
 

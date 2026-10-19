@@ -315,6 +315,27 @@ function testGameplay() {
     return `cleared in ${(ticks / 60).toFixed(1)}s, score ${game.results.score}, ${game.results.hits} hits`;
   });
 
+  test('cinematic: title Enter starts the 12 s intro and hands off to the stage intro', () => {
+    const game = makeGame(FD, 'title');
+    const filmMode = FD.assets.filmMode;
+    FD.assets.filmMode = false; // the capture harness disables the intro; play it like a browser
+    assert(FD.Cinematic && typeof FD.Cinematic.draw === 'function', 'FD.Cinematic missing');
+    const dur = FD.Cinematic.duration;
+    assert(dur >= 10 && dur <= 15, `cinematic duration ${dur}s outside the 10-15 s target`);
+    FD.input.press('start');
+    game.update();
+    FD.input.release('start');
+    assert(game.state === 'cinematic', `title did not enter cinematic (${game.state})`);
+    let ticks = 0;
+    while (game.state === 'cinematic' && ticks < 60 * 20) { game.update(); ticks++; }
+    assert(game.state === 'intro', `cinematic did not hand off to the stage intro (${game.state})`);
+    // drawing the film must not throw at any point in the timeline
+    const probe = makeGame(FD, 'title');
+    for (let t = 0; t <= dur; t += 0.4) FD.Cinematic.draw(probe, probe.canvas.getContext('2d'), t);
+    FD.assets.filmMode = filmMode;
+    return `${dur.toFixed(1)}s intro played, handed off to ${game.state} after ${(ticks / 60).toFixed(2)}s, all frames drew`;
+  });
+
   test('flow: player death leads to game over, retry restarts the stage', () => {
     const game = makeGame(FD, 'stage');
     game.setState('playing');

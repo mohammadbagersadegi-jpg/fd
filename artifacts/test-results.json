@@ -1,10 +1,10 @@
 {
   "suite": "neon-gauntlet",
-  "generatedAt": "2026-10-19T22:11:35.045Z",
+  "generatedAt": "2026-10-19T22:12:23.077Z",
   "totals": {
-    "passed": 22,
+    "passed": 23,
     "failed": 0,
-    "total": 22
+    "total": 23
   },
   "results": [
     {
@@ -90,7 +90,12 @@
     {
       "name": "flow: full stage playthrough reaches stage clear and results",
       "status": "PASS",
-      "detail": "cleared in 42.9s, score 4450, 60 hits"
+      "detail": "cleared in 44.1s, score 4400, 64 hits"
+    },
+    {
+      "name": "cinematic: title Enter starts the 12 s intro and hands off to the stage intro",
+      "status": "PASS",
+      "detail": "12.0s intro played, handed off to intro after 12.00s, all frames drew"
     },
     {
       "name": "flow: player death leads to game over, retry restarts the stage",

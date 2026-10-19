@@ -50,7 +50,7 @@ boot -> title -> cinematic -> intro -> playing <-> paused
 
 ## Testing
 
-* `tools/tests/run.js` - 22 behavioural and asset tests, run in the headless
+* `tools/tests/run.js` - 23 behavioural and asset tests, run in the headless
   harness against the production modules.
 * `tools/validation/validate_assets.py` - frame/sheet/manifest QA gate.
 * `tools/capture/harness.js` - ~60 line DOM shim (document, Image, localStorage,
